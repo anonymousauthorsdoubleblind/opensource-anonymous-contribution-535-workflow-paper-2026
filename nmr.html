@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>NMR workflow module · Skala-1.1 workflow demo</title>
+<meta name="description" content="Module 3: NMR shifts computed with B3LYP and PBE0 on the Skala-1.1 geometry, set beside the measured spectra of two annulenes.">
+<link rel="icon" href="assets/img/favicon.svg">
+<script>(function(){try{var t=localStorage.getItem("theme");if(!t&&window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)t="dark";if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/replay.css">
+<link rel="stylesheet" href="assets/css/modules.css">
+</head>
+<body data-page="nmr" data-module="3">
+<a class="skip-link" href="#main">Skip to content</a>
+<div id="site-header"></div>
+<main id="main" class="page">
+  <header class="page-head">
+    <p class="eyebrow">Module 3 of 4</p>
+    <h1>NMR workflow module</h1>
+    <p class="lede">Does the Skala-1.1 geometry agree with what the laboratory measures?</p>
+  </header>
+  <nav class="md-toc" aria-label="On this page"><ul><li><a href="#at-a-glance">At a glance</a></li><li><a href="#how">How it works</a></li><li><a href="#sticks">Stick spectra</a></li><li><a href="#errors">Errors against the limits</a></li><li><a href="#where">Where the errors lie</a></li></ul></nav>
+  <section class="section" id="at-a-glance">
+    <h2>At a glance</h2>
+    <dl class="kv">
+      <dt>Input</dt><dd>the agent end point, re-optimized with Skala-1.1/6-31+G(d,p) by plain L-BFGS to a residual force of 0.019 eV Å<sup>−1</sup></dd>
+      <dt>Compute</dt><dd>gas-phase GIAO shieldings in 6-311+G(2d,p) with two probes, P1 B3LYP and P2 PBE0, converted to shifts with published slopes and intercepts</dd>
+      <dt>Output</dt><dd>¹H and ¹³C chemical shifts and the order of the signals</dd>
+      <dt>Checked against</dt><dd>the measured spectra of C<sub>11</sub>H<sub>8</sub> (Parmar et al.) and C<sub>10</sub>H<sub>6</sub> (Myers and Finney); MAE limits of 2.0 ppm (¹³C) and 0.2 ppm (¹H) recommended by Parmar et al.</dd>
+      <dt>Passes on to</dt><dd>the comparison with experiment; no further module</dd>
+    </dl>
+    <div class="stat-row">
+      <div class="stat"><span class="stat__num">1.30 to 1.95 ppm</span><span class="stat__label">¹³C MAE (limit 2.0)</span></div>
+      <div class="stat"><span class="stat__num">0.08 to 0.17 ppm</span><span class="stat__label">¹H MAE (limit 0.2)</span></div>
+      <div class="stat"><span class="stat__num">24 of 24</span><span class="stat__label">resolvable signal pairs in the measured order</span></div>
+    </div>
+  </section>
+  <section class="section" id="how">
+    <h2>How it works</h2>
+    <div class="prose">
+      <p>The comparison follows the structure-assignment protocol of Willoughby, Jansma and Hoye, which prescribes B3LYP/6-311+G(2d,p) shieldings on M06-2X/6-31+G(d,p) geometries. We depart from it in two ways: the geometry comes from Skala-1.1 in place of M06-2X, and no continuum solvent model was used. The scaling constants have not been fitted on Skala-1.1 geometries, so they are used outside their calibrated functional, though not outside their calibrated basis. No parameter was fitted to the annulenes, and atom labels were assigned from connectivity, never from computed shifts (section 2.4).</p>
+    </div>
+    <div class="callout callout--why"><strong class="callout__label">Why here</strong><p>An NMR spectrum is a fingerprint of the structure that a laboratory can measure. C<sub>11</sub>H<sub>8</sub> is a liquid at room temperature, so no crystal structure exists and the NMR spectra are the primary experimental reference. The shifts are computed on the Skala-1.1 geometry: this tests the geometry, not NMR with Skala-1.1 (sections 1.2, 2.4 and 3.1).</p></div>
+    <p class="md-seealso">Terms used here: <span class="term" data-term="giao">GIAO</span>, <span class="term" data-term="mae">MAE</span>.</p>
+    <div class="grid grid--2 md-figgrid">
+      <div data-fig="figA07" data-size="m"></div>
+    </div>
+  </section>
+  <section class="section section--tint" id="sticks">
+    <h2>Stick spectra</h2>
+    <p class="md-kindnote"><span class="badge" data-badge="tables"></span></p>
+    <div class="md-controls">
+      <div class="seg" role="radiogroup" aria-label="Molecule" id="nm-mol"></div>
+      <div class="seg" role="radiogroup" aria-label="Probe" id="nm-probe"></div>
+    </div>
+    <div class="panel md-panel" id="nm-panel">
+      <div class="panel__head"><h3 class="panel__title">Measured and computed shifts, mirrored</h3> <span class="badge" data-badge="tables"></span></div>
+      <div class="panel__body"><div id="nm-sticks" class="md-sticks"><p class="md-missing">Chart needs JavaScript. The table below lists all signals.</p></div></div>
+      <div class="panel__foot">Experiment up, computed down; the ppm axis runs from high to low. Data: assets/data/nmr.js</div>
+    </div>
+    <p class="md-small">Signals are listed per distinct signal; equivalent nuclei give one stick. Hover or focus a stick to read its values. The probe switch changes the computed sticks only.</p>
+    <div id="nm-table"></div>
+    <div data-fig="figA08" data-size="m"></div>
+  </section>
+  <section class="section" id="errors">
+    <h2>Errors against the published limits</h2>
+    <p class="md-kindnote"><span class="badge" data-badge="tables"></span></p>
+    <div class="panel md-panel" id="nm-mae-panel">
+      <div class="panel__head"><h3 class="panel__title">Mean absolute error against the published limits</h3> <span class="badge" data-badge="tables"></span></div>
+      <div class="panel__body"><div id="nm-mae" class="md-maebars"><p class="md-missing">Chart needs JavaScript. Table 1 below holds the same numbers.</p></div></div>
+      <div class="panel__foot">Tick: limit recommended by Parmar et al. (2.0 ppm for ¹³C, 0.2 ppm for ¹H).</div>
+    </div>
+    <h3>Table 1: alignment of computed shifts with experiment</h3>
+    <div class="table-wrap"><table class="table"><thead><tr><th scope="col">System</th><th scope="col">Probe</th><th scope="col">¹³C pairs in order</th><th scope="col">¹H pairs in order</th><th scope="col">¹³C MAE (ppm)</th><th scope="col">¹³C max error (ppm)</th><th scope="col">¹H MAE (ppm)</th><th scope="col">¹H max error (ppm)</th></tr></thead><tbody><tr><td>C<sub>11</sub>H<sub>8</sub></td><td>P1</td><td class="num">14/14</td><td class="num">6/6</td><td class="num">1.30</td><td class="num">1.92</td><td class="num">0.120</td><td class="num">0.146</td></tr><tr><td>C<sub>11</sub>H<sub>8</sub></td><td>P2</td><td class="num">14/14</td><td class="num">6/6</td><td class="num">1.37</td><td class="num">2.83</td><td class="num">0.082</td><td class="num">0.104</td></tr><tr><td>C<sub>10</sub>H<sub>6</sub></td><td>P1</td><td class="num">3/3</td><td class="num">1/1</td><td class="num">1.95</td><td class="num">3.31</td><td class="num">0.169</td><td class="num">0.170</td></tr><tr><td>C<sub>10</sub>H<sub>6</sub></td><td>P2</td><td class="num">3/3</td><td class="num">1/1</td><td class="num">1.77</td><td class="num">4.92</td><td class="num">0.108</td><td class="num">0.125</td></tr></tbody></table></div>
+    <p class="md-small">Gas-phase shieldings on the Skala-1.1/6-31+G(d,p) geometries. Resolvable pairs are separated in experiment by more than 2.0 ppm (¹³C) or 0.10 ppm (¹H). MAE is the mean absolute error over unique chemical shifts (equivalent nuclei counted once). Probes: P1 B3LYP with the constants of the Willoughby protocol, P2 PBE0 with published constants.</p>
+    <div class="stat-row"><div class="stat"><span class="stat__num">0.64 ppm</span><span class="stat__label">gap between the two ring-proton signals of C<sub>10</sub>H<sub>6</sub>, measured · 0.64 (P1) and 0.67 (P2) computed</span></div></div>
+    <div class="prose">
+      <p>The ¹³C MAE was 1.30 to 1.95 ppm and the ¹H MAE 0.08 to 0.17 ppm. All errors fell below the limits recommended by Parmar et al. (2.0 ppm for ¹³C, 0.2 ppm for ¹H). All 24 resolvable signal pairs appeared in the measured order (section 3.1).</p>
+    </div>
+    <div data-fig="fig09" data-size="m"></div>
+    <div class="callout callout--limit"><strong class="callout__label">Limit</strong><p>The shieldings come from B3LYP and PBE0, not from Skala-1.1. This tests the geometry, not NMR with Skala-1.1. It does not rank Skala-1.1 against other functionals. The alkyne carbons of C<sub>10</sub>H<sub>6</sub> were 3.3 ppm (P1) and 4.9 ppm (P2) too high; weighted by nucleus, the ¹³C error of C<sub>10</sub>H<sub>6</sub> would rise to 2.1 ppm, slightly above the limit. The shieldings refer to the gas phase. Only 3 of the 24 pairs lie within twice the criterion, so the signal order is a necessary condition, not a discriminating one. Three of the four ¹H MAEs exceed the 0.10 ppm that the protocol paper gives as typical of correct fits (section 5.1).</p></div>
+  </section>
+  <section class="section section--tint" id="where">
+    <h2>Where the errors lie</h2>
+    <div class="prose">
+      <p>The largest ¹³C errors of C<sub>11</sub>H<sub>8</sub> were at its sp³ carbon C6 (+1.92 and +2.83 ppm); those of C<sub>10</sub>H<sub>6</sub> were at its four alkyne carbons. C<sub>10</sub>H<sub>6</sub> is the weaker test: its D<sub>2h</sub> symmetry leaves only four resolvable pairs, and its spectra were recorded at −90 and −75 °C. The computed protons lay on average 0.03 to 0.17 ppm below experiment, which is consistent with gas-phase shieldings and constants fitted in a chloroform continuum model.</p>
+    </div>
+  </section>
+  <p class="md-next"><a class="btn btn--primary" href="properties.html">Next: Module 4 · molecular property module</a></p>
+</main>
+<div id="site-footer"></div>
+<script src="assets/js/config.js"></script>
+<script src="assets/data/figures.js"></script>
+<script src="assets/data/glossary.js"></script>
+<script src="assets/js/site.js"></script>
+<script src="assets/data/meta.js"></script>
+<script src="assets/data/nmr.js"></script>
+<script src="assets/js/modules/md-common.js"></script>
+<script src="assets/js/modules/nmr.js"></script>
+</body>
+</html>

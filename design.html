@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Design · Skala-1.1 workflow demo</title>
+<meta name="description" content="How the four modules, two routes and one supervision layer fit together.">
+<link rel="icon" href="assets/img/favicon.svg">
+<script>(function(){try{var t=localStorage.getItem("theme");if(!t&&window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)t="dark";if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/pages.css">
+</head>
+<body data-page="design" data-module="0">
+<a class="skip-link" href="#main">Skip to content</a>
+<div id="site-header"></div>
+<main id="main" class="page">
+  <header class="page-head">
+    <p class="eyebrow">Design</p>
+    <h1>How the workflow is built</h1>
+    <p class="lede">Four modules, two routes, one supervision layer. The design keeps the guard separate from the controller, so the same checks apply whichever controller proposes a change.</p>
+  </header>
+
+  <ul class="pg-toc" aria-label="On this page">
+    <li><a href="#modules">Four modules</a></li>
+    <li><a href="#routes">Two routes</a></li>
+    <li><a href="#supervision">Supervision layer</a></li>
+    <li><a href="#one-step">One supervised step</a></li>
+    <li><a href="#energies">Which energies</a></li>
+    <li><a href="#stack">Software stack</a></li>
+  </ul>
+
+  <section class="section" id="modules">
+    <h2>The four modules</h2>
+    <p class="pg-narrow">Table 7 of the manuscript: what each module contains, what it produces and what it was validated against. Section numbers are in brackets.</p>
+    <div class="table-wrap">
+      <table class="table table--compact">
+        <caption class="visually-hidden">The four open-source modules contributed by the Note</caption>
+        <thead><tr><th scope="col">Module</th><th scope="col">Components and execution flow</th><th scope="col">Output and downstream use</th><th scope="col">Validated against</th></tr></thead>
+        <tbody>
+          <tr><th scope="row"><span class="chip chip--m1">1</span> Optimization: agentic optimizer module</th>
+            <td>GFN2-xTB basin search from 13 seeds; the language model (function calling, temperature zero) chooses the start basin. ASE L-BFGS on a GPU4PySCF Skala-1.1 calculator makes every geometry step, in passes with a step cap, a force target and an SCF tolerance. A monitor raises six stall triggers; the agent answers with one of eight actions from a closed list. A validator clips values, with probation and rollback. The model never writes coordinates.</td>
+            <td>A Skala-1.1 structure at a force target of 0.038 eV &Aring;<sup>&minus;1</sup>, with a logged record of every decision. The end points pass on to the Hessian and NMR modules.</td>
+            <td>Step-cap sweep against plain L-BFGS; 208 decisions, none rejected; ammonia saddle; same minimum as the hand-set route within 0.004 and 0.007 &Aring; RMSD (3.4 to 3.7).</td></tr>
+          <tr><th scope="row"><span class="chip chip--m1">1</span> (reference) Hand-set multi-tier route</th>
+            <td>Tier 1 GFN2-xTB (tblite); tier 2 MACE; tier 3 Skala-1.1/def2-SVP L-BFGS in three passes; tier 4 Skala-1.1/def2-TZVP L-BFGS in three passes with force targets of 0.19, 0.057 and 0.038 eV &Aring;<sup>&minus;1</sup> (0.10, 0.03 and 0.02 eV bohr<sup>&minus;1</sup>).</td>
+            <td>Relaxes strained inputs (4.08 and 1.02 eV above the minimum) and randomly deformed inputs without a prior hand relaxation; under two hours on one L4 GPU (24 GB) from a deformed input.</td>
+            <td>Every input reached the force target (SI table S2); six inputs 1.0 to 4.1 eV above the minimum reached it (3.4, table A2).</td></tr>
+          <tr><th scope="row"><span class="chip chip--m2">2</span> Hessian module</th>
+            <td>Two-point finite difference of Skala-1.1 forces at def2-TZVP, step 0.01 &Aring;; mass-weighted harmonic analysis; vDOS and IR envelope (20 cm<sup>&minus;1</sup> width); atomic force-constant stiffness maps; mode animation. 97 and 115 gradients, 16.1 and 22.0 min on one A100 (40 GB).</td>
+            <td>Harmonic frequencies, IR intensities, vDOS and stiffness maps; confirms that a structure is a minimum.</td>
+            <td>No imaginary mode among 42 and 51 modes, also with B3LYP-D3(BJ)/def2-TZVP and Skala-1.1/6-31+G(d,p); 64 of 64 displaced structures above the minimum (3.2).</td></tr>
+          <tr><th scope="row"><span class="chip chip--m3">3</span> NMR workflow module</th>
+            <td>Re-optimization of the Skala-1.1 end point in 6-31+G(d,p), the basis of the protocol of Willoughby et al.; GIAO shieldings in 6-311+G(2d,p) with two probes, P1 B3LYP and P2 PBE0, converted to shifts with published slopes and intercepts. No parameter is fitted to the annulenes.</td>
+            <td><sup>1</sup>H and <sup>13</sup>C chemical shifts and the order of the signals, for comparison with experiment.</td>
+            <td>Spectra of C<sub>11</sub>H<sub>8</sub> and C<sub>10</sub>H<sub>6</sub>: 24 of 24 resolvable pairs in order; <sup>13</sup>C MAE 1.30 to 1.95 ppm, below the 2.0 ppm of Parmar et al.; <sup>1</sup>H MAE 0.08 to 0.17 ppm (3.1).</td></tr>
+          <tr><th scope="row"><span class="chip chip--m4">4</span> Molecular property module</th>
+            <td>PySCF Kohn&ndash;Sham driver with the Skala-1.1 functional (GPU4PySCF) on the def2-TZVP minima of the hand-set route: total SCF energy, meta-L&ouml;wdin charges, electrostatic-potential maps and frontier-orbital cube files, and the energy difference of fixed geometry pairs. Single points on one NVIDIA T4 took about 149 s per C<sub>11</sub>H<sub>8</sub> geometry.</td>
+            <td>A side-by-side comparison of Skala-1.1 with &omega;B97M-V and with coupled-cluster references.</td>
+            <td>L&ouml;wdin charges: R&sup2; above 0.999 against &omega;B97M-V. Energy difference of two geometry pairs against frozen-core CCSD(T)/def2-TZVP: &minus;0.40 kcal mol<sup>&minus;1</sup> (C<sub>11</sub>H<sub>8</sub>) and +3.13 kcal mol<sup>&minus;1</sup> (C<sub>10</sub>H<sub>6</sub>), &omega;B97M-V +0.36 and +4.25. A case study of two pairs, not a statement of chemical accuracy (3.8, tables 3, 4 and A3).</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="pg-note">In the runs of the Note the language model was Google Gemini, used through the function-calling interface of its API at temperature zero; the interface does not depend on a particular model, and other models were not tested (section 2.2).</p>
+    <div class="grid grid--2">
+      <div data-fig="fig04" data-size="full"></div>
+      <div data-fig="figA03" data-size="full"></div>
+    </div>
+  </section>
+
+  <section class="section section--tint" id="routes">
+    <h2>Two routes that meet</h2>
+    <p class="pg-narrow">In the agent-supervised route, an out-of-plane distorted structure passes through the agentic optimizer module at Skala-1.1/def2-SVP, and one end point per molecule is handed, unchanged, to the Hessian module and to the NMR workflow module. In the hand-set route, a strained or randomly deformed structure passes through a fixed schedule of semi-empirical, machine-learned-potential and staged Skala-1.1 passes up to def2-TZVP. The routes meet at the def2-TZVP minima, where they are compared directly (section 2.1).</p>
+    <div class="callout callout--note">
+      <strong class="callout__label">Where module 4 sits</strong>
+      <p>Computed in the Note on the def2-TZVP minima of the separately run hand-set route, not on output of the Hessian module. The two routes meet at def2-TZVP: 0.004 &Aring; and 0.8 meV apart for C<sub>10</sub>H<sub>6</sub>, 0.007 &Aring; and 3.5 meV for C<sub>11</sub>H<sub>8</sub> (section 3.4).</p>
+    </div>
+    <div data-fig="sch-H3" data-size="l"></div>
+  </section>
+
+  <section class="section" id="supervision">
+    <h2>One supervision layer, selectable controller</h2>
+    <div class="pg-three">
+      <div class="card card--module" data-module="1"><h3 class="card__title">Monitor</h3><p>After every step, plain code computes trajectory features over a five-step window and checks six stall triggers, among them an uphill step, oscillation, a plateau and steps pinned at the cap. Most steps raise no trigger and never reach the model.</p></div>
+      <div class="card card--module" data-module="1"><h3 class="card__title">Controller</h3><p>The controller is a setting of the module: the language-model agent, which answers through function calling and always sees the recommendation of a deterministic step advisor, or a rule-based controller that makes no model call. Both pass the same validator, probation and rollback.</p></div>
+      <div class="card card--module" data-module="1"><h3 class="card__title">Guard</h3><p>A validator clips out-of-range values and rejects unsupported actions: per decision the step cap may at most double (or rise to 0.02 &Aring;, if that is larger) and never exceeds 0.05 &Aring;. An accepted change runs for five steps from a checkpoint and is rolled back if the energy or f<sub>max</sub> has worsened beyond set tolerances. After two rollbacks the controller is switched off.</p></div>
+    </div>
+    <p class="pg-narrow" style="margin-top:16px">A rule-based controller did as well where we tested it, so a language model is not shown to be required. The benefit is credited to the supervision layer: the monitor, the step advisor and the guard. L-BFGS makes every step; the controller changes settings and never writes coordinates.</p>
+    <div class="grid grid--2">
+      <div data-fig="fig06" data-size="full"></div>
+      <div data-fig="sch-modes" data-size="full"></div>
+    </div>
+    <h3>Closed vocabulary</h3>
+    <div class="table-wrap">
+      <table class="table table--compact">
+        <thead><tr><th scope="col">Item</th><th scope="col">What it is</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Functions</th><td>Functions the model can call: six; each event offers only a subset; three were used on the annulenes.</td></tr>
+          <tr><th scope="row">Actions</th><td>A closed list of eight; every decision ends with exactly one; four were used on the annulenes (continue, change a setting, tighten the SCF, reset the L-BFGS memory).</td></tr>
+          <tr><th scope="row">Not used on the annulenes</th><td>End pass, stop and flag, displace along a mode, switch basin.</td></tr>
+          <tr><th scope="row">Trap-escape actions</th><td>Displace and switch basin move the atoms directly and need evidence: a negative curvature from the probe or an exactly planar geometry, a previewed geometry that moves no atom by more than 0.3 &Aring;, keeps every atom pair above 0.7 &Aring; and keeps the bond graph; a basin switch needs a DFT single point that prefers the other basin by at least 43 meV.</td></tr>
+          <tr><th scope="row">Controller modes</th><td>Agent with advisor (evaluated); rule-based controller (evaluated: once on C<sub>10</sub>H<sub>6</sub> and, in a compact form, on the two saddle tests); combined mode, rules decide and the agent is consulted only under four fixed conditions (implemented, not run on Skala-1.1).</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h3>Guard bounds</h3>
+    <dl class="kv">
+      <dt>Step cap per decision</dt><dd>At most doubles (or rises to 0.02 &Aring;, if that is larger); never above 0.05 &Aring;</dd>
+      <dt>Probation</dt><dd>5 steps from a checkpoint</dd>
+      <dt>Rollbacks before switch-off</dt><dd>2</dd>
+      <dt>Displacement per atom</dt><dd>At most 0.3 &Aring;</dd>
+      <dt>Closest atom pair</dt><dd>Above 0.7 &Aring;</dd>
+      <dt>Basin switch</dt><dd>DFT single point must prefer the other basin by at least 43 meV</dd>
+    </dl>
+  </section>
+
+  <section class="section section--tint" id="one-step">
+    <div class="panel">
+      <div class="panel__head">
+        <h2 class="panel__title">One supervised step</h2>
+        <span><span class="badge" data-badge="illustrative"></span> <span class="badge" data-badge="logged"></span></span>
+      </div>
+      <div class="panel__body">
+        <p class="pg-note" style="margin-bottom:12px">The diagram is illustrative. The example values are logged: they come from the decision at step 6 of the supervised run of C<sub>10</sub>H<sub>6</sub> from the 0.005 &Aring; cap. Click a state, or press Next to walk through the example.</p>
+        <div class="pg-state">
+          <div id="pg-diagram"></div>
+          <div class="pg-state__panel" id="pg-panel" aria-live="polite">
+            <h3 id="pg-p-title"></h3>
+            <p id="pg-p-text"></p>
+            <div class="pg-state__ex" id="pg-p-ex" hidden><strong>Logged example</strong><span id="pg-p-extext"></span></div>
+            <p class="pg-small">Code: <a id="pg-p-code" href="code.html">code.html</a></p>
+            <div class="pg-steps">
+              <button type="button" class="btn btn--ghost" id="pg-prev">Back</button>
+              <button type="button" class="btn btn--primary" id="pg-next">Next</button>
+              <span class="pg-count" id="pg-pcount"></span>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:16px"><div data-fig="figA05" data-size="m"></div></div>
+      </div>
+      <div class="panel__foot">Data: run C10H6_GS, <a href="data.html#traj">trajectories</a> (events file)</div>
+    </div>
+  </section>
+
+  <section class="section" id="energies">
+    <h2>Which energies</h2>
+    <p class="pg-narrow">Energies are electronic energies at fixed nuclei, on the Born&ndash;Oppenheimer surface. No zero-point, thermal or entropy term is added, and no free energy is reported.</p>
+    <p class="pg-narrow">We compare energy differences, not the total energies of two functionals, which have different zero points.</p>
+  </section>
+
+  <section class="section" id="stack">
+    <h2>Software stack</h2>
+    <ul>
+      <li>PySCF and GPU4PySCF for every DFT step</li>
+      <li>ASE L-BFGS for the optimizer</li>
+      <li>GFN2-xTB through tblite</li>
+      <li>MACE in the hand-set route</li>
+      <li>Python 3</li>
+    </ul>
+    <p class="pg-narrow">So that the four modules are released on one open-source software stack (section 2.4). Versions and hardware are listed on <a href="reproduce.html">Reproduce</a>.</p>
+    <div data-fig="fig16" data-size="l"></div>
+  </section>
+</main>
+<div id="site-footer"></div>
+<script src="assets/js/config.js"></script>
+<script src="assets/data/figures.js"></script>
+<script src="assets/data/glossary.js"></script>
+<script src="assets/js/site.js"></script>
+<script src="assets/js/pages/design.js"></script>
+</body>
+</html>

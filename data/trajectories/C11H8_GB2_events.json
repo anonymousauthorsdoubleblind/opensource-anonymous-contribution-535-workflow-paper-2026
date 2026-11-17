@@ -1,0 +1,462 @@
+{
+ "molecule": "C11H8",
+ "run": "GB2",
+ "kind": "supervised",
+ "arm_label": "Supervised run (agent)",
+ "start": "R1",
+ "step_cap_start_A": 0.3,
+ "level": "Skala-1.1/def2-SVP",
+ "structure_lost": true,
+ "fmax_note": "fmax in the events is the logged value; multiply by 1.8897 for eV/A",
+ "n_events": 27,
+ "events": [
+  {
+   "note": "surrogate exploration done",
+   "basins": 1,
+   "seconds": 4.5,
+   "kind": "note",
+   "pass_id": 1,
+   "step": 0,
+   "gradients": 0,
+   "t_s": 4.547
+  },
+  {
+   "trigger": "basin_choice",
+   "status": "ok",
+   "decision": {
+    "action": "CONTINUE",
+    "params": {},
+    "rationale": "Only a single planar basin (basin 0, found by all 13 surrogate seeds) exists and the current geometry already maps to it with an intact bond graph, so we proceed with the optimization.",
+    "evidence": [
+     "basin.basins[0].n_seeds=13",
+     "basin.current_basin=0",
+     "structure.bond_graph_ok=true"
+    ],
+    "expected": {}
+   },
+   "seconds": 5.8,
+   "tools_called": [
+    "submit_action"
+   ],
+   "kind": "agent_call",
+   "pass_id": 1,
+   "step": 0,
+   "gradients": 0,
+   "t_s": 11.273,
+   "role": "check model",
+   "controller": "language model"
+  },
+  {
+   "status": "accepted",
+   "notes": [],
+   "action": "CONTINUE",
+   "params": {},
+   "kind": "validator",
+   "pass_id": 1,
+   "step": 0,
+   "gradients": 0,
+   "t_s": 11.273
+  },
+  {
+   "tool": "get_evidence",
+   "args": {
+    "topic": "run_log"
+   },
+   "result_keys": [
+    "actions",
+    "strikes",
+    "agent_calls",
+    "gradients"
+   ],
+   "event": "pass_start",
+   "kind": "tool_call",
+   "pass_id": 1,
+   "step": 0,
+   "gradients": 0,
+   "t_s": 30.114
+  },
+  {
+   "trigger": "pass_start",
+   "status": "ok",
+   "decision": {
+    "action": "CONTINUE",
+    "params": {},
+    "rationale": "Step advisor confirms current settings are appropriate at pass 1 start with action keep, so optimization proceeds without changes.",
+    "evidence": [
+     "step_advisor.recommendation.action=keep",
+     "step_advisor.recommendation.reason=settings look appropriate",
+     "step_advisor.forecast.steps_to_target=50"
+    ],
+    "expected": {
+     "steps_to_target": 50
+    }
+   },
+   "seconds": 23.3,
+   "tools_called": [
+    "get_evidence",
+    "submit_action"
+   ],
+   "kind": "agent_call",
+   "pass_id": 1,
+   "step": 0,
+   "gradients": 0,
+   "t_s": 34.543,
+   "role": "routine model",
+   "controller": "language model"
+  },
+  {
+   "status": "accepted",
+   "notes": [],
+   "action": "CONTINUE",
+   "params": {},
+   "kind": "validator",
+   "pass_id": 1,
+   "step": 0,
+   "gradients": 0,
+   "t_s": 34.543
+  },
+  {
+   "settings": {
+    "basis": "def2-svp",
+    "maxstep": 0.3,
+    "steps": 200,
+    "fmax": 0.02,
+    "conv_tol": 1e-06,
+    "grid_level": 3
+   },
+   "label": "",
+   "kind": "pass_start",
+   "pass_id": 1,
+   "step": 0,
+   "gradients": 0,
+   "t_s": 34.544
+  },
+  {
+   "trigger": "scf_not_converged",
+   "features": {
+    "steps_in_pass": 2,
+    "fmax_now": 1155.05532566847,
+    "fmax_target": 0.02,
+    "maxstep": 0.3,
+    "decay_per_step": 382.5385712401608,
+    "uphill_fmax_last4": 1,
+    "oscillation_index": 1.0,
+    "dE_last_eV": 3149.6952455024093,
+    "cap_saturation": 0.0,
+    "plateau": false,
+    "energy_falling_last5": 1,
+    "dE_mean_last5_over_noise": 57894481.1,
+    "scf_converged_last": false
+   },
+   "kind": "trigger",
+   "pass_id": 1,
+   "step": 2,
+   "gradients": 4,
+   "t_s": 83.389
+  },
+  {
+   "tool": "get_evidence",
+   "args": {
+    "topic": "run_log",
+    "window": 10
+   },
+   "result_keys": [
+    "actions",
+    "strikes",
+    "agent_calls",
+    "gradients"
+   ],
+   "event": "trigger",
+   "kind": "tool_call",
+   "pass_id": 1,
+   "step": 2,
+   "gradients": 4,
+   "t_s": 86.737
+  },
+  {
+   "tool": "get_evidence",
+   "args": {
+    "topic": "trajectory",
+    "window": 5
+   },
+   "result_keys": [
+    "pass_id",
+    "rows"
+   ],
+   "event": "trigger",
+   "kind": "tool_call",
+   "pass_id": 1,
+   "step": 2,
+   "gradients": 4,
+   "t_s": 89.134
+  },
+  {
+   "tool": "get_evidence",
+   "args": {
+    "window": 5,
+    "topic": "step_diagnostics"
+   },
+   "result_keys": [
+    "rows"
+   ],
+   "event": "trigger",
+   "kind": "tool_call",
+   "pass_id": 1,
+   "step": 2,
+   "gradients": 4,
+   "t_s": 98.054
+  },
+  {
+   "trigger": "trigger",
+   "status": "ok",
+   "decision": {
+    "action": "RESET_LBFGS_MEMORY",
+    "params": {
+     "maxstep": 0.15
+    },
+    "rationale": "With curvature ratio at 49.08 and a huge energy spike of 3149.7 eV, we halve maxstep to 0.15 A and reset the L-BFGS memory to recover stable convergence.",
+    "evidence": [
+     "step_advisor.curvature_ratio=49.08",
+     "features.dE_last_eV=3149.6952",
+     "features.fmax_now=1155.0553",
+     "step_advisor.recommendation.maxstep=0.15"
+    ],
+    "expected": {
+     "steps_to_target": 50,
+     "fmax_after_5_steps": 5
+    }
+   },
+   "seconds": 18.2,
+   "tools_called": [
+    "get_evidence",
+    "get_evidence",
+    "get_evidence",
+    "submit_action"
+   ],
+   "kind": "agent_call",
+   "pass_id": 1,
+   "step": 2,
+   "gradients": 4,
+   "t_s": 101.605,
+   "role": "routine model",
+   "controller": "language model"
+  },
+  {
+   "status": "clipped",
+   "notes": [
+    "maxstep clipped to 0.0500"
+   ],
+   "action": "RESET_LBFGS_MEMORY",
+   "params": {
+    "maxstep": 0.15
+   },
+   "kind": "validator",
+   "pass_id": 1,
+   "step": 2,
+   "gradients": 4,
+   "t_s": 101.605
+  },
+  {
+   "action": "RESET_LBFGS_MEMORY",
+   "params": {
+    "maxstep": 0.05
+   },
+   "kind": "action_applied",
+   "pass_id": 1,
+   "step": 2,
+   "gradients": 4,
+   "t_s": 101.607
+  },
+  {
+   "outcome": "rolled_back",
+   "action": "RESET_LBFGS_MEMORY",
+   "E_change_eV": 531.7588901617855,
+   "fmax_before": 1155.05532566847,
+   "fmax_after": 2255.3447793855707,
+   "start_gradients": 4,
+   "start_t_opt_s": 62.47,
+   "kind": "probation",
+   "pass_id": 1,
+   "step": 7,
+   "gradients": 9,
+   "t_s": 264.611
+  },
+  {
+   "strikes": 1,
+   "level": "trigger",
+   "kind": "rollback",
+   "pass_id": 1,
+   "step": 7,
+   "gradients": 9,
+   "t_s": 264.611
+  },
+  {
+   "trigger": "scf_not_converged",
+   "features": {
+    "steps_in_pass": 7,
+    "fmax_now": 2255.3447793855707,
+    "fmax_target": 0.02,
+    "maxstep": 0.3,
+    "decay_per_step": 1.1431995140889277,
+    "uphill_fmax_last4": 1,
+    "oscillation_index": 0.25,
+    "dE_last_eV": 286.18240509968473,
+    "cap_saturation": 1.0,
+    "plateau": true,
+    "energy_falling_last5": 3,
+    "dE_mean_last5_over_noise": 25948177.5,
+    "scf_converged_last": false
+   },
+   "kind": "trigger",
+   "pass_id": 1,
+   "step": 7,
+   "gradients": 9,
+   "t_s": 264.648
+  },
+  {
+   "tool": "get_evidence",
+   "args": {
+    "topic": "scf_health"
+   },
+   "result_keys": [
+    "rows"
+   ],
+   "event": "trigger",
+   "kind": "tool_call",
+   "pass_id": 1,
+   "step": 7,
+   "gradients": 9,
+   "t_s": 300.919
+  },
+  {
+   "tool": "get_evidence",
+   "args": {
+    "topic": "step_diagnostics"
+   },
+   "result_keys": [
+    "rows"
+   ],
+   "event": "trigger",
+   "kind": "tool_call",
+   "pass_id": 1,
+   "step": 7,
+   "gradients": 9,
+   "t_s": 306.367
+  },
+  {
+   "tool": "get_evidence",
+   "args": {
+    "topic": "run_log"
+   },
+   "result_keys": [
+    "actions",
+    "strikes",
+    "agent_calls",
+    "gradients"
+   ],
+   "event": "trigger",
+   "kind": "tool_call",
+   "pass_id": 1,
+   "step": 7,
+   "gradients": 9,
+   "t_s": 310.093
+  },
+  {
+   "trigger": "trigger",
+   "status": "ok",
+   "decision": {
+    "action": "TIGHTEN_SCF",
+    "params": {
+     "conv_tol": 1e-05
+    },
+    "rationale": "(no usable rationale given)",
+    "evidence": [
+     "scf_health.rows"
+    ],
+    "expected": {}
+   },
+   "seconds": 51.4,
+   "tools_called": [
+    "get_evidence",
+    "get_evidence",
+    "get_evidence",
+    "submit_action"
+   ],
+   "kind": "agent_call",
+   "pass_id": 1,
+   "step": 7,
+   "gradients": 9,
+   "t_s": 316.074,
+   "role": "routine model",
+   "controller": "language model"
+  },
+  {
+   "status": "clipped",
+   "notes": [
+    "conv_tol tightened to 1e-06 to match fmax 0.02"
+   ],
+   "action": "TIGHTEN_SCF",
+   "params": {
+    "conv_tol": 1e-05
+   },
+   "kind": "validator",
+   "pass_id": 1,
+   "step": 7,
+   "gradients": 9,
+   "t_s": 316.075
+  },
+  {
+   "action": "TIGHTEN_SCF",
+   "params": {
+    "conv_tol": 1e-06
+   },
+   "kind": "action_applied",
+   "pass_id": 1,
+   "step": 7,
+   "gradients": 9,
+   "t_s": 316.075
+  },
+  {
+   "outcome": "rolled_back",
+   "action": "TIGHTEN_SCF",
+   "E_change_eV": 1652.57472461394,
+   "fmax_before": 1861.046855252878,
+   "fmax_after": 7626.000548991311,
+   "start_gradients": 10,
+   "start_t_opt_s": 257.68,
+   "kind": "probation",
+   "pass_id": 1,
+   "step": 12,
+   "gradients": 15,
+   "t_s": 478.975
+  },
+  {
+   "strikes": 2,
+   "level": "trigger",
+   "kind": "rollback",
+   "pass_id": 1,
+   "step": 12,
+   "gradients": 15,
+   "t_s": 478.976
+  },
+  {
+   "note": "agent switched off after two rollbacks; baseline settings finish the run",
+   "kind": "note",
+   "pass_id": 1,
+   "step": 12,
+   "gradients": 15,
+   "t_s": 478.976
+  },
+  {
+   "steps": 146,
+   "fmax": 2672.4267612960643,
+   "energy_eV": -9053.938854093221,
+   "target_met": false,
+   "kind": "pass_end",
+   "pass_id": 1,
+   "step": 146,
+   "gradients": 150,
+   "t_s": 4887.946
+  }
+ ]
+}

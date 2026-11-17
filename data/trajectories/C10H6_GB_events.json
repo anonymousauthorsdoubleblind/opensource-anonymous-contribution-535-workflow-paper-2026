@@ -1,0 +1,496 @@
+{
+ "molecule": "C10H6",
+ "run": "GB",
+ "kind": "supervised",
+ "arm_label": "Supervised run (agent)",
+ "start": "R1",
+ "step_cap_start_A": 0.3,
+ "level": "Skala-1.1/def2-SVP",
+ "structure_lost": false,
+ "fmax_note": "fmax in the events is the logged value; multiply by 1.8897 for eV/A",
+ "n_events": 29,
+ "events": [
+  {
+   "note": "surrogate exploration done",
+   "basins": 1,
+   "seconds": 3.2,
+   "kind": "note",
+   "pass_id": 1,
+   "step": 0,
+   "gradients": 0,
+   "t_s": 3.246
+  },
+  {
+   "trigger": "basin_choice",
+   "status": "ok",
+   "decision": {
+    "action": "CONTINUE",
+    "params": {},
+    "rationale": "All 13 surrogate seeds converged to a single planar basin (id 0), so no basin switch is needed.",
+    "evidence": [
+     "basin.basins[0].id=0",
+     "basin.basins[0].n_seeds=13",
+     "basin.current_basin=0"
+    ],
+    "expected": {}
+   },
+   "seconds": 7.8,
+   "tools_called": [
+    "submit_action"
+   ],
+   "kind": "agent_call",
+   "pass_id": 1,
+   "step": 0,
+   "gradients": 0,
+   "t_s": 11.759,
+   "role": "check model",
+   "controller": "language model"
+  },
+  {
+   "status": "accepted",
+   "notes": [],
+   "action": "CONTINUE",
+   "params": {},
+   "kind": "validator",
+   "pass_id": 1,
+   "step": 0,
+   "gradients": 0,
+   "t_s": 11.76
+  },
+  {
+   "trigger": "pass_start",
+   "status": "ok",
+   "decision": {
+    "action": "CONTINUE",
+    "params": {},
+    "rationale": "Step advisor recommends keeping current settings at pass start based on the surrogate curvature k_measured_eV_A2 of 68.2 and a forecast of 44 steps to target.",
+    "evidence": [
+     "step_advisor.recommendation.action=keep",
+     "step_advisor.k_measured_eV_A2=68.2",
+     "step_advisor.forecast.steps_to_target=44"
+    ],
+    "expected": {
+     "steps_to_target": 44
+    }
+   },
+   "seconds": 28.5,
+   "tools_called": [
+    "submit_action"
+   ],
+   "kind": "agent_call",
+   "pass_id": 1,
+   "step": 0,
+   "gradients": 0,
+   "t_s": 40.253,
+   "role": "routine model",
+   "controller": "language model"
+  },
+  {
+   "status": "accepted",
+   "notes": [],
+   "action": "CONTINUE",
+   "params": {},
+   "kind": "validator",
+   "pass_id": 1,
+   "step": 0,
+   "gradients": 0,
+   "t_s": 40.254
+  },
+  {
+   "settings": {
+    "basis": "def2-svp",
+    "maxstep": 0.3,
+    "steps": 200,
+    "fmax": 0.02,
+    "conv_tol": 1e-06,
+    "grid_level": 3
+   },
+   "label": "",
+   "kind": "pass_start",
+   "pass_id": 1,
+   "step": 0,
+   "gradients": 0,
+   "t_s": 40.254
+  },
+  {
+   "steps": 48,
+   "fmax": 0.015015595449974353,
+   "energy_eV": -10450.840968006209,
+   "target_met": true,
+   "kind": "pass_end",
+   "pass_id": 1,
+   "step": 48,
+   "gradients": 50,
+   "t_s": 846.975
+  },
+  {
+   "trigger": "pass_start",
+   "status": "ok",
+   "decision": {
+    "action": "CONTINUE",
+    "params": {},
+    "rationale": "With fmax_now at 0.015 already satisfying the 0.02 target and step_advisor recommending keep with curvature_ratio=0.6, the run should CONTINUE.",
+    "evidence": [
+     "step_advisor.recommendation.action=keep",
+     "step_advisor.curvature_ratio=0.6",
+     "step_advisor.forecast.steps_to_target=1",
+     "features.fmax_now=0.015"
+    ],
+    "expected": {
+     "fmax_after_5_steps": 0.015,
+     "steps_to_target": 1
+    }
+   },
+   "seconds": 14.4,
+   "tools_called": [
+    "submit_action"
+   ],
+   "kind": "agent_call",
+   "pass_id": 2,
+   "step": 48,
+   "gradients": 50,
+   "t_s": 861.371,
+   "role": "routine model",
+   "controller": "language model"
+  },
+  {
+   "status": "accepted",
+   "notes": [],
+   "action": "CONTINUE",
+   "params": {},
+   "kind": "validator",
+   "pass_id": 2,
+   "step": 48,
+   "gradients": 50,
+   "t_s": 861.371
+  },
+  {
+   "settings": {
+    "basis": "def2-svp",
+    "maxstep": 0.3,
+    "steps": 200,
+    "fmax": 0.02,
+    "conv_tol": 1e-06,
+    "grid_level": 3
+   },
+   "label": "",
+   "kind": "pass_start",
+   "pass_id": 2,
+   "step": 48,
+   "gradients": 50,
+   "t_s": 861.372
+  },
+  {
+   "steps": 0,
+   "fmax": 0.01513176480178094,
+   "energy_eV": -10450.840967916458,
+   "target_met": true,
+   "kind": "pass_end",
+   "pass_id": 2,
+   "step": 48,
+   "gradients": 50,
+   "t_s": 875.673
+  },
+  {
+   "trigger": "pass_start",
+   "status": "ok",
+   "decision": {
+    "action": "CONTINUE",
+    "params": {},
+    "rationale": "The step advisor recommends keeping the current settings as they are appropriate with an estimated 1 step to target.",
+    "evidence": [
+     "step_advisor.recommendation.action=keep",
+     "step_advisor.forecast.steps_to_target=1"
+    ],
+    "expected": {
+     "steps_to_target": 1
+    }
+   },
+   "seconds": 7.8,
+   "tools_called": [
+    "submit_action"
+   ],
+   "kind": "agent_call",
+   "pass_id": 3,
+   "step": 48,
+   "gradients": 50,
+   "t_s": 883.487,
+   "role": "routine model",
+   "controller": "language model"
+  },
+  {
+   "status": "accepted",
+   "notes": [],
+   "action": "CONTINUE",
+   "params": {},
+   "kind": "validator",
+   "pass_id": 3,
+   "step": 48,
+   "gradients": 50,
+   "t_s": 883.488
+  },
+  {
+   "settings": {
+    "basis": "def2-svp",
+    "maxstep": 0.3,
+    "steps": 200,
+    "fmax": 0.02,
+    "conv_tol": 1e-06,
+    "grid_level": 3
+   },
+   "label": "",
+   "kind": "pass_start",
+   "pass_id": 3,
+   "step": 48,
+   "gradients": 50,
+   "t_s": 883.488
+  },
+  {
+   "steps": 0,
+   "fmax": 0.015106638466223536,
+   "energy_eV": -10450.840967748743,
+   "target_met": true,
+   "kind": "pass_end",
+   "pass_id": 3,
+   "step": 48,
+   "gradients": 50,
+   "t_s": 895.612
+  },
+  {
+   "trigger": "pass_start",
+   "status": "ok",
+   "decision": {
+    "action": "CONTINUE",
+    "params": {},
+    "rationale": "The step advisor recommends keeping the current settings as they are appropriate with an estimated 1 step to target.",
+    "evidence": [
+     "step_advisor.recommendation.action=keep",
+     "step_advisor.forecast.steps_to_target=1",
+     "structure.bond_graph_ok=true"
+    ],
+    "expected": {
+     "steps_to_target": 1
+    }
+   },
+   "seconds": 5.0,
+   "tools_called": [
+    "submit_action"
+   ],
+   "kind": "agent_call",
+   "pass_id": 4,
+   "step": 48,
+   "gradients": 50,
+   "t_s": 900.655,
+   "role": "routine model",
+   "controller": "language model"
+  },
+  {
+   "status": "accepted",
+   "notes": [],
+   "action": "CONTINUE",
+   "params": {},
+   "kind": "validator",
+   "pass_id": 4,
+   "step": 48,
+   "gradients": 50,
+   "t_s": 900.656
+  },
+  {
+   "settings": {
+    "basis": "def2-svp",
+    "maxstep": 0.3,
+    "steps": 200,
+    "fmax": 0.02,
+    "conv_tol": 1e-06,
+    "grid_level": 3
+   },
+   "label": "",
+   "kind": "pass_start",
+   "pass_id": 4,
+   "step": 48,
+   "gradients": 50,
+   "t_s": 900.656
+  },
+  {
+   "steps": 0,
+   "fmax": 0.015147108371246014,
+   "energy_eV": -10450.840968380055,
+   "target_met": true,
+   "kind": "pass_end",
+   "pass_id": 4,
+   "step": 48,
+   "gradients": 50,
+   "t_s": 912.704
+  },
+  {
+   "trigger": "pass_start",
+   "status": "ok",
+   "decision": {
+    "action": "CONTINUE",
+    "params": {},
+    "rationale": "The step advisor recommends keeping the current settings as they are appropriate with an estimated 1 step to target.",
+    "evidence": [
+     "step_advisor.recommendation.action=keep",
+     "step_advisor.forecast.steps_to_target=1"
+    ],
+    "expected": {
+     "steps_to_target": 1
+    }
+   },
+   "seconds": 5.9,
+   "tools_called": [
+    "submit_action"
+   ],
+   "kind": "agent_call",
+   "pass_id": 5,
+   "step": 48,
+   "gradients": 50,
+   "t_s": 918.594,
+   "role": "routine model",
+   "controller": "language model"
+  },
+  {
+   "status": "accepted",
+   "notes": [],
+   "action": "CONTINUE",
+   "params": {},
+   "kind": "validator",
+   "pass_id": 5,
+   "step": 48,
+   "gradients": 50,
+   "t_s": 918.595
+  },
+  {
+   "settings": {
+    "basis": "def2-svp",
+    "maxstep": 0.3,
+    "steps": 200,
+    "fmax": 0.02,
+    "conv_tol": 1e-06,
+    "grid_level": 3
+   },
+   "label": "",
+   "kind": "pass_start",
+   "pass_id": 5,
+   "step": 48,
+   "gradients": 50,
+   "t_s": 918.595
+  },
+  {
+   "steps": 0,
+   "fmax": 0.015925956511442182,
+   "energy_eV": -10450.8409620394,
+   "target_met": true,
+   "kind": "pass_end",
+   "pass_id": 5,
+   "step": 48,
+   "gradients": 50,
+   "t_s": 930.6
+  },
+  {
+   "trigger": "pass_start",
+   "status": "ok",
+   "decision": {
+    "action": "CONTINUE",
+    "params": {},
+    "rationale": "Step advisor recommends keeping current settings at pass 6 start with k_measured_eV_A2=41.68 and an estimated 1 step to target.",
+    "evidence": [
+     "step_advisor.recommendation.action=keep",
+     "step_advisor.forecast.steps_to_target=1",
+     "step_advisor.k_measured_eV_A2=41.68"
+    ],
+    "expected": {
+     "fmax_after_5_steps": 0.02,
+     "steps_to_target": 1
+    }
+   },
+   "seconds": 4.4,
+   "tools_called": [
+    "submit_action"
+   ],
+   "kind": "agent_call",
+   "pass_id": 6,
+   "step": 48,
+   "gradients": 50,
+   "t_s": 935.029,
+   "role": "routine model",
+   "controller": "language model"
+  },
+  {
+   "status": "accepted",
+   "notes": [],
+   "action": "CONTINUE",
+   "params": {},
+   "kind": "validator",
+   "pass_id": 6,
+   "step": 48,
+   "gradients": 50,
+   "t_s": 935.03
+  },
+  {
+   "settings": {
+    "basis": "def2-svp",
+    "maxstep": 0.3,
+    "steps": 200,
+    "fmax": 0.02,
+    "conv_tol": 1e-06,
+    "grid_level": 3
+   },
+   "label": "",
+   "kind": "pass_start",
+   "pass_id": 6,
+   "step": 48,
+   "gradients": 50,
+   "t_s": 935.03
+  },
+  {
+   "steps": 0,
+   "fmax": 0.015160344592490799,
+   "energy_eV": -10450.840968530787,
+   "target_met": true,
+   "kind": "pass_end",
+   "pass_id": 6,
+   "step": 48,
+   "gradients": 50,
+   "t_s": 949.432
+  },
+  {
+   "trigger": "final_check",
+   "status": "ok",
+   "decision": {
+    "action": "CONTINUE",
+    "params": {},
+    "rationale": "The geometry has converged cleanly in the target basin 0 with intact bonding (bond_graph_ok=true) and a planar structure (plane_rms_A=0.0033).",
+    "evidence": [
+     "structure.bond_graph_ok=true",
+     "structure.plane_rms_A=0.0033",
+     "basin.current_basin=0",
+     "basin.target_basin=0"
+    ],
+    "expected": {}
+   },
+   "seconds": 5.6,
+   "tools_called": [
+    "submit_action"
+   ],
+   "kind": "agent_call",
+   "pass_id": 6,
+   "step": 48,
+   "gradients": 50,
+   "t_s": 955.058,
+   "role": "check model",
+   "controller": "language model"
+  },
+  {
+   "status": "accepted",
+   "notes": [],
+   "action": "CONTINUE",
+   "params": {},
+   "kind": "validator",
+   "pass_id": 6,
+   "step": 48,
+   "gradients": 50,
+   "t_s": 955.059
+  }
+ ]
+}

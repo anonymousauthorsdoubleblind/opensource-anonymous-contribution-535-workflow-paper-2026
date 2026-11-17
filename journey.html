@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>The journey of one molecule · Skala-1.1 workflow demo</title>
+<meta name="description" content="A guided replay of one distorted structure through the four open-source modules, with the reason for each computation.">
+<link rel="icon" href="assets/img/favicon.svg">
+<script>(function(){try{var t=localStorage.getItem("theme");if(!t&&window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)t="dark";if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/replay.css">
+<link rel="stylesheet" href="assets/css/journey.css">
+</head>
+<body data-page="journey" data-module="0">
+<a class="skip-link" href="#main">Skip to content</a>
+<div id="site-header"></div>
+<main id="main" class="page jy-page">
+  <header class="page-head">
+    <p class="eyebrow">Guided replay</p>
+    <h1>The journey of one molecule</h1>
+    <p class="lede">Follow a distorted structure through the four open-source modules. Each stage shows what goes in, what is computed, what comes out, and why that computation is done there.</p>
+  </header>
+
+  <div class="jy-toolbar">
+    <div class="jy-toolbar__group">
+      <span class="jy-toolbar__label" id="jy-mol-label">Molecule</span>
+      <div class="seg" id="jy-mol" role="radiogroup" aria-labelledby="jy-mol-label">
+        <button type="button" role="radio" aria-checked="true" data-mol="C10H6">C<sub>10</sub>H<sub>6</sub> · 16 atoms</button>
+        <button type="button" role="radio" aria-checked="false" tabindex="-1" data-mol="C11H8">C<sub>11</sub>H<sub>8</sub> · 19 atoms</button>
+      </div>
+    </div>
+    <button type="button" class="btn btn--ghost" id="jy-showall" aria-pressed="false">Show all stages</button>
+    <p class="jy-toolbar__hint">Nothing plays by itself. Press Play, drag the slider, or use the Left and Right keys.</p>
+  </div>
+
+  <nav class="jy-rail" id="jy-rail" aria-label="Journey stages"></nav>
+  <div class="visually-hidden" id="jy-live" role="status" aria-live="polite"></div>
+
+  <div class="jy-layout" id="jy-layout" data-module="0">
+    <aside class="jy-viewer" id="jy-viewer" aria-label="Structure viewer"></aside>
+    <div class="jy-cards" id="jy-cards"></div>
+  </div>
+  <!--NOSCRIPT-->
+  <noscript>
+    <section class="jy-noscript">
+      <h2>The seven stages, as text</h2>
+      <p>The replays need JavaScript. The text of each stage follows.</p>
+      <article class="card jy-noscript__stage">
+        <h3>Stage 0 &middot; The input</h3>
+        <p><strong>Why here.</strong> Each candidate enters the optimize-and-simulate step as a rough, strained structure. Strained means that bonds and angles are pushed away from their relaxed values. The two test molecules are laboratory-synthesized dehydro[10]annulenes with published NMR spectra, so the end of the journey can be checked against experiment (sections 1.2 and 2.1).</p>
+        <p><strong>Limit.</strong> Two related planar hydrocarbons of 16 and 19 atoms. How far the results transfer to larger, flexible or heteroatom-containing molecules is not tested (section 5.1).</p>
+      </article>
+      <article class="card jy-noscript__stage">
+        <h3>Stage 1 &middot; GFN2-xTB basin search</h3>
+        <p><strong>Why here.</strong> A fast tight-binding method surveys the valleys before any expensive Skala-1.1 gradient is spent. If another basin lay lower, the run could start there. In this module GFN2-xTB searches for basins and does not relax the Skala-1.1 start.</p>
+        <p><strong>Limit.</strong> One planar basin was found for each molecule, so the choice of basin was not exercised as a decision on the annulenes (section 3.7).</p>
+      </article>
+      <article class="card jy-noscript__stage">
+        <h3>Stage 2 &middot; Supervised L-BFGS on Skala-1.1</h3>
+        <p><strong>Why here.</strong> Too small a cap makes the optimizer creep; too large a cap can wreck the structure. With a neural functional, each wasted step is one expensive gradient. Settings are therefore adapted during the run, without a restart, and behind a guard that bounds each change and reverses it if the run gets worse (sections 1.2 and 2.2).</p>
+        <p><strong>Limit.</strong> C<sub>10</sub>H<sub>6</sub>: The cap was mis-set on purpose. Supervision guards against a poor setting; it does not improve on a good one: with a sensible cap of 0.025 Å the two arms tied (50 against 53 steps). Single runs, given as step counts. No gain in speed is claimed. A rule-based controller did as well where we tested it, so a language model is not shown to be required (section 3.6). C<sub>11</sub>H<sub>8</sub>: The cap was mis-set on purpose. Supervision guards against a poor setting; it does not improve on a good one: with a sensible cap of 0.025 Å the two arms tied (63 against 65 steps). Single runs, given as step counts. No gain in speed is claimed. A rule-based controller did as well where we tested it, so a language model is not shown to be required (section 3.6).</p>
+      </article>
+      <article class="card jy-noscript__stage">
+        <h3>Stage 3 &middot; Checked end point</h3>
+        <p><strong>Why here.</strong> A run that meets the force target has not yet been shown to sit at a minimum: at a saddle point the forces vanish too. When many structures are processed automatically, such an error would pass unnoticed. So the end point is checked before it is handed on (section 3.5).</p>
+        <p><strong>Limit.</strong> One planar basin for each molecule. Both routes share the functional and the L-BFGS family of optimizers, so this tests the path and the settings, not the functional. The other two runs lost the C₁₁H₈ structure at the first step with a 0.3 Å cap. On the annulenes the probe met no imaginary mode (section 3.4).</p>
+      </article>
+      <article class="card jy-noscript__stage">
+        <h3>Stage 4 &middot; Hessian module</h3>
+        <p><strong>Why here.</strong> The forces vanish at a valley floor and at a mountain pass alike; only the curvature tells them apart. The Hessian module is run on a structure that has reached the force target, not at every step. The same calculation gives the harmonic frequencies, the IR intensities and the vibrational density of states (sections 2.1, 2.3 and 3.2).</p>
+        <p><strong>Limit.</strong> C<sub>10</sub>H<sub>6</sub>: This gives the sign of every curvature, not the accuracy of the frequencies. The frequencies are harmonic and unscaled, precise to about ±20 cm<sup>−1</sup>, and are not compared with a measured spectrum. One displacement step and one integration grid were used. C<sub>11</sub>H<sub>8</sub>: This gives the sign of every curvature, not the accuracy of the frequencies. The frequencies are harmonic and unscaled, precise to about ±20 cm<sup>−1</sup>, and are not compared with a measured spectrum. One displacement step and one integration grid were used. The two softest modes of C₁₁H₈ (89 cm<sup>−1</sup>) are strongly anharmonic and are reported by sign and character only.</p>
+      </article>
+      <article class="card jy-noscript__stage">
+        <h3>Stage 5 &middot; NMR workflow module</h3>
+        <p><strong>Why here.</strong> An NMR spectrum is a fingerprint of the structure that a laboratory can measure. C₁₁H₈ is a liquid at room temperature, so no crystal structure exists and the NMR spectra are the primary experimental reference. The shifts are computed on the Skala-1.1 geometry: this tests the geometry, not NMR with Skala-1.1 (sections 1.2, 2.4 and 3.1).</p>
+        <p><strong>Limit.</strong> C<sub>10</sub>H<sub>6</sub>: The shieldings come from B3LYP and PBE0, not from Skala-1.1, and refer to the gas phase. It does not rank Skala-1.1 against other functionals. The alkyne carbons of C₁₀H₆ are 3.3 (P1) and 4.9 (P2) ppm too high; weighted by nucleus, its <sup>13</sup>C error would rise to 2.1 ppm, slightly above the limit. The signal order is a necessary condition, not a discriminating one. C<sub>11</sub>H<sub>8</sub>: The shieldings come from B3LYP and PBE0, not from Skala-1.1, and refer to the gas phase. It does not rank Skala-1.1 against other functionals. The signal order is a necessary condition, not a discriminating one.</p>
+      </article>
+      <article class="card jy-noscript__stage">
+        <h3>Stage 6 &middot; Molecular property module</h3>
+        <p><strong>Why here.</strong> A verified structure is the starting point for the quantities a chemist uses: where the electronic charge sits and how much energy a distortion costs. An established hybrid functional and CCSD(T) give a second opinion (section 3.8).</p>
+        <p><strong>Limit.</strong> A case study of two geometry pairs: not a statement of chemical accuracy and not a ranking of the two functionals. Frozen-core CCSD(T) without basis-set extrapolation; the integration grids and dispersion treatments of the two functionals were not matched. Energies are electronic energies at fixed nuclei, on the Born–Oppenheimer surface; no free energy is reported.</p>
+      </article>
+    </section>
+  </noscript>
+  <!--/NOSCRIPT-->
+</main>
+<div id="site-footer"></div>
+<script src="assets/js/config.js"></script>
+<script src="assets/data/figures.js"></script>
+<script src="assets/data/glossary.js"></script>
+<script src="assets/js/site.js"></script>
+<script src="assets/data/meta.js"></script>
+<script src="assets/data/traj_C10H6.js"></script>
+<script src="assets/data/traj_C11H8.js"></script>
+<script src="assets/data/grid.js"></script>
+<script src="assets/data/hessian.js"></script>
+<script src="assets/data/nmr.js"></script>
+<script src="assets/data/props.js"></script>
+<script src="assets/data/structures.js"></script>
+<script src="assets/vendor/3dmol/3Dmol-min.js"></script>
+<script src="assets/js/replay/mol.js"></script>
+<script src="assets/js/replay/player.js"></script>
+<script src="assets/js/replay/chart.js"></script>
+<script src="assets/js/replay/ticker.js"></script>
+<script src="assets/js/journey-content.js"></script>
+<script src="assets/js/journey.js"></script>
+</body>
+</html>

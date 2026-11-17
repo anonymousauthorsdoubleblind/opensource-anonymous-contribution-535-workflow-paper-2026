@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" font-family="Arial, Helvetica, sans-serif"><defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#1b2333"/></marker><marker id="m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#586279"/></marker><marker id="r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#b94a1b"/></marker><marker id="g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#18733f"/></marker></defs><rect width="1600" height="900" fill="#fff"/><text x="40" y="52" font-size="30" font-weight="700" fill="#1b2333" text-anchor="start">Module 2 in detail: Hessian, frequencies, IR and vDOS</text>
+<text x="40" y="82" font-size="18" font-weight="400" fill="#586279" text-anchor="start">From the agent's end point to a check that the structure is a true minimum</text>
+<circle cx="1540" cy="56" r="24" fill="#2468c9" stroke="#fff" stroke-width="3"/>
+<text x="1540" y="63" font-size="20" font-weight="700" fill="#fff" text-anchor="middle">2</text>
+<rect x="40" y="130" width="270" height="190" rx="12" fill="#ffffff" stroke="#586279" stroke-width="2.6"/>
+<text x="175.0" y="218.3" font-size="19" font-weight="700" fill="#1b2333" text-anchor="middle">Agent end point</text>
+<text x="175.0" y="251.60000000000002" font-size="15" font-weight="400" fill="#586279" text-anchor="middle">Skala-1.1 geometry</text>
+<path d="M312 225H340" stroke="#1b2333" stroke-width="2.6" fill="none" marker-end="url(#a)" stroke-linejoin="round"/>
+<rect x="346" y="130" width="270" height="190" rx="12" fill="#e2ebfa" stroke="#2468c9" stroke-width="2.6"/>
+<text x="481.0" y="197.60000000000002" font-size="19" font-weight="700" fill="#1b2333" text-anchor="middle">Re-optimize</text>
+<text x="481.0" y="230.90000000000003" font-size="15" font-weight="400" fill="#586279" text-anchor="middle">L-BFGS, Skala-1.1 /</text>
+<text x="481.0" y="251.60000000000002" font-size="15" font-weight="400" fill="#586279" text-anchor="middle">def2-TZVP, max force below</text>
+<text x="481.0" y="272.3" font-size="15" font-weight="400" fill="#586279" text-anchor="middle">0.01 eV/Å</text>
+<path d="M618 225H646" stroke="#1b2333" stroke-width="2.6" fill="none" marker-end="url(#a)" stroke-linejoin="round"/>
+<rect x="652" y="130" width="270" height="190" rx="12" fill="#e2ebfa" stroke="#2468c9" stroke-width="2.6"/>
+<text x="787.0" y="197.60000000000002" font-size="19" font-weight="700" fill="#1b2333" text-anchor="middle">Displace atoms</text>
+<text x="787.0" y="230.90000000000003" font-size="15" font-weight="400" fill="#586279" text-anchor="middle">every Cartesian coordinate</text>
+<text x="787.0" y="251.60000000000002" font-size="15" font-weight="400" fill="#586279" text-anchor="middle">by ±0.01 Å (6N + 1</text>
+<text x="787.0" y="272.3" font-size="15" font-weight="400" fill="#586279" text-anchor="middle">gradient evaluations)</text>
+<path d="M924 225H952" stroke="#1b2333" stroke-width="2.6" fill="none" marker-end="url(#a)" stroke-linejoin="round"/>
+<rect x="958" y="130" width="270" height="190" rx="12" fill="#e2ebfa" stroke="#2468c9" stroke-width="2.6"/>
+<text x="1093.0" y="207.95000000000002" font-size="19" font-weight="700" fill="#1b2333" text-anchor="middle">Forces</text>
+<text x="1093.0" y="241.25000000000003" font-size="15" font-weight="400" fill="#586279" text-anchor="middle">Skala-1.1 forces on every</text>
+<text x="1093.0" y="261.95000000000005" font-size="15" font-weight="400" fill="#586279" text-anchor="middle">displaced structure (GPU)</text>
+<path d="M1230 225H1258" stroke="#1b2333" stroke-width="2.6" fill="none" marker-end="url(#a)" stroke-linejoin="round"/>
+<rect x="1264" y="130" width="270" height="190" rx="12" fill="#e2ebfa" stroke="#2468c9" stroke-width="2.6"/>
+<text x="1399.0" y="176.90000000000003" font-size="19" font-weight="700" fill="#1b2333" text-anchor="middle">Assemble Hessian</text>
+<text x="1399.0" y="210.20000000000005" font-size="15" font-weight="400" fill="#586279" text-anchor="middle">central finite</text>
+<text x="1399.0" y="230.90000000000003" font-size="15" font-weight="400" fill="#586279" text-anchor="middle">differences, free of</text>
+<text x="1399.0" y="251.60000000000005" font-size="15" font-weight="400" fill="#586279" text-anchor="middle">translation and rotation,</text>
+<text x="1399.0" y="272.30000000000007" font-size="15" font-weight="400" fill="#586279" text-anchor="middle">mass-weighted,</text>
+<text x="1399.0" y="293.00000000000006" font-size="15" font-weight="400" fill="#586279" text-anchor="middle">diagonalized</text>
+<path d="M1318 322V380H800V420" stroke="#1b2333" stroke-width="2.6" fill="none" marker-end="url(#a)" stroke-linejoin="round"/>
+<rect x="300" y="424" width="1000" height="100" rx="12" fill="#fff" stroke="#2468c9" stroke-width="3"/>
+<text x="800.0" y="467.31" font-size="21" font-weight="700" fill="#1b2333" text-anchor="middle">Harmonic frequencies (unscaled)</text>
+<text x="800.0" y="503.31" font-size="16" font-weight="400" fill="#586279" text-anchor="middle">double-harmonic IR intensities from dipole moments at the displaced geometries</text>
+<path d="M520 526V580" stroke="#2468c9" stroke-width="2.6" fill="none" marker-end="url(#a)" stroke-linejoin="round"/>
+<path d="M800 526V580" stroke="#2468c9" stroke-width="2.6" fill="none" marker-end="url(#a)" stroke-linejoin="round"/>
+<path d="M1080 526V580" stroke="#2468c9" stroke-width="2.6" fill="none" marker-end="url(#a)" stroke-linejoin="round"/>
+<rect x="340" y="584" width="360" height="110" rx="12" fill="#dcf0e4" stroke="#18733f" stroke-width="3"/>
+<text x="520.0" y="631.95" font-size="18" font-weight="700" fill="#1b2333" text-anchor="middle">Check: no imaginary frequencies</text>
+<text x="520.0" y="664.0500000000001" font-size="15" font-weight="400" fill="#586279" text-anchor="middle">a valley floor, not a mountain pass</text>
+<rect x="720" y="584" width="170" height="110" rx="12" fill="#e2ebfa" stroke="#2468c9" stroke-width="2.2"/>
+<text x="805.0" y="645.3000000000001" font-size="18" font-weight="700" fill="#1b2333" text-anchor="middle">IR spectrum</text>
+<rect x="910" y="584" width="170" height="110" rx="12" fill="#e2ebfa" stroke="#2468c9" stroke-width="2.2"/>
+<text x="995.0" y="632.64" font-size="18" font-weight="700" fill="#1b2333" text-anchor="middle">vDOS</text>
+<text x="995.0" y="664.44" font-size="14" font-weight="400" fill="#586279" text-anchor="middle">sum of Gaussians</text>
+<rect x="1100" y="584" width="200" height="110" rx="12" fill="#e2ebfa" stroke="#2468c9" stroke-width="2.2"/>
+<text x="1200.0" y="632.29" font-size="17" font-weight="700" fill="#1b2333" text-anchor="middle">Frequency-mapped</text>
+<text x="1200.0" y="662.89" font-size="14" font-weight="400" fill="#586279" text-anchor="middle">molecular view</text>
+<text x="40" y="740" font-size="17" font-weight="700" fill="#1b2333" text-anchor="start">Cross-checks of the stationary-point assignment (same def2-SVP start):</text>
+<text x="60" y="768" font-size="16" font-weight="400" fill="#586279" text-anchor="start">•  B3LYP-D3(BJ) / def2-TZVP</text>
+<text x="60" y="794" font-size="16" font-weight="400" fill="#586279" text-anchor="start">•  Skala-1.1 / 6-31+G(d,p), the NMR geometry level</text>
+<text x="60" y="820" font-size="16" font-weight="400" fill="#586279" text-anchor="start">•  Energy scans along the three lowest modes and one stiff control mode (q = ±3)</text>
+<text x="800.0" y="882" font-size="15" font-weight="400" fill="#586279" text-anchor="middle">Schematic of the workflow, not computed data.</text></svg>

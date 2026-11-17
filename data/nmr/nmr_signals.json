@@ -1,0 +1,146 @@
+{
+ "geometry": "Skala-1.1/6-31+G(d,p), gas phase",
+ "probes": {
+  "P1": "GIAO B3LYP/6-311+G(2d,p) shieldings, scaling constants of the Willoughby protocol",
+  "P2": "GIAO PBE0 shieldings, published scaling constants"
+ },
+ "conditions": {
+  "C11H8": "CDCl3",
+  "C10H6": "-90 and -75 C in CD2Cl2 and THF-d8/CD2Cl2"
+ },
+ "note": "error = computed minus experiment, ppm. Labels with a slash are symmetry-equivalent atoms that give one signal.",
+ "molecules": {
+  "C11H8": {
+   "13C": [
+    {
+     "label": "C3",
+     "experiment_ppm": 135.87,
+     "P1_ppm": 134.66,
+     "error_P1_ppm": -1.21,
+     "P2_ppm": 136.01,
+     "error_P2_ppm": 0.14
+    },
+    {
+     "label": "C1",
+     "experiment_ppm": 118.66,
+     "P1_ppm": 117.727,
+     "error_P1_ppm": -0.933,
+     "P2_ppm": 119.228,
+     "error_P2_ppm": 0.568
+    },
+    {
+     "label": "C4",
+     "experiment_ppm": 116.29,
+     "P1_ppm": 117.493,
+     "error_P1_ppm": 1.203,
+     "P2_ppm": 118.763,
+     "error_P2_ppm": 2.473
+    },
+    {
+     "label": "C5",
+     "experiment_ppm": 115.61,
+     "P1_ppm": 116.736,
+     "error_P1_ppm": 1.126,
+     "P2_ppm": 117.274,
+     "error_P2_ppm": 1.664
+    },
+    {
+     "label": "C2",
+     "experiment_ppm": 108.22,
+     "P1_ppm": 106.787,
+     "error_P1_ppm": -1.433,
+     "P2_ppm": 108.756,
+     "error_P2_ppm": 0.536
+    },
+    {
+     "label": "C6",
+     "experiment_ppm": 13.0,
+     "P1_ppm": 14.923,
+     "error_P1_ppm": 1.923,
+     "P2_ppm": 15.834,
+     "error_P2_ppm": 2.834
+    }
+   ],
+   "1H": [
+    {
+     "label": "Hb",
+     "experiment_ppm": 8.19,
+     "P1_ppm": 8.044,
+     "error_P1_ppm": -0.146,
+     "P2_ppm": 8.089,
+     "error_P2_ppm": -0.101
+    },
+    {
+     "label": "Ha",
+     "experiment_ppm": 8.08,
+     "P1_ppm": 7.98,
+     "error_P1_ppm": -0.1,
+     "P2_ppm": 8.049,
+     "error_P2_ppm": -0.031
+    },
+    {
+     "label": "Hc",
+     "experiment_ppm": 7.61,
+     "P1_ppm": 7.479,
+     "error_P1_ppm": -0.131,
+     "P2_ppm": 7.519,
+     "error_P2_ppm": -0.091
+    },
+    {
+     "label": "Hd",
+     "experiment_ppm": 2.59,
+     "P1_ppm": 2.692,
+     "error_P1_ppm": 0.102,
+     "P2_ppm": 2.694,
+     "error_P2_ppm": 0.104
+    }
+   ]
+  },
+  "C10H6": {
+   "13C": [
+    {
+     "label": "C5/C10",
+     "experiment_ppm": 137.1,
+     "P1_ppm": 136.036,
+     "error_P1_ppm": -1.064,
+     "P2_ppm": 137.13,
+     "error_P2_ppm": 0.03
+    },
+    {
+     "label": "C2/C3/C7/C8 (alkyne)",
+     "experiment_ppm": 125.1,
+     "P1_ppm": 128.41,
+     "error_P1_ppm": 3.31,
+     "P2_ppm": 130.021,
+     "error_P2_ppm": 4.921
+    },
+    {
+     "label": "C1/C4/C6/C9",
+     "experiment_ppm": 107.5,
+     "P1_ppm": 106.031,
+     "error_P1_ppm": -1.469,
+     "P2_ppm": 107.846,
+     "error_P2_ppm": 0.346
+    }
+   ],
+   "1H": [
+    {
+     "label": "H5/H10",
+     "experiment_ppm": 8.45,
+     "P1_ppm": 8.28,
+     "error_P1_ppm": -0.17,
+     "P2_ppm": 8.359,
+     "error_P2_ppm": -0.091
+    },
+    {
+     "label": "H1/H4/H6/H9",
+     "experiment_ppm": 7.81,
+     "P1_ppm": 7.642,
+     "error_P1_ppm": -0.168,
+     "P2_ppm": 7.685,
+     "error_P2_ppm": -0.125
+    }
+   ]
+  }
+ }
+}

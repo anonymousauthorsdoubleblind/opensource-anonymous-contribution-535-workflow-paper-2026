@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Home · Skala-1.1 workflow demo</title>
+<meta name="description" content="Demonstration site for an agent-supervised GPU workflow for Skala-1.1: four open-source modules, replays of logged runs and the data behind them.">
+<link rel="icon" href="assets/img/favicon.svg">
+<script>(function(){try{var t=localStorage.getItem("theme");if(!t&&window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)t="dark";if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/replay.css">
+<link rel="stylesheet" href="assets/css/home.css">
+</head>
+<body data-page="home" data-module="0" data-tour="off">
+<a class="skip-link" href="#main">Skip to content</a>
+<div id="site-header"></div>
+<main id="main" class="page">
+
+  <header class="page-head hm-hero" id="hero">
+    <div class="hm-hero__text">
+      <p class="eyebrow">Demonstration site for a Technical Note</p>
+      <h1>Four open-source modules take a rough, strained structure to a verified <span class="nowrap">Skala-1.1</span> minimum</h1>
+      <p class="lede">and on to quantities a laboratory can measure. Tested on two synthesized annulenes, C<sub>10</sub>H<sub>6</sub> and C<sub>11</sub>H<sub>8</sub>. Every change of a setting is typed, bounded, reversible and logged.</p>
+      <div class="cluster hm-hero__cta">
+        <a class="btn btn--primary" href="journey.html">Follow one molecule</a>
+        <a class="btn" href="results.html">See the nine findings</a>
+        <a class="btn btn--ghost" href="#new">What is new</a>
+      </div>
+      <p class="hm-hero__note">Seven stages, about five minutes. Every replay is labelled as logged data or as illustrative.</p>
+    </div>
+    <div class="panel hm-replay" id="hm-replay">
+      <div class="panel__head">
+        <p class="panel__title">One logged run: C<sub>10</sub>H<sub>6</sub> relaxes from bent to planar</p>
+        <span class="badge" data-badge="logged"></span>
+      </div>
+      <div class="panel__body">
+        <div id="hm-mol"></div>
+        <div id="hm-chart"></div>
+        <div id="hm-player"></div>
+        <p class="hm-unit">Forces are shown in eV Å<sup>−1</sup> as in the manuscript (section 2.2): the logged eV bohr<sup>−1</sup> values multiplied by 1.8897. The force target of 0.038 eV Å<sup>−1</sup> is 0.02 in the logged unit. The data files keep the logged values.</p>
+        <div id="hm-fallback"><div data-fig="fig01" data-size="full" data-caption="none"></div></div>
+      </div>
+      <p class="panel__foot">Supervised run of the step-cap sweep, start R1, starting step cap 0.005 Å: 60 optimizer steps to the force target of 0.038 eV Å<sup>−1</sup>, played from the log. L-BFGS makes every step; the controller changes settings and never writes coordinates. <a href="journey.html">Follow this molecule through all four modules</a> · <a href="data.html#traj">Show the data</a></p>
+    </div>
+  </header>
+
+  <section class="section" id="modules">
+    <h2>Four modules, four questions</h2>
+    <p class="prose">An input structure enters the agentic optimizer module. Its end point goes to the Hessian module and to the NMR workflow module. Each module answers one question and passes on a checked result.</p>
+    <div class="grid grid--4 hm-tiles">
+      <a class="card card--module card--link hm-tile" data-module="1" href="optimizer.html">
+        <span class="chip chip--m1">Module 1 · Optimize</span>
+        <h3 class="card__title">Agentic optimizer module</h3>
+        <p>Can a rough, strained structure be taken to a Skala-1.1 structure with settings that adapt during the run?</p>
+        <p class="hm-tile__result">16 of 18 runs reach one structure.</p>
+        <p class="hm-tile__note">GFN2-xTB basin search, then L-BFGS on Skala-1.1 under the supervision layer.</p>
+        <span class="hm-tile__go">Open module 1 →</span>
+      </a>
+      <a class="card card--module card--link hm-tile" data-module="2" href="hessian.html">
+        <span class="chip chip--m2">Module 2 · Verify</span>
+        <h3 class="card__title">Hessian module</h3>
+        <p>Is the end point a true minimum?</p>
+        <p class="hm-tile__result">No imaginary modes at the end points: 0 of 42 and 0 of 51.</p>
+        <p class="hm-tile__note">Run on a structure that has reached the force target, not at every step.</p>
+        <span class="hm-tile__go">Open module 2 →</span>
+      </a>
+      <a class="card card--module card--link hm-tile" data-module="3" href="nmr.html">
+        <span class="chip chip--m3">Module 3 · Compare</span>
+        <h3 class="card__title">NMR workflow module</h3>
+        <p>Does the Skala-1.1 geometry agree with what the laboratory measures?</p>
+        <p class="hm-tile__result"><sup>13</sup>C errors of 1.30 to 1.95 ppm against the 2.0 ppm limit.</p>
+        <p class="hm-tile__note">B3LYP and PBE0 shieldings on the Skala-1.1 geometry. This tests the geometry, not NMR with Skala-1.1.</p>
+        <span class="hm-tile__go">Open module 3 →</span>
+      </a>
+      <a class="card card--module card--link hm-tile" data-module="4" href="properties.html">
+        <span class="chip chip--m4">Module 4 · Properties</span>
+        <h3 class="card__title">Molecular property module</h3>
+        <p>Do the properties agree with established methods?</p>
+        <p class="hm-tile__result">Atomic charges with R<sup>2</sup> above 0.999 against ωB97M-V.</p>
+        <p class="hm-tile__note">Computed in the Note on the def2-TZVP minima of the separately run hand-set route.</p>
+        <span class="hm-tile__go">Open module 4 →</span>
+      </a>
+    </div>
+    <div data-fig="fig02" data-size="full" data-caption="short"></div>
+    <p><a href="design.html#routes">See how the structure is handed from module to module</a> · <a href="rationale.html#needs">See each step with its reason</a></p>
+  </section>
+
+  <section class="section section--tint" id="new">
+    <h2>What is new, and how far that statement goes</h2>
+    <p class="prose">To our knowledge, four things had not been reported (searches of Google Scholar, arXiv, ChemRxiv, the Skala repository and the web, run on 10 to 13 November 2026):</p>
+    <ol class="prose">
+      <li>No harmonic frequencies, infrared intensities or vibrational densities of states of an annulene computed with Skala-1.1 have been published.</li>
+      <li>No Skala-optimized annulene geometry has been tested against the experimental <sup>1</sup>H and <sup>13</sup>C NMR spectrum of the synthesized compound.</li>
+      <li>To our knowledge, no earlier work has a large language model agent, through function calling with typed actions, supervise the step and convergence settings of a running Skala-1.1/L-BFGS geometry optimization behind a validator, a probation window and rollback of the running optimization.</li>
+      <li>No publication independently evaluates Skala's release of high steric strain (more than 1 eV) in an annulene geometry optimization.</li>
+    </ol>
+    <div class="callout callout--limit">
+      <strong class="callout__label">Limits on these statements</strong>
+      <p>Adapting the step size during a run is standard practice in optimizers, and rule-based supervision of a run is not claimed as new. Most elements of the third statement have precedent on their own, so it rests on their combination. It does not say that a language model is needed for the supervision, which the Note does not show. The searches were bounded, so the absence of earlier work in them is not proof that none exists.</p>
+    </div>
+    <p class="prose">For the optimizer, the contribution is an interface in which every change is a typed, bounded, reversible and logged action, which any controller, rule-based or model-based, can use. The benefit is attributed to the supervision layer, that is, the monitor, the step advisor and the guard, and not to the language model. A rule-based controller did as well where we tested it, so a language model is not shown to be required.</p>
+    <p><a href="rationale.html#gaps">Read the four gaps and their limits</a> · <a href="rationale.html#not-claimed">What is not claimed</a></p>
+  </section>
+
+  <section class="section" id="numbers">
+    <h2>Five numbers, each with its limit</h2>
+    <p class="prose">The values are those of the manuscript, as on the Results page. Each tile links to the replay or table behind it.</p>
+    <div class="hm-stats">
+      <div class="stat card--module" data-module="3">
+        <span class="stat__num">1.30 to 1.95 ppm</span>
+        <span class="stat__label"><sup>13</sup>C mean absolute error against a published limit of 2.0 ppm; <sup>1</sup>H 0.08 to 0.17 ppm against 0.2 ppm</span>
+        <p class="hm-stat__limit"><strong>Limit:</strong> This tests the geometry, not NMR with Skala-1.1. Gas-phase shieldings.</p>
+        <a href="nmr.html#errors">NMR errors →</a>
+      </div>
+      <div class="stat card--module" data-module="2">
+        <span class="stat__num">0 of 42 and 0 of 51</span>
+        <span class="stat__label">modes imaginary for C<sub>10</sub>H<sub>6</sub> and C<sub>11</sub>H<sub>8</sub>: both end points are minima</span>
+        <p class="hm-stat__limit"><strong>Limit:</strong> Harmonic and unscaled; only the sign of each curvature is claimed.</p>
+        <a href="hessian.html#spectrum">Frequencies and spectrum →</a>
+      </div>
+      <div class="stat card--module" data-module="1">
+        <span class="stat__num">16 of 18</span>
+        <span class="stat__label">supervised runs reached the force target, all at one structure (RMSD at most 0.016 Å and 0.028 Å)</span>
+        <p class="hm-stat__limit"><strong>Limit:</strong> One planar basin. The other two runs lost the C<sub>11</sub>H<sub>8</sub> structure at a 0.3 Å cap.</p>
+        <a href="optimizer.html#one-structure">One structure →</a>
+      </div>
+      <div class="stat card--module" data-module="1">
+        <span class="stat__num">Steps 58 to 70</span>
+        <span class="stat__label">to the force target for supervised runs started on purpose at a 0.005 Å step cap; plain runs: step 129, or not within 149 steps; a rules run without a language model: step 50</span>
+        <p class="hm-stat__limit"><strong>Limit:</strong> At a sensible cap the two tied. Single runs, given as step counts. No gain in speed is claimed.</p>
+        <a href="optimizer.html#sweep">Step-cap sweep →</a>
+      </div>
+      <div class="stat card--module" data-module="1">
+        <span class="stat__num">208 decisions</span>
+        <span class="stat__label">192 passed and 16 were clipped to the bounds; none fell outside them. 72 of 78 trial changes kept, 6 rolled back</span>
+        <p class="hm-stat__limit"><strong>Limit:</strong> The agent agreed with the step advisor in 81 of 97 decisions, so these runs do not show what the language model adds.</p>
+        <a href="optimizer.html#guard">Decisions at the guard →</a>
+      </div>
+    </div>
+    <p class="cluster hm-after"><a class="btn" href="results.html">All nine findings, with tests and benchmarks</a> <a href="results.html#not-established">What the results do not establish</a></p>
+  </section>
+
+  <section class="section" id="paths">
+    <h2>Three ways through the site</h2>
+    <div class="grid grid--3 hm-paths">
+      <div class="card hm-path">
+        <h3 class="card__title">Reviewer: a five-minute tour</h3>
+        <p>Is each claim backed, bounded and open to audit?</p>
+        <ol>
+          <li><a href="results.html">Nine findings, each with its limit</a> (2 min)</li>
+          <li><a href="optimizer.html#guard">Every decision at the guard</a> (1 min)</li>
+          <li><a href="rationale.html#limits-of-novelty">Limits on the novelty statements, and what is not claimed</a> (1 min)</li>
+          <li><a href="data.html#provenance">Where a number on the site comes from</a> (1 min)</li>
+        </ol>
+        <a class="btn btn--primary" href="results.html">Start with the findings</a>
+      </div>
+      <div class="card hm-path">
+        <h3 class="card__title">Scientist: the idea in pictures</h3>
+        <p>What does each module do, and why is that step there?</p>
+        <ol>
+          <li><a href="journey.html">Follow one molecule through the four modules</a></li>
+          <li><a href="explainers.html#ball">A ball on a landscape: what the step cap does</a></li>
+          <li><a href="nmr.html#sticks">Measured and computed NMR shifts, side by side</a></li>
+          <li><a href="about.html#limitations">The limitations in full</a></li>
+        </ol>
+        <a class="btn btn--primary" href="journey.html">Start the journey</a>
+      </div>
+      <div class="card hm-path">
+        <h3 class="card__title">Code user: run it on your molecule</h3>
+        <p>What is in the release, and what does a run need?</p>
+        <ol>
+          <li><a href="code.html#viewer">Read the source of the agentic optimizer module</a></li>
+          <li><a href="design.html#supervision">One supervision layer, selectable controller</a></li>
+          <li><a href="reproduce.html#requirements">Requirements and steps</a></li>
+          <li><a href="data.html#structures">Structures and logs to compare against</a></li>
+        </ol>
+        <p class="hm-tile__note">The code on this site covers the agentic optimizer module and the analysis scripts; see the Code page for what else is in the release.</p>
+        <a class="btn btn--primary" href="code.html">Open the code</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="sitemap">
+    <h2>All pages</h2>
+    <h3>Start</h3>
+    <ul class="hm-map">
+      <li><a class="card card--link" href="journey.html"><strong>Journey</strong><span>One input structure, seven stages, four modules: what comes out at each stage and why the step is there.</span></a></li>
+    </ul>
+    <h3>The four modules</h3>
+    <ul class="hm-map">
+      <li><a class="card card--module card--link" data-module="1" href="optimizer.html"><strong>1 · Agentic optimizer</strong><span>GFN2-xTB basin search, then L-BFGS on Skala-1.1 under the supervision layer: step-cap sweep, guard log, ammonia saddle test.</span></a></li>
+      <li><a class="card card--module card--link" data-module="2" href="hessian.html"><strong>2 · Hessian</strong><span>Finite-difference Hessian of the finished structure: frequencies, IR spectrum, minimum or saddle point.</span></a></li>
+      <li><a class="card card--module card--link" data-module="3" href="nmr.html"><strong>3 · NMR workflow</strong><span>GIAO shieldings with B3LYP and PBE0 on the Skala-1.1 geometry, beside the measured spectra.</span></a></li>
+      <li><a class="card card--module card--link" data-module="4" href="properties.html"><strong>4 · Molecular property</strong><span>Charges, potential and orbitals beside ωB97M-V; relaxation energy beside CCSD(T), on the hand-set minima.</span></a></li>
+    </ul>
+    <h3>Evidence</h3>
+    <ul class="hm-map">
+      <li><a class="card card--link" href="results.html"><strong>Results</strong><span>Nine findings, each with its test, main number, benchmark and limit; Table 6.</span></a></li>
+      <li><a class="card card--link" href="rationale.html"><strong>Why and what is new</strong><span>Four needs, four gaps in the literature, the limits on those statements, and what is not claimed.</span></a></li>
+    </ul>
+    <h3>Understand</h3>
+    <ul class="hm-map">
+      <li><a class="card card--link" href="explainers.html"><strong>Explainers</strong><span>The ideas in pictures: walking downhill, what the step cap does, three checks on a finished structure.</span></a></li>
+      <li><a class="card card--link" href="design.html"><strong>Design</strong><span>How the workflow is built: supervision layer, closed vocabulary, guard bounds, two routes, software stack.</span></a></li>
+    </ul>
+    <h3>Reuse</h3>
+    <ul class="hm-map">
+      <li><a class="card card--link" href="code.html"><strong>Code</strong><span>Read the source of the agentic optimizer module in the browser and download the source archive.</span></a></li>
+      <li><a class="card card--link" href="data.html"><strong>Data</strong><span>Every file behind the replays and charts, with its origin: structures, trajectories, logs, tables.</span></a></li>
+      <li><a class="card card--link" href="reproduce.html"><strong>Reproduce</strong><span>Requirements, order of the runs, what to expect, and why a rerun may differ.</span></a></li>
+      <li><a class="card card--link" href="about.html"><strong>About</strong><span>Anonymity, how to cite, the limitations in full, what the labels mean, licences.</span></a></li>
+    </ul>
+  </section>
+
+  <section class="section" id="scope">
+    <h2>Scope</h2>
+    <div data-scope-note></div>
+    <p>Anonymous submission under double-anonymous review. Author names, affiliations, funding and contributions are withheld.</p>
+    <p>Cite as: Anonymous (under double-anonymous review). Figures and numbers follow the manuscript; section numbers refer to it. <a href="about.html">About this site</a> · <a href="about.html#labels">What the labels mean</a></p>
+    <div class="cluster hm-legend">
+      <span>Every panel carries one of four labels:</span>
+      <span class="badge" data-badge="logged"></span>
+      <span class="badge" data-badge="illustrative"></span>
+      <span class="badge" data-badge="tables"></span>
+      <span class="badge" data-badge="schematic"></span>
+    </div>
+  </section>
+
+</main>
+<div id="site-footer"></div>
+<script src="assets/js/config.js"></script>
+<script src="assets/data/figures.js"></script>
+<script src="assets/data/glossary.js"></script>
+<script src="assets/js/site.js"></script>
+<script src="assets/data/traj_C10H6.js"></script>
+<script src="assets/vendor/3dmol/3Dmol-min.js"></script>
+<script src="assets/js/replay/mol.js"></script>
+<script src="assets/js/replay/player.js"></script>
+<script src="assets/js/replay/chart.js"></script>
+<script src="assets/js/pages/home.js"></script>
+</body>
+</html>

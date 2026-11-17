@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 740" width="1600" height="740" font-family="Arial, Helvetica, sans-serif"><defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#1b2333"/></marker><marker id="m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#586279"/></marker><marker id="r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#b94a1b"/></marker><marker id="g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#18733f"/></marker></defs><rect width="1600" height="740" fill="#fff"/><text x="40" y="52" font-size="30" font-weight="700" fill="#1b2333" text-anchor="start">Module 4 in detail: molecular properties and CCSD(T) comparison</text>
+<text x="40" y="82" font-size="18" font-weight="400" fill="#586279" text-anchor="start">Run on the def2-TZVP minima of the hand-set reference route</text>
+<circle cx="1540" cy="56" r="24" fill="#b87a00" stroke="#fff" stroke-width="3"/>
+<text x="1540" y="63" font-size="20" font-weight="700" fill="#fff" text-anchor="middle">4</text>
+<rect x="40" y="150" width="300" height="150" rx="12" fill="#f6ebd2" stroke="#b99a4a" stroke-width="2.2"/>
+<text x="190.0" y="207.95000000000002" font-size="19" font-weight="700" fill="#1b2333" text-anchor="middle">Hand-set minima</text>
+<text x="190.0" y="241.25000000000003" font-size="15" font-weight="400" fill="#586279" text-anchor="middle">def2-TZVP structures that</text>
+<text x="190.0" y="261.95000000000005" font-size="15" font-weight="400" fill="#586279" text-anchor="middle">reached the force target</text>
+<path d="M342 225H400" stroke="#1b2333" stroke-width="2.6" fill="none" marker-end="url(#a)" stroke-linejoin="round"/>
+<rect x="404" y="150" width="350" height="150" rx="12" fill="#fdf0d5" stroke="#b87a00" stroke-width="3"/>
+<text x="579.0" y="206.92000000000002" font-size="20" font-weight="700" fill="#1b2333" text-anchor="middle">Molecular property module</text>
+<text x="579.0" y="241.72000000000003" font-size="16" font-weight="400" fill="#586279" text-anchor="middle">self-consistent-field</text>
+<text x="579.0" y="263.8" font-size="16" font-weight="400" fill="#586279" text-anchor="middle">calculation on a GPU</text>
+<path d="M756 190H820" stroke="#1b2333" stroke-width="2.6" fill="none" marker-end="url(#a)" stroke-linejoin="round"/>
+<path d="M756 260H820" stroke="#1b2333" stroke-width="2.6" fill="none" marker-end="url(#a)" stroke-linejoin="round"/>
+<rect x="824" y="120" width="330" height="100" rx="12" fill="#fdf0d5" stroke="#b87a00" stroke-width="2.2"/>
+<text x="989.0" y="152.95000000000002" font-size="19" font-weight="700" fill="#1b2333" text-anchor="middle">Properties</text>
+<text x="989.0" y="186.25000000000003" font-size="15" font-weight="400" fill="#586279" text-anchor="middle">meta-Löwdin charges, potential</text>
+<text x="989.0" y="206.95000000000002" font-size="15" font-weight="400" fill="#586279" text-anchor="middle">maps, frontier orbitals</text>
+<rect x="824" y="235" width="330" height="100" rx="12" fill="#ffffff" stroke="#b87a00" stroke-width="2.2"/>
+<text x="989.0" y="267.95" font-size="19" font-weight="700" fill="#1b2333" text-anchor="middle">Energy differences</text>
+<text x="989.0" y="301.25" font-size="15" font-weight="400" fill="#586279" text-anchor="middle">frozen-core CCSD(T)/def2-TZVP</text>
+<text x="989.0" y="321.95" font-size="15" font-weight="400" fill="#586279" text-anchor="middle">single points (CPU)</text>
+<path d="M1156 170H1230" stroke="#1b2333" stroke-width="2.6" fill="none" marker-end="url(#a)" stroke-linejoin="round"/>
+<path d="M1156 285H1230" stroke="#1b2333" stroke-width="2.6" fill="none" marker-end="url(#a)" stroke-linejoin="round"/>
+<rect x="1234" y="120" width="326" height="100" rx="12" fill="#dcf0e4" stroke="#18733f" stroke-width="3"/>
+<text x="1397.0" y="152.95000000000002" font-size="19" font-weight="700" fill="#1b2333" text-anchor="middle">Compared with</text>
+<text x="1397.0" y="186.25000000000003" font-size="15" font-weight="400" fill="#586279" text-anchor="middle">ωB97M-V / def2-TZVP,</text>
+<text x="1397.0" y="206.95000000000002" font-size="15" font-weight="400" fill="#586279" text-anchor="middle">side by side</text>
+<rect x="1234" y="235" width="326" height="100" rx="12" fill="#dcf0e4" stroke="#18733f" stroke-width="3"/>
+<text x="1397.0" y="267.95" font-size="19" font-weight="700" fill="#1b2333" text-anchor="middle">Compared with</text>
+<text x="1397.0" y="301.25" font-size="15" font-weight="400" fill="#586279" text-anchor="middle">Skala-1.1 relaxation</text>
+<text x="1397.0" y="321.95" font-size="15" font-weight="400" fill="#586279" text-anchor="middle">energy differences</text>
+<rect x="40" y="420" width="1520" height="150" rx="14" fill="#fae7dc" stroke="#b94a1b" stroke-width="2.2"/>
+<text x="70" y="460" font-size="19" font-weight="700" fill="#b94a1b" text-anchor="start">Scope note</text>
+<text x="70" y="494" font-size="17" font-weight="400" fill="#1b2333" text-anchor="start">The charges and CCSD(T) differences were computed on the hand-set route's minima, not on output of the Hessian module.</text>
+<text x="70" y="522" font-size="17" font-weight="400" fill="#1b2333" text-anchor="start">Hardware: one GPU (A100, L4 or T4) for the SCF steps; CPU for CCSD(T).</text>
+<text x="40" y="640" font-size="17" font-weight="400" fill="#586279" text-anchor="start">Why this module is in the workflow: it shows that Skala-1.1 geometries feed ordinary electronic-structure analysis,</text>
+<text x="40" y="666" font-size="17" font-weight="400" fill="#586279" text-anchor="start">and that the results sit beside established methods.</text>
+<text x="800.0" y="722" font-size="15" font-weight="400" fill="#586279" text-anchor="middle">Schematic of the workflow, not computed data.</text></svg>

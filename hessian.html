@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Hessian module · Skala-1.1 workflow demo</title>
+<meta name="description" content="Module 2: finite-difference Hessian, harmonic frequencies and IR intensities on a finished Skala-1.1 structure, with the minimum-or-saddle check.">
+<link rel="icon" href="assets/img/favicon.svg">
+<script>(function(){try{var t=localStorage.getItem("theme");if(!t&&window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)t="dark";if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/replay.css">
+<link rel="stylesheet" href="assets/css/modules.css">
+</head>
+<body data-page="hessian" data-module="2">
+<a class="skip-link" href="#main">Skip to content</a>
+<div id="site-header"></div>
+<main id="main" class="page">
+  <header class="page-head">
+    <p class="eyebrow">Module 2 of 4</p>
+    <h1>Hessian module</h1>
+    <p class="lede">Is the end point a true minimum?</p>
+  </header>
+  <nav class="md-toc" aria-label="On this page"><ul><li><a href="#at-a-glance">At a glance</a></li><li><a href="#how">How it works</a></li><li><a href="#spectrum">Frequencies and spectrum</a></li><li><a href="#scans">Energy scans</a></li><li><a href="#consistency">Numerical consistency</a></li><li><a href="#results">Table 2</a></li><li><a href="#figures">Figures</a></li></ul></nav>
+  <section class="section" id="at-a-glance">
+    <h2>At a glance</h2>
+    <dl class="kv">
+      <dt>Input</dt><dd>an agent end point, re-optimized at Skala-1.1/def2-TZVP to below 0.01 eV Å<sup>−1</sup></dd>
+      <dt>Compute</dt><dd>two-point central finite differences of the forces, 0.01 Å displacements, 6N + 1 gradients (97 and 115); mass-weighted harmonic analysis</dd>
+      <dt>Output</dt><dd>harmonic frequencies, IR intensities, vibrational density of states, atomic stiffness maps; the verdict minimum or saddle point</dd>
+      <dt>Checked against</dt><dd>B3LYP-D3(BJ)/def2-TZVP, a second basis set, and energy scans along four modes per molecule</dd>
+      <dt>Passes on to</dt><dd>the verified minimum is the input of the molecular property module (in this Note module 4 was run on the hand-set minima)</dd>
+    </dl>
+    <div class="stat-row">
+      <div class="stat"><span class="stat__num">0 of 42 and 0 of 51</span><span class="stat__label">modes imaginary</span></div>
+      <div class="stat"><span class="stat__num">64 of 64</span><span class="stat__label">displaced structures above the minimum</span></div>
+      <div class="stat"><span class="stat__num">0.9991 to 1.0002</span><span class="stat__label">analytic force over energy slope</span></div>
+    </div>
+  </section>
+  <section class="section" id="how">
+    <h2>How it works</h2>
+    <div class="prose">
+      <p>Every Cartesian coordinate is displaced by ±0.01 Å and the Skala-1.1 forces are evaluated at each displaced structure: 6N + 1 = 97 gradients for C<sub>10</sub>H<sub>6</sub> and 115 for C<sub>11</sub>H<sub>8</sub>. The Hessian is assembled from differences of the forces, projected free of translations and rotations, mass-weighted and diagonalized.</p>
+      <p>Frequencies are harmonic and unscaled. Dipole moments stored at every displaced geometry give double-harmonic IR intensities, and the vDOS is a sum of unit-weight Gaussians (section 2.3).</p>
+    </div>
+    <div class="callout callout--why"><strong class="callout__label">Why here</strong><p>The forces vanish at a valley floor and at a mountain pass alike; only the curvature tells them apart. The Hessian module is run on a structure that has reached the force target, not at every step. The same calculation gives the harmonic frequencies, the IR intensities and the vibrational density of states (sections 2.1, 2.3 and 3.2).</p></div>
+    <p class="md-seealso">Terms used here: <span class="term" data-term="hessian">Hessian</span>, <span class="term" data-term="imaginary-mode">imaginary mode</span>, <span class="term" data-term="minimum">minimum</span>, <span class="term" data-term="saddle-point">saddle point</span>, <span class="term" data-term="vdos">vDOS</span>.</p>
+    <div class="grid grid--2 md-figgrid">
+      <div data-fig="fig07" data-size="m"></div>
+      <div data-fig="fig08" data-size="m"></div>
+      <div data-fig="figA06" data-size="m"></div>
+    </div>
+  </section>
+  <section class="section section--tint" id="spectrum">
+    <h2>Frequencies and spectrum</h2>
+    <p class="md-kindnote"><span class="badge" data-badge="tables"></span></p>
+    <div class="md-controls">
+      <div class="seg" role="radiogroup" aria-label="Molecule" id="hs-mol"></div>
+      <div class="seg" role="radiogroup" aria-label="Spectrum type" id="hs-kind"></div>
+    </div>
+    <div class="panel md-panel" id="hs-panel">
+      <div class="panel__head"><h3 class="panel__title">Harmonic IR spectrum</h3> <span class="badge" data-badge="tables"></span></div>
+      <div class="panel__body"><div id="hs-chart" class="md-spectrum"><p class="md-missing">Chart needs JavaScript. The mode table below holds the same values.</p></div></div>
+      <div class="panel__foot">Envelope: Gaussian, 20 cm<sup>−1</sup> full width at half maximum, as in figure A10. Data: assets/data/hessian.js</div>
+    </div>
+    <h3>Modes</h3>
+    <div class="md-controls">
+      <label class="md-check"><input type="checkbox" id="hs-compare"> Compare setups (B3LYP-D3(BJ)/def2-TZVP and Skala-1.1/6-31+G(d,p))</label>
+      <span class="md-small">Click a column head to sort. Selecting a row selects its stick.</span>
+    </div>
+    <div id="hs-table"><p class="md-missing">Table needs JavaScript.</p></div>
+    <h3>Minimum or saddle point?</h3>
+    <div class="md-chips" id="hs-chips" role="list">
+      <span class="chip chip--ok" role="listitem">✓ Skala-1.1/def2-TZVP: 0 imaginary</span>
+      <span class="chip chip--ok" role="listitem">✓ B3LYP-D3(BJ)/def2-TZVP: 0 imaginary</span>
+      <span class="chip chip--ok" role="listitem">✓ Skala-1.1/6-31+G(d,p): 0 imaginary</span>
+    </div>
+    <p class="md-small">Number of imaginary modes among 42 modes of C₁₀H₆ and 51 modes of C₁₁H₈ in three setups. A minimum has none; a saddle point has one.</p>
+    <div data-fig="fig10" data-size="m"></div>
+    <h3>Mode motion</h3>
+    <div class="panel md-panel" id="hs-motion">
+      <div class="panel__head"><h3 class="panel__title">Mode motion</h3> <span class="badge" data-badge="illustrative"></span></div>
+      <div class="panel__body"><div class="md-motion">
+        <div id="hs-motion-mol" class="md-molbox"></div>
+        <div class="md-motion__side">
+          <p id="hs-motion-text" class="md-small" aria-live="polite">Select a mode in the table.</p>
+          <label class="md-check"><input type="checkbox" id="hs-motion-play" checked> Animate</label>
+        </div>
+      </div>
+      <p class="md-small">Illustrative motion. The displacement pattern is drawn from the character label of the mode (for example an out-of-plane C–H wag), not from computed eigenvectors, which are not part of the data pack; every mode of this kind is shown with the same generic picture. Wavenumbers and intensities are the computed values.</p></div>
+      <div class="panel__foot">Shown on the def2-SVP end point handed over by module 1. Amplitude 0.25 Å at the peak, 1 Hz.</div>
+    </div>
+    <div class="callout callout--limit"><strong class="callout__label">Limit</strong><p>This result gives the sign of every curvature, not the accuracy of the frequencies. The frequencies are harmonic and unscaled and were not compared with a measured spectrum. Agreement with B3LYP-D3(BJ) shows consistency between two functionals, not correctness.</p></div>
+  </section>
+  <section class="section" id="scans">
+    <h2>Energy scans along soft modes</h2>
+    <p class="md-kindnote"><span class="badge" data-badge="tables"></span></p>
+    <div class="prose">
+      <p>We scanned the energy along the three lowest modes and one control mode of each molecule. All 64 displaced structures lay above the minimum. This check does not depend on the displacement step (section 3.2).</p>
+    </div>
+    <div class="md-controls"><div class="seg" role="radiogroup" aria-label="Molecule" id="sc-mol"></div></div>
+    <div id="sc-grid" class="md-scangrid"><p class="md-missing">Charts need JavaScript.</p></div>
+    <div id="sc-table"></div>
+    <div data-fig="fig11" data-size="m"></div>
+    <div class="callout callout--limit"><strong class="callout__label">Limit</strong><p>The two softest modes of C<sub>11</sub>H<sub>8</sub> (89 cm<sup>−1</sup>) are strongly anharmonic: at three times the zero-point amplitude their scanned energy was 2.2 and 3.5 times the harmonic value. They are reported by sign and character only.</p></div>
+  </section>
+  <section class="section section--tint" id="consistency">
+    <h2>Is the finite-difference Hessian numerically consistent?</h2>
+    <p class="md-kindnote"><span class="badge" data-badge="tables"></span></p>
+    <div class="stat-row">
+      <div class="stat"><span class="stat__num">0.9991 to 1.0002</span><span class="stat__label">analytic force over finite-difference slope of the energy (1 = exact agreement)</span></div>
+      <div class="stat"><span class="stat__num">0.0011 and 0.0014</span><span class="stat__label">relative asymmetry of the Hessian</span></div>
+      <div class="stat"><span class="stat__num">2 and 19 cm<sup>−1</sup></span><span class="stat__label">control-mode scan against the Hessian wavenumber (C<sub>10</sub>H<sub>6</sub>, C<sub>11</sub>H<sub>8</sub>)</span></div>
+      <div class="stat"><span class="stat__num">66 of 66</span><span class="stat__label">scan points at which the SCF reached its tolerance, in 14 to 39 cycles</span></div>
+    </div>
+    <div id="cons-mark" class="md-consmark"></div>
+    <div id="micro3-slot"><div data-fig="micro-3" data-size="m"></div></div>
+    <div class="callout callout--limit"><strong class="callout__label">Limit</strong><p>One displacement step (0.01 Å) and one integration grid were used, and neither was varied. The rigid-body residuals reach 55 cm<sup>−1</sup>; the frequencies are considered precise to about ±20 cm<sup>−1</sup>. Both molecules are rigid and planar; a flexible molecule with many soft modes was not examined (section 3.3).</p></div>
+  </section>
+  <section class="section" id="results">
+    <h2>Result: Table 2</h2>
+    <h3>Table 2: harmonic analysis at the Skala-1.1/def2-TZVP level and its checks</h3>
+    <div class="table-wrap"><table class="table"><thead><tr><th scope="col">Quantity</th><th scope="col">C<sub>10</sub>H<sub>6</sub></th><th scope="col">C<sub>11</sub>H<sub>8</sub></th></tr></thead><tbody><tr><td>Atoms / vibrational modes</td><td>16 / 42</td><td>19 / 51</td></tr><tr><td>Imaginary modes: Skala-1.1/def2-TZVP; B3LYP-D3(BJ)/def2-TZVP; Skala-1.1/6-31+G(d,p)</td><td>0; 0; 0</td><td>0; 0; 0</td></tr><tr><td>Lowest three modes (cm<sup>−1</sup>)</td><td>142.0, 168.2, 179.0</td><td>89.0, 89.3, 182.4</td></tr><tr><td>Strongest IR band, out-of-plane C–H wag, cm<sup>−1</sup> (km mol<sup>−1</sup>)</td><td>705.2 (93.6)</td><td>718.7 (59.5)</td></tr><tr><td>rms difference to 6-31+G(d,p), matched modes (pairs), cm<sup>−1</sup></td><td>20 (40 of 42)</td><td>9 (32 of 51)</td></tr><tr><td>Scan points above the minimum</td><td>32 of 32</td><td>32 of 32</td></tr><tr><td>Wall time of the Hessian with IR intensities (min, one A100)</td><td>16.1 (97 gradients)</td><td>22.0 (115 gradients)</td></tr></tbody></table></div>
+    <p class="md-small">Wavenumbers in cm⁻¹, unscaled. Matched modes are mode pairs with eigenvector overlap of at least 0.9.</p>
+    <div class="callout callout--limit"><strong class="callout__label">Limit</strong><p>This result gives the sign of every curvature, not the accuracy of the frequencies. The frequencies are harmonic and unscaled and were not compared with a measured spectrum. Agreement with B3LYP-D3(BJ) shows consistency between two functionals, not correctness.</p></div>
+    <div class="callout callout--note"><strong class="callout__label">New, to our knowledge</strong><p>To our knowledge (searches of 10 to 13 November 2026), these are the first Skala-1.1 harmonic frequencies, infrared intensities and vibrational densities of states reported for an annulene.</p></div>
+  </section>
+  <section class="section section--tint" id="figures">
+    <h2>More figures</h2>
+    <div class="grid grid--2 md-figgrid">
+      <div data-fig="fig12" data-size="m"></div>
+      <div data-fig="figA09" data-size="m"></div>
+      <div data-fig="figA10" data-size="m"></div>
+      <div data-fig="figA11" data-size="m"></div>
+      <div data-fig="sch-D3" data-size="m"></div>
+    </div>
+  </section>
+  <p class="md-next"><a class="btn btn--primary" href="nmr.html">Next: Module 3 · NMR workflow module</a></p>
+</main>
+<div id="site-footer"></div>
+<script src="assets/js/config.js"></script>
+<script src="assets/data/figures.js"></script>
+<script src="assets/data/glossary.js"></script>
+<script src="assets/js/site.js"></script>
+<script src="assets/data/meta.js"></script>
+<script src="assets/data/hessian.js"></script>
+<script src="assets/data/structures.js"></script>
+<script src="assets/vendor/3dmol/3Dmol-min.js"></script>
+<script src="assets/js/replay/mol.js"></script>
+<script src="assets/js/replay/player.js"></script>
+<script src="assets/js/replay/chart.js"></script>
+<script src="assets/js/replay/ticker.js"></script>
+<script src="assets/js/modules/md-common.js"></script>
+<script src="assets/js/modules/hessian.js"></script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Why and what is new · Skala-1.1 workflow demo</title>
+<meta name="description" content="Why the optimize-and-simulate step matters, the four gaps in the literature the Note addresses, and what is not claimed.">
+<link rel="icon" href="assets/img/favicon.svg">
+<script>(function(){try{var t=localStorage.getItem("theme");if(!t&&window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)t="dark";if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/replay.css">
+<link rel="stylesheet" href="assets/css/modules.css">
+</head>
+<body data-page="rationale" data-module="0">
+<a class="skip-link" href="#main">Skip to content</a>
+<div id="site-header"></div>
+<main id="main" class="page">
+  <header class="page-head">
+    <p class="eyebrow">Rationale and novelty</p>
+    <h1>Why this step, and what is new</h1>
+    <p class="lede">The Note takes one step of a screening route, from a rough candidate structure to a verified one, and says what is new about it, to our knowledge, and what is not claimed.</p>
+  </header>
+  <nav class="md-toc" aria-label="On this page"><ul><li><a href="#opportunity">Why this step matters</a></li><li><a href="#needs">Four needs, four modules</a></li><li><a href="#gaps">Four gaps</a></li><li><a href="#limits-of-novelty">Limits on novelty</a></li><li><a href="#contribution">Contribution</a></li><li><a href="#not-claimed">What is not claimed</a></li><li><a href="#why-these-molecules">Why these molecules</a></li></ul></nav>
+  <section class="section" id="opportunity">
+    <h2>Why this step matters</h2>
+    <div class="prose">
+      <p>New drugs, batteries and fertilizers begin as molecules nobody has made. Researchers first simulate many candidates on a computer and send only a short list to the laboratory. This route is called high-throughput in-silico screening. Skala-1.1 is a neural-network exchange–correlation functional that is reported to match expensive hybrid functionals at the cost of simple semi-local ones. This Note takes up one step of the route: the step that turns a rough candidate structure into a verified one. Screening itself is not demonstrated here (sections 1.1 and 1.2).</p>
+    </div>
+    <div data-fig="fig01" data-size="l"></div>
+  </section>
+  <section class="section section--tint" id="needs">
+    <h2>Four needs, four modules</h2>
+    <div class="grid grid--2 md-cards">
+      <div class="card card--module" data-module="1"><span class="chip chip--m1">Module 1</span><h3 class="card__title">Agentic optimizer module</h3><p>(i) Optimize the structure to a minimum, with optimizer settings that adapt during the run.</p><p class="md-whyhere"><strong>Why this compute, here.</strong> Too small a cap makes the optimizer creep; too large a cap can wreck the structure. With a neural functional, each wasted step is one expensive gradient. Settings are therefore adapted during the run, without a restart, and behind a guard that bounds each change and reverses it if the run gets worse (sections 1.2 and 2.2).</p><p><a href="optimizer.html">Open the Agentic optimizer module page</a></p></div>
+      <div class="card card--module" data-module="2"><span class="chip chip--m2">Module 2</span><h3 class="card__title">Hessian module</h3><p>(ii) Confirm that the end point is a minimum.</p><p class="md-whyhere"><strong>Why this compute, here.</strong> The forces vanish at a valley floor and at a mountain pass alike; only the curvature tells them apart. The Hessian module is run on a structure that has reached the force target, not at every step (sections 2.1, 2.3 and 3.2).</p><p><a href="hessian.html">Open the Hessian module page</a></p></div>
+      <div class="card card--module" data-module="3"><span class="chip chip--m3">Module 3</span><h3 class="card__title">NMR workflow module</h3><p>(iii) Show that it agrees with what the laboratory measures.</p><p class="md-whyhere"><strong>Why this compute, here.</strong> An NMR spectrum is a fingerprint of the structure that a laboratory can measure. C<sub>11</sub>H<sub>8</sub> is a liquid at room temperature, so no crystal structure exists and the NMR spectra are the primary experimental reference (sections 1.2, 2.4 and 3.1).</p><p><a href="nmr.html">Open the NMR workflow module page</a></p></div>
+      <div class="card card--module" data-module="4"><span class="chip chip--m4">Module 4</span><h3 class="card__title">Molecular property module</h3><p>(iv) Compute molecular properties that an established method can check.</p><p class="md-whyhere"><strong>Why this compute, here.</strong> A verified structure is the starting point for the quantities a chemist uses: where the electronic charge sits and how much energy a distortion costs. An established hybrid functional and CCSD(T) give a second opinion (section 3.8).</p><p><a href="properties.html">Open the Molecular property module page</a></p></div>
+    </div>
+    <div class="grid grid--2 md-figgrid">
+      <div data-fig="fig02" data-size="m"></div>
+      <div data-fig="fig03" data-size="m"></div>
+    </div>
+  </section>
+  <section class="section" id="gaps">
+    <h2>Four gaps in the literature</h2>
+    <div class="prose">
+      <p>All four statements are made to our knowledge. They rest on searches of Google Scholar, arXiv, ChemRxiv, the Skala repository and web search, run on 10 to 13 November 2026.</p>
+    </div>
+    <div class="grid grid--2 md-cards">
+      <div class="card"><p>1 · No harmonic frequencies, infrared intensities or vibrational densities of states of an annulene computed with Skala-1.1 have been published.</p></div>
+      <div class="card"><p>2 · No Skala-optimized annulene geometry has been tested against the experimental ¹H and ¹³C NMR spectrum of the synthesized compound.</p></div>
+      <div class="card"><p>3 · To our knowledge, no earlier work has a large language model agent, through function calling with typed actions, supervise the step and convergence settings of a running Skala-1.1/L-BFGS geometry optimization behind a validator, a probation window and rollback of the running optimization.</p></div>
+      <div class="card"><p>4 · No publication independently evaluates Skala's release of high steric strain (more than 1 eV) in an annulene geometry optimization.</p></div>
+    </div>
+    <div data-fig="sch-gap" data-size="l"></div>
+    <p class="md-small">Searches of 10 to 13 November 2026.</p>
+  </section>
+  <section class="section section--tint" id="limits-of-novelty">
+    <h2>Four limits on these statements</h2>
+    <ol class="md-list prose">
+      <li>Adapting the step size during a run is standard practice in optimizers, and rule-based supervision of a run is not claimed as new.</li>
+      <li>Most elements of the third gap have precedent on their own, so that statement rests on their combination.</li>
+      <li>The third statement says what has not been reported; it does not say that a language model is needed for the supervision, which the Note does not show.</li>
+      <li>Geometry optimization with Skala-1.1 without an agent is already supported through ASE and GPU4PySCF.</li>
+    </ol>
+    <div class="prose">
+      <p>The searches were bounded, so the absence of earlier work in them is not proof that none exists.</p>
+    </div>
+  </section>
+  <section class="section" id="contribution">
+    <h2>What the Note contributes</h2>
+    <div class="prose">
+      <p>A workflow of four open-source modules that takes a rough, strained input structure to a verified Skala-1.1 minimum and to quantities a laboratory can measure, validated on two laboratory-synthesized annulenes. For the optimizer, the contribution is an interface in which every change is a typed, bounded, reversible and logged action, which any controller, rule-based or model-based, can use. We attribute the benefit to the supervision layer, that is, the monitor, the step advisor and the guard, and not to the language model (section 5).</p>
+      <p>A rule-based controller did as well where we tested it, so a language model is not shown to be required.</p>
+    </div>
+  </section>
+  <section class="section section--tint" id="not-claimed">
+    <h2>What is not claimed</h2>
+    <ul class="md-list prose">
+      <li>No speed-up.</li>
+      <li>Not the accuracy of Skala-1.1 in general, and not its cost relative to conventional functionals.</li>
+      <li>Not that a language model is needed for the supervision: a rule-based controller did as well where we tested it.</li>
+      <li>Not NMR with Skala-1.1, and not a ranking of functionals.</li>
+      <li>No free energies, populations or reaction thermochemistry.</li>
+      <li>No screening or discovery.</li>
+      <li>No transfer to larger, flexible or heteroatom-containing molecules.</li>
+    </ul>
+  </section>
+  <section class="section" id="why-these-molecules">
+    <h2>Why these molecules</h2>
+    <div class="prose">
+      <p>Dehydro[10]annulenes are strained, planar and fully conjugated. Both C<sub>11</sub>H<sub>8</sub> and the parent C<sub>10</sub>H<sub>6</sub> have been synthesized, and both have published ¹H and ¹³C NMR spectra. C<sub>11</sub>H<sub>8</sub> is a liquid at room temperature, so no crystal structure exists; the NMR spectra are therefore the primary experimental reference (section 1.2).</p>
+    </div>
+  </section>
+  <p class="md-next"><a class="btn btn--primary" href="results.html">The nine findings</a></p>
+</main>
+<div id="site-footer"></div>
+<script src="assets/js/config.js"></script>
+<script src="assets/data/figures.js"></script>
+<script src="assets/data/glossary.js"></script>
+<script src="assets/js/site.js"></script>
+</body>
+</html>

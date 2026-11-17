@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Data · Skala-1.1 workflow demo</title>
+<meta name="description" content="Downloadable run logs and tables behind every replay and chart, with level of theory and units.">
+<link rel="icon" href="assets/img/favicon.svg">
+<script>(function(){try{var t=localStorage.getItem("theme");if(!t&&window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)t="dark";if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/replay.css">
+<link rel="stylesheet" href="assets/css/pages.css">
+</head>
+<body data-page="data" data-module="0">
+<a class="skip-link" href="#main">Skip to content</a>
+<div id="site-header"></div>
+<main id="main" class="page">
+  <header class="page-head">
+    <p class="eyebrow">Data</p>
+    <h1>The data behind every replay and chart</h1>
+    <p class="lede">Each file below is a run log or a table of the Note, with its level of theory and its units. The interactive pages read rounded copies of the same numbers.</p>
+  </header>
+
+  <div class="callout callout--note">
+    <strong class="callout__label">Units</strong>
+    <p>Forces are shown in eV &Aring;<sup>&minus;1</sup> as in the manuscript (section 2.2): the logged eV bohr<sup>&minus;1</sup> values multiplied by 1.8897. The force target of 0.038 eV &Aring;<sup>&minus;1</sup> is 0.02 in the logged unit. The data files keep the logged values.</p>
+  </div>
+  <div class="callout callout--limit">
+    <strong class="callout__label">Limit</strong>
+    <p>Energies are electronic energies at fixed nuclei, on the Born&ndash;Oppenheimer surface. All runs are single runs of a small sample. The grid runs differ in more than the agent; see the caveat in <a href="#grid">the main grid</a>.</p>
+  </div>
+  <p>The complete prompt, call and response logs are part of the repository release. <a data-repo-link></a></p>
+  <p>All files together: <a href="data/MANIFEST.csv" download>MANIFEST.csv</a> lists path, size, SHA-256, description, molecule, level of theory, run and kind (logged or tabulated) for each file; <a href="data/README.md" download>README.md</a> explains the folders.</p>
+
+  <ul class="pg-toc" aria-label="On this page"><li><a href="#structures">Structures</a></li> <li><a href="#traj">Trajectories of the step-cap sweep</a></li> <li><a href="#sweep">Step-cap sweep</a></li> <li><a href="#grid">Main grid</a></li> <li><a href="#guard">The supervision layer in numbers</a></li> <li><a href="#nh3">Ammonia saddle test</a></li> <li><a href="#h2o2">Hydrogen peroxide test</a></li> <li><a href="#hessian">Vibrational modes</a></li> <li><a href="#nmr">NMR shifts</a></li> <li><a href="#props">Molecular properties</a></li>
+    <li><a href="#what-a-log-holds">What a log holds</a></li><li><a href="#provenance">Provenance of numbers</a></li></ul>
+
+  <section class="section" id="structures">
+    <h2>Structures</h2>
+    <p class="pg-narrow">Starting geometries R1 and R3 of each molecule, the end point of the agentic optimizer module that was handed to the Hessian and NMR workflow modules, and the geometry re-optimized for the NMR shieldings. Positions only; the comment line names the molecule and the level of theory.</p>
+    <dl class="kv"><dt>Level of theory</dt><dd>Skala-1.1/def2-SVP (end point), Skala-1.1/6-31+G(d,p) (NMR geometry); the starts carry no level.</dd><dt>Used by</dt><dd><a href="journey.html">Journey</a> &middot; <a href="hessian.html">Hessian module</a> &middot; <a href="nmr.html">NMR workflow module</a></dd></dl>
+    <div class="table-wrap"><table class="table table--compact pg-files" data-files="structures/">
+      <thead><tr><th scope="col">File</th><th scope="col" class="num">Size</th><th scope="col">What it holds</th><th scope="col">Download</th></tr></thead><tbody></tbody></table></div>
+    <div class="pg-xyz-wrap">
+      <h3>Look at a structure</h3>
+      <div class="pg-pick"><label for="pg-xyz-sel">Structure file</label><select id="pg-xyz-sel"></select></div>
+      <div class="pg-xyz">
+        <div class="pg-xyz__view" id="pg-xyz-view" role="img" aria-label="Three-dimensional view of the chosen structure"></div>
+        <pre class="code" id="pg-xyz-text" tabindex="0" aria-label="xyz file text"></pre>
+      </div>
+      <p class="pg-note" id="pg-xyz-note"></p>
+    </div>
+  </section>
+
+  <section class="section" id="traj">
+    <h2>Trajectories of the step-cap sweep</h2>
+    <p class="pg-narrow">For each of the 16 sweep runs (eight arms, two molecules) a multi-frame xyz with the geometry after every step (frame 0 is the start), a per-step table, and the events of the run: triggers, the decision with its written reason, the validator verdict, the five-step probation. The 0.3 &Aring; runs of C<sub>11</sub>H<sub>8</sub> are complete and carry <code>structure_lost: true</code> in the header of the events file.</p>
+    <dl class="kv"><dt>Level of theory</dt><dd>Skala-1.1/def2-SVP; GFN2-xTB for the basin search.</dd><dt>Used by</dt><dd><a href="journey.html">Journey</a> &middot; <a href="optimizer.html">Agentic optimizer module</a></dd></dl>
+    <div class="table-wrap"><table class="table table--compact pg-files" data-files="trajectories/">
+      <thead><tr><th scope="col">File</th><th scope="col" class="num">Size</th><th scope="col">What it holds</th><th scope="col">Download</th></tr></thead><tbody></tbody></table></div>
+  </section>
+
+  <section class="section" id="sweep">
+    <h2>Step-cap sweep</h2>
+    <p class="pg-narrow">Largest force, energy and step cap of every step of the 16 runs, the two controls (a rules run and plain L-BFGS at the ASE defaults, both on C<sub>10</sub>H<sub>6</sub>), and the first step below the force target for each run. Single runs, given as step counts.</p>
+    <dl class="kv"><dt>Level of theory</dt><dd>Skala-1.1/def2-SVP.</dd><dt>Used by</dt><dd><a href="optimizer.html">Agentic optimizer module</a> &middot; <a href="results.html">Results</a></dd></dl>
+    <div class="table-wrap"><table class="table table--compact pg-files" data-files="sweep/">
+      <thead><tr><th scope="col">File</th><th scope="col" class="num">Size</th><th scope="col">What it holds</th><th scope="col">Download</th></tr></thead><tbody></tbody></table></div>
+  </section>
+
+  <section class="section" id="grid">
+    <h2>Main grid</h2>
+    <p class="pg-narrow">The 16 single runs of the main grid. The two set-ups also differ in L-BFGS memory and warm start, so the step counts are not the effect of the agent alone; the caveat is repeated in the file.</p>
+    <dl class="kv"><dt>Level of theory</dt><dd>Skala-1.1/def2-SVP.</dd><dt>Used by</dt><dd><a href="optimizer.html">Agentic optimizer module</a> &middot; <a href="results.html">Results</a></dd></dl>
+    <div class="table-wrap"><table class="table table--compact pg-files" data-files="grid/">
+      <thead><tr><th scope="col">File</th><th scope="col" class="num">Size</th><th scope="col">What it holds</th><th scope="col">Download</th></tr></thead><tbody></tbody></table></div>
+  </section>
+
+  <section class="section" id="guard">
+    <h2>The supervision layer in numbers</h2>
+    <p class="pg-narrow">How many decisions the controller made, how the validator answered, how many probations were kept or rolled back, how many model calls were made. Includes Table A1 of the manuscript. Model names are replaced by their role.</p>
+    <dl class="kv"><dt>Level of theory</dt><dd>Skala-1.1/def2-SVP.</dd><dt>Used by</dt><dd><a href="optimizer.html">Agentic optimizer module</a> &middot; <a href="design.html">Design</a></dd></dl>
+    <div class="table-wrap"><table class="table table--compact pg-files" data-files="guard/">
+      <thead><tr><th scope="col">File</th><th scope="col" class="num">Size</th><th scope="col">What it holds</th><th scope="col">Download</th></tr></thead><tbody></tbody></table></div>
+  </section>
+
+  <section class="section" id="nh3">
+    <h2>Ammonia saddle test</h2>
+    <p class="pg-narrow">Ammonia on its inversion saddle: 22 runs of plain L-BFGS, a rules run and supervised runs, judged by an independent finite-difference Hessian. Contains the step series, the guard events, the full decision log and the inversion profile. Forces are as logged by the compact test engine, not converted.</p>
+    <dl class="kv"><dt>Level of theory</dt><dd>Skala-1.1 on NH<sub>3</sub>.</dd><dt>Used by</dt><dd><a href="optimizer.html">Agentic optimizer module</a> &middot; <a href="results.html">Results</a></dd></dl>
+    <div class="table-wrap"><table class="table table--compact pg-files" data-files="saddle/nh3">
+      <thead><tr><th scope="col">File</th><th scope="col" class="num">Size</th><th scope="col">What it holds</th><th scope="col">Download</th></tr></thead><tbody></tbody></table></div>
+  </section>
+
+  <section class="section" id="h2o2">
+    <h2>Hydrogen peroxide test</h2>
+    <p class="pg-narrow">The same test on hydrogen peroxide, with the trans saddle at a dihedral of 180 degrees: nine runs with the dihedral and energy at every step.</p>
+    <dl class="kv"><dt>Level of theory</dt><dd>Skala-1.1 on H<sub>2</sub>O<sub>2</sub>.</dd><dt>Used by</dt><dd><a href="optimizer.html">Agentic optimizer module</a> &middot; <a href="results.html">Results</a></dd></dl>
+    <div class="table-wrap"><table class="table table--compact pg-files" data-files="saddle/h2o2">
+      <thead><tr><th scope="col">File</th><th scope="col" class="num">Size</th><th scope="col">What it holds</th><th scope="col">Download</th></tr></thead><tbody></tbody></table></div>
+  </section>
+
+  <section class="section" id="hessian">
+    <h2>Vibrational modes</h2>
+    <p class="pg-narrow">Every vibrational mode of both molecules with Skala-1.1 at def2-TZVP against B3LYP and against Skala-1.1 at 6-31+G(d,p). In the second comparison the columns that the source labelled B3LYP hold the Skala-1.1/6-31+G(d,p) values and are renamed here. Also the labelled key modes and the energy scans along soft and control modes. No frequency is imaginary in any column.</p>
+    <dl class="kv"><dt>Level of theory</dt><dd>Skala-1.1/def2-TZVP; B3LYP; Skala-1.1/6-31+G(d,p).</dd><dt>Used by</dt><dd><a href="hessian.html">Hessian module</a></dd></dl>
+    <div class="table-wrap"><table class="table table--compact pg-files" data-files="hessian/">
+      <thead><tr><th scope="col">File</th><th scope="col" class="num">Size</th><th scope="col">What it holds</th><th scope="col">Download</th></tr></thead><tbody></tbody></table></div>
+  </section>
+
+  <section class="section" id="nmr">
+    <h2>NMR shifts</h2>
+    <p class="pg-narrow">Experimental and computed shifts for every signal, with probe P1 (B3LYP shieldings) and probe P2 (PBE0 shieldings), computed in the gas phase on the Skala-1.1/6-31+G(d,p) geometry, and Table 1 of the manuscript. This tests the geometry, not NMR with Skala-1.1.</p>
+    <dl class="kv"><dt>Level of theory</dt><dd>GIAO B3LYP and PBE0 on the Skala-1.1/6-31+G(d,p) geometry.</dd><dt>Used by</dt><dd><a href="nmr.html">NMR workflow module</a></dd></dl>
+    <div class="table-wrap"><table class="table table--compact pg-files" data-files="nmr/">
+      <thead><tr><th scope="col">File</th><th scope="col" class="num">Size</th><th scope="col">What it holds</th><th scope="col">Download</th></tr></thead><tbody></tbody></table></div>
+  </section>
+
+  <section class="section" id="props">
+    <h2>Molecular properties</h2>
+    <p class="pg-narrow">Relaxation energy differences of two geometry pairs against CCSD(T), CCSD, HF, &omega;B97M-V and Skala-1.1, and the alignment of meta-L&ouml;wdin charges. Computed on the def2-TZVP minima of the hand-set route. A case study of two geometry pairs: not a statement of chemical accuracy and not a ranking of the two functionals.</p>
+    <dl class="kv"><dt>Level of theory</dt><dd>CCSD(T), CCSD, HF, &omega;B97M-V, Skala-1.1 at def2-TZVP.</dd><dt>Used by</dt><dd><a href="properties.html">Molecular property module</a></dd></dl>
+    <div class="table-wrap"><table class="table table--compact pg-files" data-files="properties/">
+      <thead><tr><th scope="col">File</th><th scope="col" class="num">Size</th><th scope="col">What it holds</th><th scope="col">Download</th></tr></thead><tbody></tbody></table></div>
+  </section>
+
+  <section class="section section--tint" id="what-a-log-holds">
+    <h2>What a log holds</h2>
+    <p class="pg-narrow">Two real records from the supervised run of C<sub>10</sub>H<sub>6</sub> from the 0.005 &Aring; cap (run <code>C10H6_GS</code>): one optimizer step and the decision taken at that step. <span class="badge" data-badge="logged"></span></p>
+    <div class="pg-two">
+      <div>
+        <h3>One step (a row of <code>C10H6_GS_steps.csv</code>)</h3>
+        <pre class="code pg-json" id="pg-ex-step" tabindex="0"></pre>
+        <dl class="pg-fields">
+          <dt>step</dt><dd>Optimizer step, counted from 1.</dd>
+          <dt>pass_id</dt><dd>The run is split into passes; here one pass.</dd>
+          <dt>energy_eV</dt><dd>Born&ndash;Oppenheimer total energy after the step.</dd>
+          <dt>fmax_logged</dt><dd>Largest force component in the logged unit; the target is 0.02.</dd>
+          <dt>fmax_eV_per_A</dt><dd>The same force times 1.8897, as in the manuscript.</dd>
+          <dt>max_move_A</dt><dd>Largest atom displacement in this step.</dd>
+          <dt>step_cap_A</dt><dd>The step cap in force during this step.</dd>
+          <dt>scf_cycles, gradients</dt><dd>Electronic-structure iterations of the step and the running count of gradient evaluations.</dd>
+          <dt>memory</dt><dd>Number of past steps that L-BFGS remembers.</dd>
+        </dl>
+      </div>
+      <div>
+        <h3>One decision (an event of <code>C10H6_GS_events.json</code>)</h3>
+        <pre class="code pg-json" id="pg-ex-dec" tabindex="0"></pre>
+        <dl class="pg-fields">
+          <dt>trigger</dt><dd>Why the controller was asked; at an ordinary trigger it is the word &ldquo;trigger&rdquo;, and the monitor&rsquo;s own reason sits in the preceding trigger event.</dd>
+          <dt>decision.action</dt><dd>One of the eight typed actions; here a setting change.</dd>
+          <dt>decision.params</dt><dd>The proposed values; the validator may clip them.</dd>
+          <dt>decision.rationale, evidence</dt><dd>The written reason and the numbers it rests on.</dd>
+          <dt>decision.expected</dt><dd>What the controller predicts, so that the probation can be judged.</dd>
+          <dt>tools_called</dt><dd>The functions the model called to reach the decision.</dd>
+          <dt>role</dt><dd>Which model tier answered (routine or check); model names are not kept.</dd>
+          <dt>seconds, t_s</dt><dd>Duration of the call and seconds since the start of the run.</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="provenance">
+    <h2>Where a number on the site comes from</h2>
+    <div class="table-wrap">
+      <table class="table table--compact">
+        <thead><tr><th scope="col">Number on the site</th><th scope="col">What it is</th><th scope="col">File</th><th scope="col">Key or column</th></tr></thead>
+        <tbody>
+          <tr><td class="num">60</td><td>First step below the force target, supervised run, C<sub>10</sub>H<sub>6</sub>, 0.005 &Aring; cap</td><td class="pg-mono">sweep/first_step_below_target.csv</td><td class="pg-mono">row C10H6 0.005, supervised_1; also <span class="pg-mono">sweep_runs.json</span> runs.C10H6_GS.first_below_target</td></tr>
+          <tr><td class="num">58</td><td>The repeat of that supervised run</td><td class="pg-mono">sweep/first_step_below_target.csv</td><td class="pg-mono">supervised_2; runs.C10H6_GS2.first_below_target</td></tr>
+          <tr><td class="num">50</td><td>Rules run, same start</td><td class="pg-mono">sweep/controls_C10H6_R1.json</td><td class="pg-mono">summary[arm=RS].first_cross_step</td></tr>
+          <tr><td class="num">48</td><td>Plain L-BFGS at the 0.3 &Aring; cap, and at the ASE defaults</td><td class="pg-mono">sweep/sweep_runs.json; controls_C10H6_R1.json</td><td class="pg-mono">runs.C10H6_PB.first_below_target; summary[arm=PD].first_cross_step</td></tr>
+          <tr><td class="num">129</td><td>Plain run, C<sub>11</sub>H<sub>8</sub>, 0.005 &Aring; cap</td><td class="pg-mono">sweep/sweep_runs.json</td><td class="pg-mono">runs.C11H8_PS.first_below_target</td></tr>
+          <tr><td class="num">208</td><td>Decisions of the controller in 18 supervised runs</td><td class="pg-mono">guard/guard_loop_tallies.json</td><td class="pg-mono">decisions.total</td></tr>
+          <tr><td class="num">192 and 16</td><td>Accepted and clipped by the validator (none rejected)</td><td class="pg-mono">guard/guard_loop_tallies.json</td><td class="pg-mono">decisions.accepted, decisions.clipped</td></tr>
+          <tr><td class="num">72 of 78</td><td>Probations kept</td><td class="pg-mono">guard/guard_loop_tallies.json</td><td class="pg-mono">probations.kept, probations.total</td></tr>
+          <tr><td class="num">341</td><td>Model calls, none failed</td><td class="pg-mono">guard/guard_loop_tallies.json</td><td class="pg-mono">model_calls.total</td></tr>
+          <tr><td class="num">8 of 10</td><td>Plain ammonia runs that stopped on the saddle</td><td class="pg-mono">saddle/nh3_runs.json</td><td class="pg-mono">runs with arm = plain and verdict = saddle (10 plain runs, including one line-search variant)</td></tr>
+          <tr><td class="num">6 of 6</td><td>Supervised ammonia runs that reached the minimum</td><td class="pg-mono">saddle/nh3_runs.json</td><td class="pg-mono">arm = supervised, verdict = minimum</td></tr>
+          <tr><td class="num">142.0 cm<sup>&minus;1</sup></td><td>Lowest mode of C<sub>10</sub>H<sub>6</sub>, Skala-1.1/def2-TZVP</td><td class="pg-mono">hessian/C10H6_modes_def2-TZVP_vs_B3LYP-D3BJ.csv</td><td class="pg-mono">mode_Skala = 1, column Skala</td></tr>
+          <tr><td class="num">705.2 cm<sup>&minus;1</sup></td><td>Strongest IR band of C<sub>10</sub>H<sub>6</sub> (out-of-plane C&ndash;H wag)</td><td class="pg-mono">hessian/C10H6_modes_def2-TZVP_vs_B3LYP-D3BJ.csv</td><td class="pg-mono">mode_Skala = 14, columns Skala, IR_Skala</td></tr>
+          <tr><td class="num">1.95 ppm</td><td><sup>13</sup>C mean absolute error, C<sub>10</sub>H<sub>6</sub>, probe P1</td><td class="pg-mono">nmr/nmr_table1.csv</td><td class="pg-mono">molecule C10H6, probe P1, c13_mae_ppm</td></tr>
+          <tr><td class="num">1.30 ppm</td><td><sup>13</sup>C mean absolute error, C<sub>11</sub>H<sub>8</sub>, probe P1</td><td class="pg-mono">nmr/nmr_table1.csv</td><td class="pg-mono">molecule C11H8, probe P1, c13_mae_ppm</td></tr>
+          <tr><td class="num">87.58 kcal mol<sup>&minus;1</sup></td><td>CCSD(T) relaxation energy difference, C<sub>10</sub>H<sub>6</sub> pair</td><td class="pg-mono">properties/relaxation_energies.csv</td><td class="pg-mono">molecule C10H6, method CCSD(T)</td></tr>
+          <tr><td class="num">21.71 kcal mol<sup>&minus;1</sup></td><td>CCSD(T) relaxation energy difference, C<sub>11</sub>H<sub>8</sub> pair</td><td class="pg-mono">properties/relaxation_energies.csv</td><td class="pg-mono">molecule C11H8, method CCSD(T)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</main>
+<div id="site-footer"></div>
+<script src="assets/js/config.js"></script>
+<script src="assets/data/figures.js"></script>
+<script src="assets/data/glossary.js"></script>
+<script src="assets/js/site.js"></script>
+<script src="assets/vendor/3dmol/3Dmol-min.js"></script>
+<script src="assets/js/replay/mol.js"></script>
+<script src="assets/js/pages/data-bundle.js"></script>
+<script src="assets/js/pages/data.js"></script>
+</body>
+</html>

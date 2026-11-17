@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Reproduce · Skala-1.1 workflow demo</title>
+<meta name="description" content="What you need to run the workflow yourself, the order of the runs, and what to expect.">
+<link rel="icon" href="assets/img/favicon.svg">
+<script>(function(){try{var t=localStorage.getItem("theme");if(!t&&window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)t="dark";if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/pages.css">
+</head>
+<body data-page="reproduce" data-module="0">
+<a class="skip-link" href="#main">Skip to content</a>
+<div id="site-header"></div>
+<main id="main" class="page">
+  <header class="page-head">
+    <p class="eyebrow">Reproduce</p>
+    <h1>Run it yourself</h1>
+    <p class="lede">What you need, the order of the runs, and what to expect. Timings are single runs on shared cloud GPUs.</p>
+  </header>
+
+  <ul class="pg-toc" aria-label="On this page">
+    <li><a href="#requirements">Requirements</a></li>
+    <li><a href="#steps">Steps</a></li>
+    <li><a href="#expect">What to expect</a></li>
+    <li><a href="#not-bit-reproducible">Not bit-reproducible</a></li>
+  </ul>
+
+  <section class="section" id="requirements">
+    <h2>Requirements</h2>
+    <div class="table-wrap">
+      <table class="table table--compact">
+        <caption class="visually-hidden">Pinned package versions</caption>
+        <thead><tr><th scope="col">Package</th><th scope="col">Version</th></tr></thead>
+        <tbody>
+          <tr><td><code>skala</code> (CUDA 12 build)</td><td class="num">2026.9</td></tr>
+          <tr><td><code>gpu4pyscf</code> (CUDA 12 build)</td><td class="num">1.8.1</td></tr>
+          <tr><td><code>pyscf</code></td><td class="num">2.14.0</td></tr>
+          <tr><td><code>ase</code></td><td class="num">3.29.0</td></tr>
+          <tr><td><code>google-genai</code></td><td class="num">2.12.1</td></tr>
+          <tr><td><code>torch</code></td><td class="num">2.14.1</td></tr>
+          <tr><td><code>cupy</code> (CUDA 12 build)</td><td class="num">14.2.0</td></tr>
+          <tr><td><code>e3nn</code></td><td class="num">0.6.0</td></tr>
+          <tr><td><code>tblite</code></td><td>installed without a pinned version</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout callout--warn">
+      <strong class="callout__label">Check the forces</strong>
+      <p>Forces were verified consistent with skala 2026.9; do not use an earlier build without checking the forces.</p>
+    </div>
+    <dl class="kv">
+      <dt>Hardware</dt><dd>A single NVIDIA A100, L4 or T4 GPU; CCSD(T) reference on CPU.</dd>
+      <dt>Model access</dt><dd>An API key for the language model in the environment variable <code>LLM_API_KEY</code>; not needed for plain runs and rules runs.</dd>
+      <dt>Language model</dt><dd>A third-party service, not redistributed. The code reads the key from the environment and never prints it.</dd>
+    </dl>
+  </section>
+
+  <section class="section" id="steps">
+    <h2>Steps</h2>
+    <ol class="pg-ol">
+      <li><strong>Get the code.</strong> Download the <a href="code/skala-agentic-optimizer-source.zip" download>source zip</a> or read the files on <a href="code.html">Code</a>.</li>
+      <li><strong>Open a notebook on a GPU machine</strong> and run the install cell. Restart the session if the installer asks you to.</li>
+      <li><strong>Quick wiring check.</strong> Set <code>TOY_SIZE = "quick"</code>, <code>TOY_MAX_MINUTES = 5</code> and <code>RUN_MODE = "smoke"</code>, then run all cells. This takes minutes and checks that the calculator, the logger and the controllers are connected.</li>
+      <li><strong>Part A, the ammonia saddle test.</strong> A compact test with a known double-well potential, judged by an independent finite-difference Hessian.</li>
+      <li><strong>Part B, the step-cap sweep.</strong> A 150-gradient budget per run; finished runs are skipped when you run the notebook again.</li>
+      <li><strong>Compare with the logged runs</strong> on <a href="data.html#traj">the data page</a>: step counts, decisions and end points.</li>
+      <li><strong>The Hessian, NMR and property modules.</strong> Inputs and scripts are in the repository release. <a data-repo-link></a></li>
+    </ol>
+  </section>
+
+  <section class="section" id="expect">
+    <h2>What to expect</h2>
+    <span class="badge" data-badge="tables"></span>
+    <div class="table-wrap" style="margin-top:12px">
+      <table class="table table--compact">
+        <caption class="visually-hidden">Timings of single runs</caption>
+        <thead><tr><th scope="col">Step</th><th scope="col">Molecule</th><th scope="col">Hardware</th><th scope="col" class="num">Value</th></tr></thead>
+        <tbody>
+          <tr><td>def2-SVP gradient</td><td>annulene</td><td>A100</td><td class="num">about 7 s</td></tr>
+          <tr><td>def2-TZVP gradient</td><td>C<sub>10</sub>H<sub>6</sub></td><td>A100</td><td class="num">9.9 s</td></tr>
+          <tr><td>def2-TZVP gradient</td><td>C<sub>11</sub>H<sub>8</sub></td><td>A100</td><td class="num">11.4 s</td></tr>
+          <tr><td>Hessian with IR intensities</td><td>C<sub>10</sub>H<sub>6</sub> and C<sub>11</sub>H<sub>8</sub></td><td>A100</td><td class="num">16.1 and 22.0 min (97 and 115 gradients)</td></tr>
+          <tr><td>Peak GPU memory, def2-TZVP energy and gradient</td><td>C<sub>10</sub>H<sub>6</sub> and C<sub>11</sub>H<sub>8</sub></td><td>L4</td><td class="num">7.1 and 8.4 GB</td></tr>
+          <tr><td>Property single point</td><td>C<sub>11</sub>H<sub>8</sub> geometry</td><td>T4</td><td class="num">149 s</td></tr>
+          <tr><td>Hand-set schedule, deformed input to def2-TZVP</td><td>annulene</td><td>L4 (24 GB)</td><td class="num">under two hours</td></tr>
+          <tr><td>Median model call</td><td>any</td><td>third-party service</td><td class="num">9.3 s</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h3>First step below the force target</h3>
+    <p class="pg-narrow">Single runs, given as step counts. No gain in speed is claimed. The sweep started plain and supervised runs at three step caps; the table is the one of the manuscript.</p>
+    <div class="table-wrap">
+      <table class="table table--compact">
+        <caption class="visually-hidden">First step below the force target in the step-cap sweep</caption>
+        <thead><tr><th scope="col">Molecule</th><th scope="col" class="num">Starting cap (&Aring;)</th><th scope="col">Plain</th><th scope="col">Supervised (run, repeat)</th><th scope="col">Rules run</th><th scope="col">Plain at ASE defaults</th></tr></thead>
+        <tbody>
+          <tr><td>C<sub>10</sub>H<sub>6</sub></td><td class="num">0.005</td><td>not within 149 steps</td><td>60, 58</td><td>50</td><td></td></tr>
+          <tr><td>C<sub>10</sub>H<sub>6</sub></td><td class="num">0.025</td><td>53</td><td>50</td><td>not run</td><td></td></tr>
+          <tr><td>C<sub>10</sub>H<sub>6</sub></td><td class="num">0.3</td><td>48</td><td>48, 48</td><td>not run</td><td></td></tr>
+          <tr><td>C<sub>10</sub>H<sub>6</sub></td><td class="num">ASE defaults (0.2, memory 100)</td><td></td><td>not run</td><td>not run</td><td>48</td></tr>
+          <tr><td>C<sub>11</sub>H<sub>8</sub></td><td class="num">0.005</td><td>129</td><td>70, 70</td><td>not run</td><td></td></tr>
+          <tr><td>C<sub>11</sub>H<sub>8</sub></td><td class="num">0.025</td><td>65</td><td>63</td><td>not run</td><td></td></tr>
+          <tr><td>C<sub>11</sub>H<sub>8</sub></td><td class="num">0.3</td><td>structure lost</td><td>structure lost</td><td>not run</td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout callout--limit">
+      <strong class="callout__label">Limit</strong>
+      <p>These timings are single runs on shared cloud GPUs, for molecules of 16 and 19 atoms. They show that the workflow runs on such hardware. They are not a comparison of cost with other functionals.</p>
+    </div>
+  </section>
+
+  <section class="section" id="not-bit-reproducible">
+    <h2>Why a rerun may differ</h2>
+    <p class="pg-narrow">Plain L-BFGS from a fixed start is deterministic in principle; on a GPU, small numerical differences can still change the outcome near a saddle point. The decisions of the language model depend on the model version and are not reproducible bit for bit, which is why every prompt, call and decision is logged. In the two repeated supervised runs the cap changes were the same at the same steps. Once the coordinates are fixed, no reported structure, frequency or shift depends on the model (section 5).</p>
+    <p class="pg-narrow">The model used in the runs of the Note was Google Gemini, called through its function-calling interface; see <a href="design.html#modules">Design</a>.</p>
+  </section>
+</main>
+<div id="site-footer"></div>
+<script src="assets/js/config.js"></script>
+<script src="assets/data/figures.js"></script>
+<script src="assets/data/glossary.js"></script>
+<script src="assets/js/site.js"></script>
+</body>
+</html>

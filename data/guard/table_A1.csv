@@ -1,0 +1,12 @@
+row,grid,sweep,total
+Decisions,113,95,208
+Continue,52,74,126
+Change a setting,37,16,53
+Tighten the SCF,22,1,23
+Reset the L-BFGS memory,2,4,6
+"End pass, stop and flag, displace, switch basin",0,0,0
+Accepted,101,91,192
+Clipped,12,4,16
+Rejected,0,0,0
+Probations kept,55,17,72
+Probations rolled back,2,4,6

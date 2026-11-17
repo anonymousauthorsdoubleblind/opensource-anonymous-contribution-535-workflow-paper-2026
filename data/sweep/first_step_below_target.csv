@@ -1,0 +1,8 @@
+molecule,step_cap_start_A,plain,supervised_1,supervised_2,rules,plain_ase_defaults,note
+C10H6,0.005,,60,58,50,,plain: not within 149 steps
+C10H6,0.025,53,50,,,,
+C10H6,0.3,48,48,48,,,
+C10H6,"ASE defaults (step cap 0.2 A, memory 100)",,,,,48,plain L-BFGS at the ASE defaults
+C11H8,0.005,129,70,70,,,
+C11H8,0.025,65,63,,,,
+C11H8,0.3,,,,,,"plain and supervised runs: structure lost, no step below the force target"

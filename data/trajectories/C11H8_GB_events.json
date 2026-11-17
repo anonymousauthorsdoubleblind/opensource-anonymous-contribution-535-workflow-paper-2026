@@ -1,0 +1,1294 @@
+{
+ "molecule": "C11H8",
+ "run": "GB",
+ "kind": "supervised",
+ "arm_label": "Supervised run (agent)",
+ "start": "R1",
+ "step_cap_start_A": 0.3,
+ "level": "Skala-1.1/def2-SVP",
+ "structure_lost": true,
+ "fmax_note": "fmax in the events is the logged value; multiply by 1.8897 for eV/A",
+ "n_events": 71,
+ "events": [
+  {
+   "note": "surrogate exploration done",
+   "basins": 1,
+   "seconds": 4.5,
+   "kind": "note",
+   "pass_id": 1,
+   "step": 0,
+   "gradients": 0,
+   "t_s": 4.496
+  },
+  {
+   "trigger": "basin_choice",
+   "status": "ok",
+   "decision": {
+    "action": "CONTINUE",
+    "params": {},
+    "rationale": "All 13 surrogate seeds converged to a single basin (id 0) with planar ring geometry (plane_rms_A=0.0028), so no basin switch or DFT referee is needed.",
+    "evidence": [
+     "basin.current_basin=0",
+     "basin.target_basin=0",
+     "basin.basins.length=1"
+    ],
+    "expected": {}
+   },
+   "seconds": 9.9,
+   "tools_called": [
+    "submit_action"
+   ],
+   "kind": "agent_call",
+   "pass_id": 1,
+   "step": 0,
+   "gradients": 0,
+   "t_s": 15.36,
+   "role": "check model",
+   "controller": "language model"
+  },
+  {
+   "status": "accepted",
+   "notes": [],
+   "action": "CONTINUE",
+   "params": {},
+   "kind": "validator",
+   "pass_id": 1,
+   "step": 0,
+   "gradients": 0,
+   "t_s": 15.36
+  },
+  {
+   "trigger": "pass_start",
+   "status": "ok",
+   "decision": {
+    "action": "CONTINUE",
+    "params": {},
+    "rationale": "At pass start, step_advisor recommends keeping current settings with action='keep' and the structure is already aligned with target basin 0.",
+    "evidence": [
+     "step_advisor.recommendation.action=\"keep\"",
+     "step_advisor.recommendation.reason=\"settings look appropriate\"",
+     "basin.current_basin=0"
+    ],
+    "expected": {
+     "steps_to_target": 50
+    }
+   },
+   "seconds": 16.7,
+   "tools_called": [
+    "submit_action"
+   ],
+   "kind": "agent_call",
+   "pass_id": 1,
+   "step": 0,
+   "gradients": 0,
+   "t_s": 32.012,
+   "role": "routine model",
+   "controller": "language model"
+  },
+  {
+   "status": "accepted",
+   "notes": [],
+   "action": "CONTINUE",
+   "params": {},
+   "kind": "validator",
+   "pass_id": 1,
+   "step": 0,
+   "gradients": 0,
+   "t_s": 32.012
+  },
+  {
+   "settings": {
+    "basis": "def2-svp",
+    "maxstep": 0.3,
+    "steps": 200,
+    "fmax": 0.02,
+    "conv_tol": 1e-06,
+    "grid_level": 3
+   },
+   "label": "",
+   "kind": "pass_start",
+   "pass_id": 1,
+   "step": 0,
+   "gradients": 0,
+   "t_s": 32.013
+  },
+  {
+   "trigger": "scf_not_converged",
+   "features": {
+    "steps_in_pass": 2,
+    "fmax_now": 1761.373209708856,
+    "fmax_target": 0.02,
+    "maxstep": 0.3,
+    "decay_per_step": 583.3428369831369,
+    "uphill_fmax_last4": 1,
+    "oscillation_index": 1.0,
+    "dE_last_eV": 3221.6801144055444,
+    "cap_saturation": 0.0,
+    "plateau": false,
+    "energy_falling_last5": 1,
+    "dE_mean_last5_over_noise": 59217178.7,
+    "scf_converged_last": false
+   },
+   "kind": "trigger",
+   "pass_id": 1,
+   "step": 2,
+   "gradients": 4,
+   "t_s": 80.405
+  },
+  {
+   "tool": "get_evidence",
+   "args": {
+    "window": 5,
+    "topic": "step_diagnostics"
+   },
+   "result_keys": [
+    "rows"
+   ],
+   "event": "trigger",
+   "kind": "tool_call",
+   "pass_id": 1,
+   "step": 2,
+   "gradients": 4,
+   "t_s": 85.497
+  },
+  {
+   "tool": "get_evidence",
+   "args": {
+    "window": 5,
+    "topic": "scf_health"
+   },
+   "result_keys": [
+    "rows"
+   ],
+   "event": "trigger",
+   "kind": "tool_call",
+   "pass_id": 1,
+   "step": 2,
+   "gradients": 4,
+   "t_s": 87.573
+  },
+  {
+   "tool": "get_evidence",
+   "args": {
+    "window": 10,
+    "topic": "run_log"
+   },
+   "result_keys": [
+    "actions",
+    "strikes",
+    "agent_calls",
+    "gradients"
+   ],
+   "event": "trigger",
+   "kind": "tool_call",
+   "pass_id": 1,
+   "step": 2,
+   "gradients": 4,
+   "t_s": 95.865
+  },
+  {
+   "trigger": "trigger",
+   "status": "ok",
+   "decision": {
+    "action": "RESET_LBFGS_MEMORY",
+    "params": {
+     "maxstep": 0.15
+    },
+    "rationale": "Halving maxstep to 0.15 and resetting L-BFGS memory because step_advisor.curvature_ratio=5.98 is well above 2 and the energy spiked by features.dE_last_eV=3221.6801 with an unconverged SCF.",
+    "evidence": [
+     "step_advisor.curvature_ratio=5.98",
+     "features.dE_last_eV=3221.6801",
+     "features.scf_converged_last=false",
+     "step_diagnostics.ratio=11.56"
+    ],
+    "expected": {
+     "fmax_after_5_steps": 3,
+     "steps_to_target": 564
+    }
+   },
+   "seconds": 34.6,
+   "tools_called": [
+    "get_evidence",
+    "get_evidence",
+    "get_evidence",
+    "submit_action"
+   ],
+   "kind": "agent_call",
+   "pass_id": 1,
+   "step": 2,
+   "gradients": 4,
+   "t_s": 115.028,
+   "role": "routine model",
+   "controller": "language model"
+  },
+  {
+   "status": "clipped",
+   "notes": [
+    "maxstep clipped to 0.0500"
+   ],
+   "action": "RESET_LBFGS_MEMORY",
+   "params": {
+    "maxstep": 0.15
+   },
+   "kind": "validator",
+   "pass_id": 1,
+   "step": 2,
+   "gradients": 4,
+   "t_s": 115.028
+  },
+  {
+   "action": "RESET_LBFGS_MEMORY",
+   "params": {
+    "maxstep": 0.05
+   },
+   "kind": "action_applied",
+   "pass_id": 1,
+   "step": 2,
+   "gradients": 4,
+   "t_s": 115.03
+  },
+  {
+   "outcome": "rolled_back",
+   "action": "RESET_LBFGS_MEMORY",
+   "E_change_eV": -230.91590250791342,
+   "fmax_before": 1761.373209708856,
+   "fmax_after": 3163.1416277735116,
+   "start_gradients": 4,
+   "start_t_opt_s": 61.87,
+   "kind": "probation",
+   "pass_id": 1,
+   "step": 7,
+   "gradients": 9,
+   "t_s": 276.904
+  },
+  {
+   "strikes": 1,
+   "level": "trigger",
+   "kind": "rollback",
+   "pass_id": 1,
+   "step": 7,
+   "gradients": 9,
+   "t_s": 276.905
+  },
+  {
+   "trigger": "scf_not_converged",
+   "features": {
+    "steps_in_pass": 7,
+    "fmax_now": 3163.1416277735116,
+    "fmax_target": 0.02,
+    "maxstep": 0.3,
+    "decay_per_step": 1.124225547551474,
+    "uphill_fmax_last4": 2,
+    "oscillation_index": 0.5,
+    "dE_last_eV": -2583.6299082521728,
+    "cap_saturation": 1.0,
+    "plateau": true,
+    "energy_falling_last5": 3,
+    "dE_mean_last5_over_noise": 68106105.0,
+    "scf_converged_last": false
+   },
+   "kind": "trigger",
+   "pass_id": 1,
+   "step": 7,
+   "gradients": 9,
+   "t_s": 276.941
+  },
+  {
+   "tool": "get_evidence",
+   "args": {
+    "topic": "step_diagnostics"
+   },
+   "result_keys": [
+    "rows"
+   ],
+   "event": "trigger",
+   "kind": "tool_call",
+   "pass_id": 1,
+   "step": 7,
+   "gradients": 9,
+   "t_s": 314.475
+  },
+  {
+   "tool": "get_evidence",
+   "args": {
+    "topic": "scf_health"
+   },
+   "result_keys": [
+    "rows"
+   ],
+   "event": "trigger",
+   "kind": "tool_call",
+   "pass_id": 1,
+   "step": 7,
+   "gradients": 9,
+   "t_s": 314.475
+  },
+  {
+   "tool": "get_evidence",
+   "args": {
+    "topic": "run_log"
+   },
+   "result_keys": [
+    "actions",
+    "strikes",
+    "agent_calls",
+    "gradients"
+   ],
+   "event": "trigger",
+   "kind": "tool_call",
+   "pass_id": 1,
+   "step": 7,
+   "gradients": 9,
+   "t_s": 316.726
+  },
+  {
+   "tool": "get_evidence",
+   "args": {
+    "topic": "structure"
+   },
+   "result_keys": [
+    "plane_rms_A",
+    "transannular_A",
+    "rmsd_to_reference_A",
+    "bond_graph_ok",
+    "energy_eV"
+   ],
+   "event": "trigger",
+   "kind": "tool_call",
+   "pass_id": 1,
+   "step": 7,
+   "gradients": 9,
+   "t_s": 316.727
+  },
+  {
+   "tool": "get_evidence",
+   "args": {
+    "window": 10,
+    "topic": "trajectory"
+   },
+   "result_keys": [
+    "pass_id",
+    "rows"
+   ],
+   "event": "trigger",
+   "kind": "tool_call",
+   "pass_id": 1,
+   "step": 7,
+   "gradients": 9,
+   "t_s": 322.641
+  },
+  {
+   "trigger": "trigger",
+   "status": "ok",
+   "decision": {
+    "action": "CONTINUE",
+    "params": {},
+    "rationale": "(no usable rationale given)",
+    "evidence": [],
+    "expected": {}
+   },
+   "seconds": 49.1,
+   "tools_called": [
+    "get_evidence",
+    "get_evidence",
+    "get_evidence",
+    "get_evidence",
+    "get_evidence",
+    "submit_action"
+   ],
+   "kind": "agent_call",
+   "pass_id": 1,
+   "step": 7,
+   "gradients": 9,
+   "t_s": 326.039,
+   "role": "routine model",
+   "controller": "language model"
+  },
+  {
+   "status": "accepted",
+   "notes": [],
+   "action": "CONTINUE",
+   "params": {},
+   "kind": "validator",
+   "pass_id": 1,
+   "step": 7,
+   "gradients": 9,
+   "t_s": 326.039
+  },
+  {
+   "trigger": "scf_not_converged",
+   "features": {
+    "steps_in_pass": 12,
+    "fmax_now": 2270.98358371067,
+    "fmax_target": 0.02,
+    "maxstep": 0.3,
+    "decay_per_step": 0.9358776404562085,
+    "uphill_fmax_last4": 3,
+    "oscillation_index": 0.75,
+    "dE_last_eV": -3903.7761432214684,
+    "cap_saturation": 1.0,
+    "plateau": false,
+    "energy_falling_last5": 2,
+    "dE_mean_last5_over_noise": 57697026.1,
+    "scf_converged_last": false
+   },
+   "kind": "trigger",
+   "pass_id": 1,
+   "step": 12,
+   "gradients": 15,
+   "t_s": 488.083
+  },
+  {
+   "tool": "get_evidence",
+   "args": {
+    "topic": "run_log"
+   },
+   "result_keys": [
+    "actions",
+    "strikes",
+    "agent_calls",
+    "gradients"
+   ],
+   "event": "trigger",
+   "kind": "tool_call",
+   "pass_id": 1,
+   "step": 12,
+   "gradients": 15,
+   "t_s": 494.63
+  },
+  {
+   "tool": "get_evidence",
+   "args": {
+    "topic": "scf_health"
+   },
+   "result_keys": [
+    "rows"
+   ],
+   "event": "trigger",
+   "kind": "tool_call",
+   "pass_id": 1,
+   "step": 12,
+   "gradients": 15,
+   "t_s": 497.198
+  },
+  {
+   "tool": "get_evidence",
+   "args": {
+    "topic": "structure"
+   },
+   "result_keys": [
+    "plane_rms_A",
+    "transannular_A",
+    "rmsd_to_reference_A",
+    "bond_graph_ok",
+    "energy_eV"
+   ],
+   "event": "trigger",
+   "kind": "tool_call",
+   "pass_id": 1,
+   "step": 12,
+   "gradients": 15,
+   "t_s": 499.826
+  },
+  {
+   "trigger": "trigger",
+   "status": "ok",
+   "decision": {
+    "action": "CONTINUE",
+    "params": {},
+    "rationale": "Step advisor recommends keeping current settings with a curvature ratio of 1.54 while the energy fell substantially by 3903.78 eV on the latest step.",
+    "evidence": [
+     "step_advisor.recommendation.action=keep",
+     "step_advisor.curvature_ratio=1.54",
+     "features.dE_last_eV=-3903.7761",
+     "settings.conv_tol=1e-06"
+    ],
+    "expected": {
+     "steps_to_target": 176
+    }
+   },
+   "seconds": 31.8,
+   "tools_called": [
+    "get_evidence",
+    "get_evidence",
+    "get_evidence",
+    "submit_action"
+   ],
+   "kind": "agent_call",
+   "pass_id": 1,
+   "step": 12,
+   "gradients": 15,
+   "t_s": 519.896,
+   "role": "routine model",
+   "controller": "language model"
+  },
+  {
+   "status": "accepted",
+   "notes": [],
+   "action": "CONTINUE",
+   "params": {},
+   "kind": "validator",
+   "pass_id": 1,
+   "step": 12,
+   "gradients": 15,
+   "t_s": 519.896
+  },
+  {
+   "trigger": "scf_not_converged",
+   "features": {
+    "steps_in_pass": 17,
+    "fmax_now": 5068.122435152854,
+    "fmax_target": 0.02,
+    "maxstep": 0.3,
+    "decay_per_step": 1.1741582140105704,
+    "uphill_fmax_last4": 2,
+    "oscillation_index": 0.5,
+    "dE_last_eV": -3495.1992884039228,
+    "cap_saturation": 1.0,
+    "plateau": true,
+    "energy_falling_last5": 2,
+    "dE_mean_last5_over_noise": 73602393.2,
+    "scf_converged_last": false
+   },
+   "kind": "trigger",
+   "pass_id": 1,
+   "step": 17,
+   "gradients": 20,
+   "t_s": 681.757
+  },
+  {
+   "tool": "get_evidence",
+   "args": {
+    "topic": "scf_health"
+   },
+   "result_keys": [
+    "rows"
+   ],
+   "event": "trigger",
+   "kind": "tool_call",
+   "pass_id": 1,
+   "step": 17,
+   "gradients": 20,
+   "t_s": 689.356
+  },
+  {
+   "tool": "get_evidence",
+   "args": {
+    "topic": "structure"
+   },
+   "result_keys": [
+    "plane_rms_A",
+    "transannular_A",
+    "rmsd_to_reference_A",
+    "bond_graph_ok",
+    "energy_eV"
+   ],
+   "event": "trigger",
+   "kind": "tool_call",
+   "pass_id": 1,
+   "step": 17,
+   "gradients": 20,
+   "t_s": 692.71
+  },
+  {
+   "tool": "get_evidence",
+   "args": {
+    "topic": "run_log"
+   },
+   "result_keys": [
+    "actions",
+    "strikes",
+    "agent_calls",
+    "gradients"
+   ],
+   "event": "trigger",
+   "kind": "tool_call",
+   "pass_id": 1,
+   "step": 17,
+   "gradients": 20,
+   "t_s": 696.635
+  },
+  {
+   "trigger": "trigger",
+   "status": "ok",
+   "decision": {
+    "action": "CONTINUE",
+    "params": {},
+    "rationale": "(no usable rationale given)",
+    "evidence": [
+     "scf_health.converged=false"
+    ],
+    "expected": {}
+   },
+   "seconds": 19.0,
+   "tools_called": [
+    "get_evidence",
+    "get_evidence",
+    "get_evidence",
+    "submit_action"
+   ],
+   "kind": "agent_call",
+   "pass_id": 1,
+   "step": 17,
+   "gradients": 20,
+   "t_s": 700.713,
+   "role": "routine model",
+   "controller": "language model"
+  },
+  {
+   "status": "accepted",
+   "notes": [],
+   "action": "CONTINUE",
+   "params": {},
+   "kind": "validator",
+   "pass_id": 1,
+   "step": 17,
+   "gradients": 20,
+   "t_s": 700.713
+  },
+  {
+   "trigger": "scf_not_converged",
+   "features": {
+    "steps_in_pass": 22,
+    "fmax_now": 3040.2761626601887,
+    "fmax_target": 0.02,
+    "maxstep": 0.3,
+    "decay_per_step": 0.9028449793068815,
+    "uphill_fmax_last4": 1,
+    "oscillation_index": 0.25,
+    "dE_last_eV": -438.0245944032995,
+    "cap_saturation": 1.0,
+    "plateau": false,
+    "energy_falling_last5": 3,
+    "dE_mean_last5_over_noise": 91193790.9,
+    "scf_converged_last": false
+   },
+   "kind": "trigger",
+   "pass_id": 1,
+   "step": 22,
+   "gradients": 25,
+   "t_s": 862.825
+  },
+  {
+   "tool": "get_evidence",
+   "args": {
+    "topic": "run_log"
+   },
+   "result_keys": [
+    "actions",
+    "strikes",
+    "agent_calls",
+    "gradients"
+   ],
+   "event": "trigger",
+   "kind": "tool_call",
+   "pass_id": 1,
+   "step": 22,
+   "gradients": 25,
+   "t_s": 871.037
+  },
+  {
+   "tool": "get_evidence",
+   "args": {
+    "topic": "trajectory",
+    "window": 25
+   },
+   "result_keys": [
+    "pass_id",
+    "rows"
+   ],
+   "event": "trigger",
+   "kind": "tool_call",
+   "pass_id": 1,
+   "step": 22,
+   "gradients": 25,
+   "t_s": 875.219
+  },
+  {
+   "tool": "get_evidence",
+   "args": {
+    "topic": "structure"
+   },
+   "result_keys": [
+    "plane_rms_A",
+    "transannular_A",
+    "rmsd_to_reference_A",
+    "bond_graph_ok",
+    "energy_eV"
+   ],
+   "event": "trigger",
+   "kind": "tool_call",
+   "pass_id": 1,
+   "step": 22,
+   "gradients": 25,
+   "t_s": 880.966
+  },
+  {
+   "trigger": "trigger",
+   "status": "ok",
+   "decision": {
+    "action": "CONTINUE",
+    "params": {},
+    "rationale": "(no usable rationale given)",
+    "evidence": [
+     "step_advisor.curvature_ratio=2.29"
+    ],
+    "expected": {}
+   },
+   "seconds": 20.6,
+   "tools_called": [
+    "get_evidence",
+    "get_evidence",
+    "get_evidence",
+    "submit_action"
+   ],
+   "kind": "agent_call",
+   "pass_id": 1,
+   "step": 22,
+   "gradients": 25,
+   "t_s": 883.458,
+   "role": "routine model",
+   "controller": "language model"
+  },
+  {
+   "status": "accepted",
+   "notes": [],
+   "action": "CONTINUE",
+   "params": {},
+   "kind": "validator",
+   "pass_id": 1,
+   "step": 22,
+   "gradients": 25,
+   "t_s": 883.458
+  },
+  {
+   "trigger": "scf_not_converged",
+   "features": {
+    "steps_in_pass": 27,
+    "fmax_now": 2058.8172061683936,
+    "fmax_target": 0.02,
+    "maxstep": 0.3,
+    "decay_per_step": 0.9249983348562592,
+    "uphill_fmax_last4": 2,
+    "oscillation_index": 0.5,
+    "dE_last_eV": -869.4397193974764,
+    "cap_saturation": 1.0,
+    "plateau": false,
+    "energy_falling_last5": 3,
+    "dE_mean_last5_over_noise": 124608443.8,
+    "scf_converged_last": false
+   },
+   "kind": "trigger",
+   "pass_id": 1,
+   "step": 27,
+   "gradients": 30,
+   "t_s": 1045.535
+  },
+  {
+   "tool": "get_evidence",
+   "args": {
+    "topic": "scf_health"
+   },
+   "result_keys": [
+    "rows"
+   ],
+   "event": "trigger",
+   "kind": "tool_call",
+   "pass_id": 1,
+   "step": 27,
+   "gradients": 30,
+   "t_s": 1052.086
+  },
+  {
+   "tool": "get_evidence",
+   "args": {
+    "topic": "step_diagnostics"
+   },
+   "result_keys": [
+    "rows"
+   ],
+   "event": "trigger",
+   "kind": "tool_call",
+   "pass_id": 1,
+   "step": 27,
+   "gradients": 30,
+   "t_s": 1054.361
+  },
+  {
+   "trigger": "trigger",
+   "status": "ok",
+   "decision": {
+    "action": "CONTINUE",
+    "params": {},
+    "rationale": "Step advisor recommends keeping current settings with step_advisor.curvature_ratio=0.63 while energy continues to decrease by features.dE_last_eV=-869.4397 on the latest step.",
+    "evidence": [
+     "step_advisor.curvature_ratio=0.63",
+     "step_advisor.recommendation.action=keep",
+     "features.dE_last_eV=-869.4397"
+    ],
+    "expected": {}
+   },
+   "seconds": 28.2,
+   "tools_called": [
+    "get_evidence",
+    "get_evidence",
+    "submit_action"
+   ],
+   "kind": "agent_call",
+   "pass_id": 1,
+   "step": 27,
+   "gradients": 30,
+   "t_s": 1073.73,
+   "role": "routine model",
+   "controller": "language model"
+  },
+  {
+   "status": "accepted",
+   "notes": [],
+   "action": "CONTINUE",
+   "params": {},
+   "kind": "validator",
+   "pass_id": 1,
+   "step": 27,
+   "gradients": 30,
+   "t_s": 1073.73
+  },
+  {
+   "trigger": "scf_not_converged",
+   "features": {
+    "steps_in_pass": 32,
+    "fmax_now": 4432.7334963179965,
+    "fmax_target": 0.02,
+    "maxstep": 0.3,
+    "decay_per_step": 1.1657643402477258,
+    "uphill_fmax_last4": 3,
+    "oscillation_index": 0.75,
+    "dE_last_eV": 6282.532410496086,
+    "cap_saturation": 1.0,
+    "plateau": true,
+    "energy_falling_last5": 2,
+    "dE_mean_last5_over_noise": 116622258.0,
+    "scf_converged_last": false
+   },
+   "kind": "trigger",
+   "pass_id": 1,
+   "step": 32,
+   "gradients": 35,
+   "t_s": 1235.761
+  },
+  {
+   "tool": "get_evidence",
+   "args": {
+    "topic": "run_log",
+    "window": 10
+   },
+   "result_keys": [
+    "actions",
+    "strikes",
+    "agent_calls",
+    "gradients"
+   ],
+   "event": "trigger",
+   "kind": "tool_call",
+   "pass_id": 1,
+   "step": 32,
+   "gradients": 35,
+   "t_s": 1243.702
+  },
+  {
+   "tool": "get_evidence",
+   "args": {
+    "window": 15,
+    "topic": "step_diagnostics"
+   },
+   "result_keys": [
+    "rows"
+   ],
+   "event": "trigger",
+   "kind": "tool_call",
+   "pass_id": 1,
+   "step": 32,
+   "gradients": 35,
+   "t_s": 1247.62
+  },
+  {
+   "tool": "get_evidence",
+   "args": {
+    "window": 10,
+    "topic": "scf_health"
+   },
+   "result_keys": [
+    "rows"
+   ],
+   "event": "trigger",
+   "kind": "tool_call",
+   "pass_id": 1,
+   "step": 32,
+   "gradients": 35,
+   "t_s": 1254.199
+  },
+  {
+   "trigger": "trigger",
+   "status": "ok",
+   "decision": {
+    "action": "RESET_LBFGS_MEMORY",
+    "params": {
+     "maxstep": 0.15
+    },
+    "rationale": "Halving maxstep to 0.15 and resetting L-BFGS memory because step_advisor.curvature_ratio=6.02 exceeds 2 with features.oscillation_index=0.75 and a rising energy of features.dE_last_eV=6282.5324.",
+    "evidence": [
+     "step_advisor.curvature_ratio=6.02",
+     "features.oscillation_index=0.75",
+     "features.dE_last_eV=6282.5324",
+     "features.energy_falling_last5=2",
+     "step_advisor.recommendation.maxstep=0.15"
+    ],
+    "expected": {
+     "steps_to_target": 610,
+     "fmax_after_5_steps": 1500
+    }
+   },
+   "seconds": 45.5,
+   "tools_called": [
+    "get_evidence",
+    "get_evidence",
+    "get_evidence",
+    "submit_action"
+   ],
+   "kind": "agent_call",
+   "pass_id": 1,
+   "step": 32,
+   "gradients": 35,
+   "t_s": 1281.244,
+   "role": "routine model",
+   "controller": "language model"
+  },
+  {
+   "status": "clipped",
+   "notes": [
+    "maxstep clipped to 0.0500"
+   ],
+   "action": "RESET_LBFGS_MEMORY",
+   "params": {
+    "maxstep": 0.15
+   },
+   "kind": "validator",
+   "pass_id": 1,
+   "step": 32,
+   "gradients": 35,
+   "t_s": 1281.244
+  },
+  {
+   "action": "RESET_LBFGS_MEMORY",
+   "params": {
+    "maxstep": 0.05
+   },
+   "kind": "action_applied",
+   "pass_id": 1,
+   "step": 32,
+   "gradients": 35,
+   "t_s": 1281.246
+  },
+  {
+   "outcome": "kept",
+   "action": "RESET_LBFGS_MEMORY",
+   "E_change_eV": -4804.612546887064,
+   "fmax_before": 4432.7334963179965,
+   "fmax_after": 3857.84060272292,
+   "start_gradients": 35,
+   "start_t_opt_s": 1066.12,
+   "kind": "probation",
+   "pass_id": 1,
+   "step": 37,
+   "gradients": 40,
+   "t_s": 1442.967
+  },
+  {
+   "trigger": "scf_not_converged",
+   "features": {
+    "steps_in_pass": 37,
+    "fmax_now": 3857.84060272292,
+    "fmax_target": 0.02,
+    "maxstep": 0.05,
+    "decay_per_step": 0.9726005965600549,
+    "uphill_fmax_last4": 2,
+    "oscillation_index": 0.5,
+    "dE_last_eV": -464.56034888705744,
+    "cap_saturation": 1.0,
+    "plateau": false,
+    "energy_falling_last5": 4,
+    "dE_mean_last5_over_noise": 47068281.9,
+    "scf_converged_last": false
+   },
+   "kind": "trigger",
+   "pass_id": 1,
+   "step": 37,
+   "gradients": 40,
+   "t_s": 1443.007
+  },
+  {
+   "tool": "get_evidence",
+   "args": {
+    "topic": "structure"
+   },
+   "result_keys": [
+    "plane_rms_A",
+    "transannular_A",
+    "rmsd_to_reference_A",
+    "bond_graph_ok",
+    "energy_eV"
+   ],
+   "event": "trigger",
+   "kind": "tool_call",
+   "pass_id": 1,
+   "step": 37,
+   "gradients": 40,
+   "t_s": 1447.217
+  },
+  {
+   "tool": "get_evidence",
+   "args": {
+    "topic": "scf_health"
+   },
+   "result_keys": [
+    "rows"
+   ],
+   "event": "trigger",
+   "kind": "tool_call",
+   "pass_id": 1,
+   "step": 37,
+   "gradients": 40,
+   "t_s": 1449.883
+  },
+  {
+   "tool": "get_evidence",
+   "args": {
+    "topic": "step_diagnostics"
+   },
+   "result_keys": [
+    "rows"
+   ],
+   "event": "trigger",
+   "kind": "tool_call",
+   "pass_id": 1,
+   "step": 37,
+   "gradients": 40,
+   "t_s": 1453.152
+  },
+  {
+   "trigger": "trigger",
+   "status": "ok",
+   "decision": {
+    "action": "CONTINUE",
+    "params": {},
+    "rationale": "Step advisor recommends keeping current settings with step_advisor.curvature_ratio=1.85 while the energy dropped by features.dE_last_eV=-464.5603 eV on the latest step.",
+    "evidence": [
+     "step_advisor.recommendation.action=keep",
+     "step_advisor.curvature_ratio=1.85",
+     "features.dE_last_eV=-464.5603"
+    ],
+    "expected": {
+     "steps_to_target": 541,
+     "fmax_after_5_steps": 3350
+    }
+   },
+   "seconds": 24.7,
+   "tools_called": [
+    "get_evidence",
+    "get_evidence",
+    "get_evidence",
+    "submit_action"
+   ],
+   "kind": "agent_call",
+   "pass_id": 1,
+   "step": 37,
+   "gradients": 40,
+   "t_s": 1467.684,
+   "role": "routine model",
+   "controller": "language model"
+  },
+  {
+   "status": "accepted",
+   "notes": [],
+   "action": "CONTINUE",
+   "params": {},
+   "kind": "validator",
+   "pass_id": 1,
+   "step": 37,
+   "gradients": 40,
+   "t_s": 1467.684
+  },
+  {
+   "trigger": "scf_not_converged",
+   "features": {
+    "steps_in_pass": 42,
+    "fmax_now": 2396.0353827478493,
+    "fmax_target": 0.02,
+    "maxstep": 0.05,
+    "decay_per_step": 0.9091379555806586,
+    "uphill_fmax_last4": 2,
+    "oscillation_index": 0.5,
+    "dE_last_eV": -8754.934417706327,
+    "cap_saturation": 1.0,
+    "plateau": false,
+    "energy_falling_last5": 2,
+    "dE_mean_last5_over_noise": 209691114.6,
+    "scf_converged_last": false
+   },
+   "kind": "trigger",
+   "pass_id": 1,
+   "step": 42,
+   "gradients": 45,
+   "t_s": 1629.316
+  },
+  {
+   "tool": "get_evidence",
+   "args": {
+    "window": 10,
+    "topic": "step_diagnostics"
+   },
+   "result_keys": [
+    "rows"
+   ],
+   "event": "trigger",
+   "kind": "tool_call",
+   "pass_id": 1,
+   "step": 42,
+   "gradients": 45,
+   "t_s": 1634.706
+  },
+  {
+   "tool": "get_evidence",
+   "args": {
+    "window": 5,
+    "topic": "structure"
+   },
+   "result_keys": [
+    "plane_rms_A",
+    "transannular_A",
+    "rmsd_to_reference_A",
+    "bond_graph_ok",
+    "energy_eV"
+   ],
+   "event": "trigger",
+   "kind": "tool_call",
+   "pass_id": 1,
+   "step": 42,
+   "gradients": 45,
+   "t_s": 1636.85
+  },
+  {
+   "tool": "get_evidence",
+   "args": {
+    "topic": "scf_health",
+    "window": 5
+   },
+   "result_keys": [
+    "rows"
+   ],
+   "event": "trigger",
+   "kind": "tool_call",
+   "pass_id": 1,
+   "step": 42,
+   "gradients": 45,
+   "t_s": 1639.699
+  },
+  {
+   "trigger": "trigger",
+   "status": "ok",
+   "decision": {
+    "action": "RESET_LBFGS_MEMORY",
+    "params": {
+     "maxstep": 0.025
+    },
+    "rationale": "Severe geometric distortion with transannular clash at 0.484 A and repeated SCF non-convergence requires cutting maxstep to 0.025 and resetting L-BFGS memory.",
+    "evidence": [
+     "structure.transannular_A=[0.484, 2.316]",
+     "scf_health: converged=false for steps 38-42",
+     "features.fmax_now=2396.0354"
+    ],
+    "expected": {}
+   },
+   "seconds": 17.2,
+   "tools_called": [
+    "get_evidence",
+    "get_evidence",
+    "get_evidence",
+    "submit_action"
+   ],
+   "kind": "agent_call",
+   "pass_id": 1,
+   "step": 42,
+   "gradients": 45,
+   "t_s": 1646.562,
+   "role": "routine model",
+   "controller": "language model"
+  },
+  {
+   "status": "accepted",
+   "notes": [],
+   "action": "RESET_LBFGS_MEMORY",
+   "params": {
+    "maxstep": 0.025
+   },
+   "kind": "validator",
+   "pass_id": 1,
+   "step": 42,
+   "gradients": 45,
+   "t_s": 1646.562
+  },
+  {
+   "action": "RESET_LBFGS_MEMORY",
+   "params": {
+    "maxstep": 0.025
+   },
+   "kind": "action_applied",
+   "pass_id": 1,
+   "step": 42,
+   "gradients": 45,
+   "t_s": 1646.563
+  },
+  {
+   "outcome": "rolled_back",
+   "action": "RESET_LBFGS_MEMORY",
+   "E_change_eV": 104.67271953541331,
+   "fmax_before": 2396.0353827478493,
+   "fmax_after": 24967.645230015176,
+   "start_gradients": 45,
+   "start_t_opt_s": 1389.58,
+   "kind": "probation",
+   "pass_id": 1,
+   "step": 47,
+   "gradients": 50,
+   "t_s": 1808.11
+  },
+  {
+   "strikes": 2,
+   "level": "trigger",
+   "kind": "rollback",
+   "pass_id": 1,
+   "step": 47,
+   "gradients": 50,
+   "t_s": 1808.111
+  },
+  {
+   "note": "agent switched off after two rollbacks; baseline settings finish the run",
+   "kind": "note",
+   "pass_id": 1,
+   "step": 47,
+   "gradients": 50,
+   "t_s": 1808.111
+  },
+  {
+   "steps": 146,
+   "fmax": 10156.013128724562,
+   "energy_eV": -8372.715213484787,
+   "target_met": false,
+   "kind": "pass_end",
+   "pass_id": 1,
+   "step": 146,
+   "gradients": 150,
+   "t_s": 5056.212
+  }
+ ]
+}

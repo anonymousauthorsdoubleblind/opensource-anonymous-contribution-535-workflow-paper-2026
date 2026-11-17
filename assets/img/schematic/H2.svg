@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 790" width="1600" height="790" font-family="Arial, Helvetica, sans-serif"><defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#1b2333"/></marker><marker id="m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#586279"/></marker><marker id="r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#b94a1b"/></marker><marker id="g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#18733f"/></marker></defs><rect width="1600" height="790" fill="#fff"/><text x="40" y="52" font-size="30" font-weight="700" fill="#1b2333" text-anchor="start">Four modules at a glance</text>
+<text x="40" y="82" font-size="18" font-weight="400" fill="#586279" text-anchor="start">What each module takes in, does, hands on and is checked against</text>
+<rect x="40" y="110" width="360" height="620" rx="16" fill="#e6f3d3" stroke="#5e9b1f" stroke-width="3"/>
+<circle cx="80" cy="150" r="22" fill="#5e9b1f" stroke="#fff" stroke-width="3"/>
+<text x="80" y="157" font-size="20" font-weight="700" fill="#fff" text-anchor="middle">1</text>
+<text x="115" y="159" font-size="23" font-weight="700" fill="#1b2333" text-anchor="start">Agentic optimizer</text>
+<text x="115" y="184" font-size="15" font-weight="400" fill="#586279" text-anchor="start">module</text>
+<text x="64" y="225" font-size="14" font-weight="700" fill="#5e9b1f" text-anchor="start">TAKES IN</text>
+<text x="64" y="251" font-size="17" font-weight="400" fill="#1b2333" text-anchor="start">Distorted structure</text>
+<text x="64" y="308" font-size="14" font-weight="700" fill="#5e9b1f" text-anchor="start">DOES</text>
+<text x="64" y="334" font-size="17" font-weight="400" fill="#1b2333" text-anchor="start">xTB basin search, then L-BFGS on</text>
+<text x="64" y="357" font-size="17" font-weight="400" fill="#1b2333" text-anchor="start">Skala-1.1; a language model</text>
+<text x="64" y="380" font-size="17" font-weight="400" fill="#1b2333" text-anchor="start">tunes the settings under a guard</text>
+<text x="64" y="437" font-size="14" font-weight="700" fill="#5e9b1f" text-anchor="start">HANDS ON</text>
+<text x="64" y="463" font-size="17" font-weight="400" fill="#1b2333" text-anchor="start">Relaxed geometry and a log of</text>
+<text x="64" y="486" font-size="17" font-weight="400" fill="#1b2333" text-anchor="start">every decision</text>
+<text x="64" y="543" font-size="14" font-weight="700" fill="#5e9b1f" text-anchor="start">CHECKED BY</text>
+<text x="64" y="569" font-size="17" font-weight="700" fill="#5e9b1f" text-anchor="start">Same structure reached from</text>
+<text x="64" y="592" font-size="17" font-weight="700" fill="#5e9b1f" text-anchor="start">different starts and settings</text>
+<rect x="64" y="696" width="200" height="26" rx="13" fill="#f2a900" stroke="#a87100" stroke-width="1.5"/>
+<text x="164.0" y="714" font-size="12" font-weight="700" fill="#3a2800" text-anchor="middle">OPEN SOURCE · this paper</text>
+<rect x="420" y="110" width="360" height="620" rx="16" fill="#e2ebfa" stroke="#2468c9" stroke-width="3"/>
+<circle cx="460" cy="150" r="22" fill="#2468c9" stroke="#fff" stroke-width="3"/>
+<text x="460" y="157" font-size="20" font-weight="700" fill="#fff" text-anchor="middle">2</text>
+<text x="495" y="159" font-size="23" font-weight="700" fill="#1b2333" text-anchor="start">Hessian</text>
+<text x="495" y="184" font-size="15" font-weight="400" fill="#586279" text-anchor="start">module</text>
+<text x="444" y="225" font-size="14" font-weight="700" fill="#2468c9" text-anchor="start">TAKES IN</text>
+<text x="444" y="251" font-size="17" font-weight="400" fill="#1b2333" text-anchor="start">Optimized geometry</text>
+<text x="444" y="308" font-size="14" font-weight="700" fill="#2468c9" text-anchor="start">DOES</text>
+<text x="444" y="334" font-size="17" font-weight="400" fill="#1b2333" text-anchor="start">Re-optimize at def2-TZVP, then</text>
+<text x="444" y="357" font-size="17" font-weight="400" fill="#1b2333" text-anchor="start">finite-difference Hessian on the</text>
+<text x="444" y="380" font-size="17" font-weight="400" fill="#1b2333" text-anchor="start">GPU</text>
+<text x="444" y="437" font-size="14" font-weight="700" fill="#2468c9" text-anchor="start">HANDS ON</text>
+<text x="444" y="463" font-size="17" font-weight="400" fill="#1b2333" text-anchor="start">Frequencies, IR spectrum, vDOS</text>
+<text x="444" y="520" font-size="14" font-weight="700" fill="#2468c9" text-anchor="start">CHECKED BY</text>
+<text x="444" y="546" font-size="17" font-weight="700" fill="#2468c9" text-anchor="start">No imaginary frequencies; three</text>
+<text x="444" y="569" font-size="17" font-weight="700" fill="#2468c9" text-anchor="start">cross-checks</text>
+<rect x="444" y="696" width="200" height="26" rx="13" fill="#f2a900" stroke="#a87100" stroke-width="1.5"/>
+<text x="544.0" y="714" font-size="12" font-weight="700" fill="#3a2800" text-anchor="middle">OPEN SOURCE · this paper</text>
+<rect x="800" y="110" width="360" height="620" rx="16" fill="#ece3f7" stroke="#7a4fb5" stroke-width="3"/>
+<circle cx="840" cy="150" r="22" fill="#7a4fb5" stroke="#fff" stroke-width="3"/>
+<text x="840" y="157" font-size="20" font-weight="700" fill="#fff" text-anchor="middle">3</text>
+<text x="875" y="159" font-size="23" font-weight="700" fill="#1b2333" text-anchor="start">NMR workflow</text>
+<text x="875" y="184" font-size="15" font-weight="400" fill="#586279" text-anchor="start">module</text>
+<text x="824" y="225" font-size="14" font-weight="700" fill="#7a4fb5" text-anchor="start">TAKES IN</text>
+<text x="824" y="251" font-size="17" font-weight="400" fill="#1b2333" text-anchor="start">Optimized geometry</text>
+<text x="824" y="308" font-size="14" font-weight="700" fill="#7a4fb5" text-anchor="start">DOES</text>
+<text x="824" y="334" font-size="17" font-weight="400" fill="#1b2333" text-anchor="start">Re-optimize at 6-31+G(d,p), then</text>
+<text x="824" y="357" font-size="17" font-weight="400" fill="#1b2333" text-anchor="start">shieldings with two probes</text>
+<text x="824" y="380" font-size="17" font-weight="400" fill="#1b2333" text-anchor="start">(B3LYP, PBE0)</text>
+<text x="824" y="437" font-size="14" font-weight="700" fill="#7a4fb5" text-anchor="start">HANDS ON</text>
+<text x="824" y="463" font-size="17" font-weight="400" fill="#1b2333" text-anchor="start">Computed chemical shifts</text>
+<text x="824" y="520" font-size="14" font-weight="700" fill="#7a4fb5" text-anchor="start">CHECKED BY</text>
+<text x="824" y="546" font-size="17" font-weight="700" fill="#7a4fb5" text-anchor="start">Compared with experiment and a</text>
+<text x="824" y="569" font-size="17" font-weight="700" fill="#7a4fb5" text-anchor="start">published error yardstick</text>
+<rect x="824" y="696" width="200" height="26" rx="13" fill="#f2a900" stroke="#a87100" stroke-width="1.5"/>
+<text x="924.0" y="714" font-size="12" font-weight="700" fill="#3a2800" text-anchor="middle">OPEN SOURCE · this paper</text>
+<rect x="1180" y="110" width="360" height="620" rx="16" fill="#fdf0d5" stroke="#b87a00" stroke-width="3"/>
+<circle cx="1220" cy="150" r="22" fill="#b87a00" stroke="#fff" stroke-width="3"/>
+<text x="1220" y="157" font-size="20" font-weight="700" fill="#fff" text-anchor="middle">4</text>
+<text x="1255" y="159" font-size="23" font-weight="700" fill="#1b2333" text-anchor="start">Molecular property</text>
+<text x="1255" y="184" font-size="15" font-weight="400" fill="#586279" text-anchor="start">module</text>
+<text x="1204" y="225" font-size="14" font-weight="700" fill="#b87a00" text-anchor="start">TAKES IN</text>
+<text x="1204" y="251" font-size="17" font-weight="400" fill="#1b2333" text-anchor="start">Minimum-energy structure</text>
+<text x="1204" y="308" font-size="14" font-weight="700" fill="#b87a00" text-anchor="start">DOES</text>
+<text x="1204" y="334" font-size="17" font-weight="400" fill="#1b2333" text-anchor="start">Self-consistent-field properties</text>
+<text x="1204" y="357" font-size="17" font-weight="400" fill="#1b2333" text-anchor="start">and CCSD(T) energy differences</text>
+<text x="1204" y="414" font-size="14" font-weight="700" fill="#b87a00" text-anchor="start">HANDS ON</text>
+<text x="1204" y="440" font-size="17" font-weight="400" fill="#1b2333" text-anchor="start">Charges, orbitals, potential</text>
+<text x="1204" y="463" font-size="17" font-weight="400" fill="#1b2333" text-anchor="start">maps</text>
+<text x="1204" y="520" font-size="14" font-weight="700" fill="#b87a00" text-anchor="start">CHECKED BY</text>
+<text x="1204" y="546" font-size="17" font-weight="700" fill="#b87a00" text-anchor="start">Side by side with a hybrid</text>
+<text x="1204" y="569" font-size="17" font-weight="700" fill="#b87a00" text-anchor="start">functional and CCSD(T)</text>
+<rect x="1204" y="696" width="200" height="26" rx="13" fill="#f2a900" stroke="#a87100" stroke-width="1.5"/>
+<text x="1304.0" y="714" font-size="12" font-weight="700" fill="#3a2800" text-anchor="middle">OPEN SOURCE · this paper</text>
+<text x="800.0" y="772" font-size="15" font-weight="400" fill="#586279" text-anchor="middle">Schematic of the workflow, not computed data.</text></svg>

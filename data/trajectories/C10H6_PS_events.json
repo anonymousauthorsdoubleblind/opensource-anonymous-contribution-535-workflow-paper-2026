@@ -1,0 +1,41 @@
+{
+ "molecule": "C10H6",
+ "run": "PS",
+ "kind": "plain",
+ "arm_label": "Plain L-BFGS",
+ "start": "R1",
+ "step_cap_start_A": 0.005,
+ "level": "Skala-1.1/def2-SVP",
+ "structure_lost": false,
+ "fmax_note": "fmax in the events is the logged value; multiply by 1.8897 for eV/A",
+ "n_events": 2,
+ "events": [
+  {
+   "settings": {
+    "basis": "def2-svp",
+    "maxstep": 0.005,
+    "steps": 200,
+    "fmax": 0.02,
+    "conv_tol": 1e-06,
+    "grid_level": 3
+   },
+   "label": "",
+   "kind": "pass_start",
+   "pass_id": 1,
+   "step": 0,
+   "gradients": 0,
+   "t_s": 0.012
+  },
+  {
+   "steps": 149,
+   "fmax": 0.06348534214261198,
+   "energy_eV": -10450.810354956384,
+   "target_met": false,
+   "kind": "pass_end",
+   "pass_id": 1,
+   "step": 149,
+   "gradients": 150,
+   "t_s": 2309.494
+  }
+ ]
+}

@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Explainers · Skala-1.1 workflow demo</title>
+<meta name="description" content="Schematics for readers outside the field, and a small interactive toy that shows what the step cap does.">
+<link rel="icon" href="assets/img/favicon.svg">
+<script>(function(){try{var t=localStorage.getItem("theme");if(!t&&window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)t="dark";if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/pages.css">
+</head>
+<body data-page="explainers" data-module="0">
+<a class="skip-link" href="#main">Skip to content</a>
+<div id="site-header"></div>
+<main id="main" class="page">
+  <header class="page-head">
+    <p class="eyebrow">Explainers</p>
+    <h1>The ideas in pictures</h1>
+    <p class="lede">Schematics for readers outside the field. They explain the workflow; they are not computed data.</p>
+  </header>
+
+  <ul class="pg-toc" aria-label="On this page">
+    <li><a href="#start">Start here</a></li>
+    <li><a href="#ball">A ball on a landscape</a></li>
+    <li><a href="#gallery">Browse</a></li>
+    <li><a href="#workflow">The workflow</a></li>
+    <li><a href="#inside">Inside the modules</a></li>
+  </ul>
+
+  <section class="section" id="start">
+    <h2>Start here</h2>
+    <p class="pg-note">Three pictures that carry the main ideas. Each has a plain caption; the full caption of the manuscript sits behind the disclosure.</p>
+    <div class="pg-start" id="pg-start"></div>
+  </section>
+
+  <section class="section section--tint" id="ball">
+    <div class="panel pg-ball" id="pg-ball-panel">
+      <div class="panel__head">
+        <h2 class="panel__title">A ball on a landscape: what the step cap does</h2>
+        <span class="badge" data-badge="illustrative"></span>
+      </div>
+      <div class="panel__body">
+        <p class="pg-narrow">The curve stands for the energy of a molecule as its shape changes. Two valley floors are stable structures; the pass between them is level too, but not stable. The ball is the optimizer; the step cap is the longest stride it may take.</p>
+        <div id="pg-ball-svg"></div>
+        <div class="pg-ball__controls">
+          <div>
+            <label for="pg-cap">Step cap</label><br>
+            <input type="range" id="pg-cap" min="0" max="2" step="1" value="1" aria-valuetext="sensible">
+            <div class="pg-ball__ticks" aria-hidden="true"><span>too small</span><span>sensible</span><span>too large</span></div>
+          </div>
+          <div class="pg-row">
+            <button class="btn btn--primary" type="button" id="pg-play">Play</button>
+            <button class="btn" type="button" id="pg-step">Step</button>
+            <button class="btn btn--ghost" type="button" id="pg-reset">Restart</button>
+            <button class="btn btn--ghost" type="button" id="pg-pass">Start on the pass</button>
+          </div>
+          <div>Steps: <span class="pg-ball__counter" id="pg-count">0</span></div>
+        </div>
+        <div class="pg-ball__status" id="pg-status" role="status" aria-live="polite">Choose a step cap, then press Step or Play. Nothing moves by itself.</div>
+        <p class="pg-note" style="margin-top:12px">Illustrative replay of a toy curve. Not a computed energy surface and not a model of L-BFGS.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="gallery">
+    <h2>Browse the schematics</h2>
+    <p class="pg-note">Click a picture to enlarge it. The filter applies to both groups below.</p>
+    <div class="pg-filter" id="pg-filter-wrap">
+      <span class="pg-small pg-muted" id="pg-filter-label">Show</span>
+      <div class="seg" role="radiogroup" aria-labelledby="pg-filter-label" id="pg-filter"></div>
+      <span class="pg-small pg-muted" id="pg-filter-count" aria-live="polite"></span>
+    </div>
+  </section>
+
+  <section class="section" id="workflow">
+    <h2>The workflow</h2>
+    <div class="pg-gallery" id="pg-g2"></div>
+  </section>
+
+  <section class="section" id="inside">
+    <h2>Inside the modules</h2>
+    <div class="pg-gallery" id="pg-g3"></div>
+  </section>
+</main>
+<div id="site-footer"></div>
+<script src="assets/js/config.js"></script>
+<script src="assets/data/figures.js"></script>
+<script src="assets/data/glossary.js"></script>
+<script src="assets/js/site.js"></script>
+<script src="assets/js/pages/explainers.js"></script>
+</body>
+</html>

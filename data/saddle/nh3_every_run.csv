@@ -1,0 +1,17 @@
+repeat,start,arm,arm_short,memory,outcome,verdict,lowest_mode_cm1,steps,gradients,probe_gradients,probes,final_h_A,start_h_A,E_above_min_meV,final_fmax,uphill_steps,model_calls,displacements,rollbacks,cap_changes
+R1,exact saddle,"baseline: plain L-BFGS, memory 20",plain m20,20,converged,SADDLE,-910,1,1,0,0,0.0,0.0,323.11,0.0096,0,0,0,0,0
+R2,exact saddle,"baseline: plain L-BFGS, memory 20",plain m20,20,converged,SADDLE,-910,1,1,0,0,0.0,0.0,323.11,0.0096,0,0,0,0,0
+R1,exact saddle,"baseline: plain L-BFGS, memory 1",plain m1,1,converged,SADDLE,-910,1,1,0,0,0.0,0.0,323.11,0.0096,0,0,0,0,0
+R2,exact saddle,"baseline: plain L-BFGS, memory 1",plain m1,1,converged,SADDLE,-910,1,1,0,0,0.0,0.0,323.11,0.0096,0,0,0,0,0
+R1,exact saddle,"baseline: plain L-BFGS, memory 100",plain m100,100,converged,SADDLE,-910,1,1,0,0,0.0,0.0,323.11,0.0096,0,0,0,0,0
+R1,exact saddle,"baseline: line-search L-BFGS, memory 20",line search m20,20,converged,SADDLE,-910,1,1,0,0,0.0,0.0,323.11,0.0096,0,0,0,0,0
+R1,exact saddle,supervised run (agent),agent,20,converged,minimum,1122,8,56,48,2,0.419,0.0,0.11,0.011,0,1,1,0,0
+R2,exact saddle,supervised run (agent),agent,20,converged,minimum,1122,8,56,48,2,0.419,0.0,0.11,0.011,0,1,1,0,0
+R1,"nudge 0.01 Å, seed 21","baseline: plain L-BFGS, memory 20",plain m20,20,converged,minimum,1131,85,85,0,0,0.418,0.01,0.02,0.0035,27,0,0,0,0
+R2,"nudge 0.01 Å, seed 21","baseline: plain L-BFGS, memory 20",plain m20,20,converged,SADDLE,-906,35,35,0,0,0.0,0.01,323.11,0.0045,13,0,0,0,0
+R1,"nudge 0.01 Å, seed 21",supervised run (agent),agent,20,converged,minimum,1118,27,75,48,2,0.417,0.01,0.11,0.0141,4,6,1,1,1
+R2,"nudge 0.01 Å, seed 21",supervised run (agent),agent,20,converged,minimum,1118,27,75,48,2,0.417,0.01,0.11,0.0155,4,6,1,1,1
+R1,"nudge 0.01 Å, seed 22","baseline: plain L-BFGS, memory 20",plain m20,20,converged,minimum,1138,39,39,0,0,0.418,0.006,0.0,0.0048,9,0,0,0,0
+R2,"nudge 0.01 Å, seed 22","baseline: plain L-BFGS, memory 20",plain m20,20,converged,SADDLE,-909,49,49,0,0,0.001,0.006,323.12,0.0133,15,0,0,0,0
+R1,"nudge 0.01 Å, seed 22",supervised run (agent),agent,20,converged,minimum,1121,33,81,48,2,0.418,0.006,0.11,0.0063,6,13,2,1,2
+R2,"nudge 0.01 Å, seed 22",supervised run (agent),agent,20,converged,minimum,1128,35,83,48,2,0.418,0.006,0.05,0.0123,7,13,1,0,4

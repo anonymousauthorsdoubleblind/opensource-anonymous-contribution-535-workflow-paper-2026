@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>About · Skala-1.1 workflow demo</title>
+<meta name="description" content="What this site is, how to cite the Note, its limitations, the meaning of the labels, and licences.">
+<link rel="icon" href="assets/img/favicon.svg">
+<script>(function(){try{var t=localStorage.getItem("theme");if(!t&&window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)t="dark";if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/pages.css">
+</head>
+<body data-page="about" data-module="0">
+<a class="skip-link" href="#main">Skip to content</a>
+<div id="site-header"></div>
+<main id="main" class="page">
+  <header class="page-head">
+    <p class="eyebrow">About</p>
+    <h1>About this site</h1>
+    <p class="lede">What it is, how to cite the Note, what the Note does not show, and what the labels mean.</p>
+  </header>
+
+  <ul class="pg-toc" aria-label="On this page">
+    <li><a href="#what">What this is</a></li><li><a href="#anonymity">Anonymity</a></li><li><a href="#cite">Cite</a></li>
+    <li><a href="#limitations">Limitations</a></li><li><a href="#labels">Labels</a></li><li><a href="#ai">Use of AI</a></li><li><a href="#licence">Licences</a></li><li><a href="#thanks">Thanks</a></li>
+  </ul>
+
+  <section class="section" id="what">
+    <h2>What this site is</h2>
+    <p class="pg-narrow">This site accompanies a Technical Note under double-anonymous review. It carries the figures, data, code and replays of the Note.</p>
+    <div data-scope-note></div>
+  </section>
+
+  <section class="section" id="anonymity">
+    <h2>Anonymity</h2>
+    <p class="pg-narrow">Anonymous submission under double-anonymous review. Author names, affiliations, funding and contributions are withheld. Files on this site carry no author metadata.</p>
+    <p class="pg-narrow">Repository: <a data-repo-link></a></p>
+  </section>
+
+  <section class="section" id="cite">
+    <h2>Cite as</h2>
+    <p class="pg-narrow">Anonymous. An open-source, agent-supervised GPU workflow for Skala-1.1 geometry optimization and numerical Hessians, tested on two dehydro[10]annulenes against experimental NMR. Technical Note, under double-anonymous review (2026).</p>
+  </section>
+
+  <section class="section section--tint pg-lim" id="limitations">
+    <h2>Limitations</h2>
+    <p class="pg-narrow">This is a case study, not a benchmark. Each point names a limit and what would lift it.</p>
+    <h3>Scope</h3>
+    <p class="pg-narrow">Two related planar hydrocarbons of 16 and 19 atoms were studied, with one structure each that reached the force target; larger, flexible and heteroatom-containing molecules would test how far the results transfer.</p>
+    <h3>Agentic optimizer module</h3>
+    <p class="pg-narrow">The pilot used one basis set, two starts per molecule and single runs per arm. The step-cap sweep is the only test that isolates the module; its 0.005 Å cap was mis-set on purpose, the arms tie at a sensible cap, and a 0.3 Å cap destroyed C<sub>11</sub>H<sub>8</sub> in every arm. The agent largely followed a deterministic advisor, and the trap-escape actions and the basin choice were not exercised on the annulenes. A plain arm at the ASE defaults (maxstep 0.2 Å, memory 100) was run for C<sub>10</sub>H<sub>6</sub> only, where it needed 48 steps. The rule-based controller was run on C<sub>10</sub>H<sub>6</sub> only and, in a compact form, on ammonia and hydrogen peroxide. It did as well as the agent, so the language model is not shown to be required. A rules run on C<sub>11</sub>H<sub>8</sub>, cases outside the range of the rules, and the combined mode of rules and agent would test what the model adds. Repeated runs would measure how reproducible the agent's decisions are. Decisions depend on the model version and are not bit-reproducible, so every prompt, call and decision is logged and released.</p>
+    <h3>Harmonic analysis</h3>
+    <p class="pg-narrow">Frequencies are harmonic and unscaled and precise to about ±20 cm<sup>−1</sup>, and the displacement step and integration grid were not varied. Agreement with B3LYP-D3(BJ) shows consistency between two functionals, not correctness, and the spectra are not compared quantitatively with experiment. A varied step and a band-by-band comparison with the measured IR spectrum would lift these limits.</p>
+    <h3>NMR</h3>
+    <p class="pg-narrow">Shieldings are gas phase, whereas both constant sets were fitted with a chloroform continuum model on M06-2X (P1) and B3LYP (P2) geometries. We did not obtain usable shieldings with a continuum solvent model (section 2.4), so the effect of the solvent on these shifts is not measured here. Shieldings computed in a chloroform continuum model, with another program or a later version, would lift this limit. All four <sup>1</sup>H MAEs are below the 0.2 ppm recommended by Parmar et al. in Nature Synthesis, but three exceed the 0.10 ppm that the Nature Protocols paper gives as typical of “correct” fits (at least 0.20 ppm being typical of “incorrect” matches), and the C<sub>10</sub>H<sub>6</sub> <sup>13</sup>C MAE sits at the 2.0 ppm recommended by Parmar et al. in Nature Synthesis. The test shows consistency with experiment and does not rank Skala-1.1 against other functionals; constants fitted on Skala-1.1 geometries would sharpen it.</p>
+    <h3>Hand-set strand</h3>
+    <p class="pg-narrow">Strain was tested only from 1.0 to 4.1 eV above the minimum, one input of each kind was run per molecule and no alternative minima were sought. The CCSD(T) check covers two geometry pairs without basis-set extrapolation. More inputs and extrapolated reference energies would extend it.</p>
+    <h3>Energies</h3>
+    <p class="pg-narrow">All energies are electronic energies at fixed nuclei, without zero-point, thermal or entropy terms. No free energy is reported, and no statement here is about populations or reaction thermochemistry; a strain energy on the potential energy surface can differ from the corresponding difference at room temperature. Total energies of Skala-1.1 and ωB97M-V are listed in table A3 but not compared; only energy differences are, and for two geometry pairs (section 3.8). Zero-point and thermal corrections from the harmonic frequencies of module 2 would lift this limit.</p>
+  </section>
+
+  <section class="section" id="labels">
+    <h2>What the labels mean</h2>
+    <p class="pg-narrow">Every chart, animation and picture on the site carries one of four labels, so that you can tell a log from an explanation.</p>
+    <div class="pg-labels">
+      <div><span class="badge" data-badge="logged"></span><p>Every frame and value comes from a run log. Nothing is interpolated or invented.</p></div>
+      <div><span class="badge" data-badge="illustrative"></span><p>An animation whose motion or values are not logged: a mode motion, an interpolated geometry, a state diagram or a toy curve.</p></div>
+      <div><span class="badge" data-badge="tables"></span><p>A static chart rebuilt from tables of the manuscript or of the data files; not a replay of a log.</p></div>
+      <div><span class="badge" data-badge="schematic"></span><p>A drawing of the workflow. It is not computed data.</p></div>
+    </div>
+  </section>
+
+  <section class="section" id="ai">
+    <h2>Use of AI</h2>
+    <p class="pg-narrow">Use of AI. A language model is a run-time component of the agentic optimizer module; its role, prompts and logs are described on the <a href="design.html">Design</a> and <a href="code.html">Code</a> pages. The manuscript carries the authors&rsquo; full AI disclosure. This site was prepared with AI assistance and reviewed by the authors.</p>
+  </section>
+
+  <section class="section" id="licence">
+    <h2>Licences</h2>
+    <ul>
+      <li>Code under <code>code/</code> and the scripts of this site: MIT (<a href="LICENSE">LICENSE</a>).</li>
+      <li>3Dmol.js: BSD-3-Clause (<a href="assets/vendor/3dmol/LICENSE.txt">licence text</a>).</li>
+      <li>highlight.js: BSD-3-Clause (<a href="assets/vendor/hljs/LICENSE">licence text</a>).</li>
+      <li>Inter typeface: SIL Open Font License (<a href="assets/vendor/fonts/LICENSE-Inter-OFL.txt">licence text</a>).</li>
+      <li>Figures and text: &copy; the authors; reuse terms will be stated on publication.</li>
+    </ul>
+  </section>
+
+  <section class="section" id="thanks">
+    <h2>Thanks</h2>
+    <p class="pg-narrow">We thank the developers of Skala, GPU4PySCF, PySCF and ASE for open software.</p>
+  </section>
+</main>
+<div id="site-footer"></div>
+<script src="assets/js/config.js"></script>
+<script src="assets/data/figures.js"></script>
+<script src="assets/data/glossary.js"></script>
+<script src="assets/js/site.js"></script>
+</body>
+</html>

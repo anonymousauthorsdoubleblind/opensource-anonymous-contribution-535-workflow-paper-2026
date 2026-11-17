@@ -1,0 +1,65 @@
+/* Replay components (WP2). Prefix rp-. Uses the tokens of site.css. */
+.rp-mol{position:relative}
+.rp-mol__stage{position:relative;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.rp-mol__canvas{display:block;touch-action:pan-y;cursor:grab;outline-offset:-3px}
+.rp-mol__canvas:active{cursor:grabbing}
+.rp-mol__note{margin:6px 0 0;font-size:.82rem;color:var(--muted)}
+.rp-error{margin:0;padding:8px 12px;border:1px dashed var(--line);border-radius:var(--radius);color:var(--muted);font-size:.88rem}
+
+.rp-player{display:flex;flex-direction:column;gap:6px;padding:8px 0}
+.rp-player__row{display:flex;align-items:center;gap:6px}
+.rp-player__row2{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.rp-player__btn{flex:0 0 auto;min-width:40px;min-height:40px}
+.rp-player__track{position:relative;flex:1 1 auto;min-width:0;height:40px;display:flex;align-items:center}
+.rp-player__range{width:100%;margin:0;height:28px;background:transparent;accent-color:var(--accent);cursor:pointer}
+.rp-player__marks{position:absolute;left:8px;right:8px;bottom:2px;height:8px;pointer-events:none}
+.rp-player__mark{position:absolute;bottom:0;width:2px;height:7px;margin-left:-1px;background:var(--ink);border-radius:1px}
+.rp-mark--probation{background:var(--accent)}
+.rp-mark--warn{background:var(--warn);height:9px}
+.rp-mark--target{background:var(--ok);height:11px;width:3px}
+.rp-player__label{font-size:.88rem;font-variant-numeric:tabular-nums;color:var(--ink);min-width:0;flex:1 1 180px}
+.rp-player__speed>button{padding:.3em .6em;min-height:32px;font-size:.8rem}
+.rp-player.is-playing .rp-player__label{color:var(--accent-ink,var(--ink))}
+
+.rp-chart{margin:0 0 4px}
+.rp-chart__head{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.rp-chart__title{font-weight:650;font-size:.95rem}
+.rp-chart__tblbtn{min-height:30px;padding:.2em .7em;font-size:.8rem}
+.rp-chart__readout{min-height:1.5em;font-size:.82rem;font-variant-numeric:tabular-nums;color:var(--ink);padding:2px 0}
+.rp-chart__readout.is-hint{color:var(--muted)}
+.rp-chart__readout.is-hover{color:var(--muted)}
+.rp-chart__plot{width:100%;min-width:0}
+.rp-chart__svg:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:4px}
+.rp-chart__legend{list-style:none;margin:2px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:4px 16px;font-size:.82rem}
+.rp-chart__key{display:inline-flex;align-items:center;gap:2px}
+.rp-chart__table{max-height:320px;overflow:auto}
+.rp-chart__tblnote{font-size:.8rem;color:var(--muted);margin:6px 0 0}
+.rp-chart svg text{font-family:inherit}
+
+.rp-ticker__list{list-style:none;margin:0;padding:0;max-height:460px;overflow:auto;position:relative;display:flex;flex-direction:column;gap:6px}
+.rp-ticker__item{flex:0 0 auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--bg);overflow:hidden}
+.rp-ticker__item.is-future{opacity:.62}
+.rp-ticker__item.is-current{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent);opacity:1}
+.rp-ticker__head{display:flex;gap:10px;align-items:baseline;width:100%;text-align:left;background:var(--surface);border:0;padding:8px 10px;font:inherit;color:var(--ink);cursor:pointer}
+.rp-ticker__head:hover{background:var(--surface-2)}
+.rp-ticker__step{flex:0 0 auto;font-weight:700;font-size:.82rem;color:var(--muted)}
+.rp-ticker__title{font-weight:600;font-size:.92rem}
+.rp-ticker__body{display:none;padding:8px 10px 10px}
+.rp-ticker__item.is-open .rp-ticker__body{display:block}
+.rp-ticker__chips{display:flex;flex-wrap:wrap;gap:4px 6px;margin-bottom:6px}
+.rp-ticker__quote{margin:6px 0;padding:6px 10px;border-left:3px solid var(--accent);background:var(--surface);font-size:.88rem}
+.rp-ticker__quote p{margin:0}
+.rp-ticker__qhead,.rp-ticker__evhead{font-size:.74rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);margin-bottom:2px}
+.rp-ticker__evidence{margin:0 0 0 1.1em;padding:0;font-size:.8rem;font-family:var(--mono);color:var(--muted)}
+.rp-ticker__empty{margin:0;padding:10px 12px;border:1px dashed var(--line);border-radius:var(--radius);color:var(--muted);font-size:.9rem}
+
+/* marks legend used by the journey */
+.rp-key{display:inline-flex;align-items:center;gap:6px;font-size:.8rem;color:var(--muted)}
+.rp-key i{display:inline-block;width:2px;height:10px;background:var(--ink)}
+
+@media (prefers-reduced-motion:reduce){.rp-player *,.rp-ticker *,.rp-chart *{transition:none!important;animation:none!important}}
+@media print{.rp-player{display:none}.rp-ticker__list{max-height:none}.rp-ticker__body{display:block}.rp-chart__tools{display:none}}
+
+.rp-chart__tools{margin-left:auto}
+body .rp-player .rp-player__play.btn--primary{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+body .rp-player .rp-player__play.btn--primary:hover{background:var(--ink);filter:brightness(1.25)}

@@ -1,0 +1,66 @@
+{
+ "provenance": "Counted from the per-run summaries and event logs of the 18 supervised runs (decisions, validator outcomes, probations); model calls counted from the call logs, kept attempts only.",
+ "agent_runs": 18,
+ "grid_runs": 8,
+ "sweep_runs": 10,
+ "decisions": {
+  "total": 208,
+  "accepted": 192,
+  "clipped": 16,
+  "rejected": 0,
+  "grid": [
+   113,
+   101,
+   12,
+   0
+  ],
+  "sweep": [
+   95,
+   91,
+   4,
+   0
+  ]
+ },
+ "probations": {
+  "total": 78,
+  "kept": 72,
+  "rolled_back": 6,
+  "grid": [
+   57,
+   55,
+   2
+  ],
+  "sweep": [
+   21,
+   17,
+   4
+  ]
+ },
+ "model_calls": {
+  "total": 341,
+  "routine_model": 304,
+  "check_model": 37,
+  "failed": 0,
+  "grid": 190,
+  "sweep": 151
+ },
+ "rules_run": {
+  "molecule": "C10H6 R1 cap 0.005",
+  "decisions": 9,
+  "accepted": 6,
+  "clipped": 3,
+  "rejected": 0,
+  "probations": 2,
+  "kept": 2,
+  "rolled_back": 0,
+  "model_calls": 0
+ },
+ "fault_test": {
+  "proposals": 8,
+  "rejected": 5,
+  "clipped": 1,
+  "accepted_then_rolled_back": 2,
+  "controller_switched_off": true,
+  "model_calls": 0
+ }
+}

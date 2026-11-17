@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Agentic optimizer module · Skala-1.1 workflow demo</title>
+<meta name="description" content="Module 1: a GFN2-xTB basin search and L-BFGS on Skala-1.1 under a supervision layer of monitor, step advisor and guard, with replays of the logged runs.">
+<link rel="icon" href="assets/img/favicon.svg">
+<script>(function(){try{var t=localStorage.getItem("theme");if(!t&&window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)t="dark";if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/replay.css">
+<link rel="stylesheet" href="assets/css/modules.css">
+</head>
+<body data-page="optimizer" data-module="1">
+<a class="skip-link" href="#main">Skip to content</a>
+<div id="site-header"></div>
+<main id="main" class="page">
+  <header class="page-head">
+    <p class="eyebrow">Module 1 of 4</p>
+    <h1>Agentic optimizer module</h1>
+    <p class="lede">Can a rough, strained structure be taken to a Skala-1.1 structure with settings that adapt during the run?</p>
+  </header>
+  <nav class="md-toc" aria-label="On this page"><ul><li><a href="#at-a-glance">At a glance</a></li><li><a href="#how">How it works</a></li><li><a href="#sweep">Step-cap sweep</a></li><li><a href="#guard">The guard</a></li><li><a href="#saddle">Ammonia saddle test</a></li><li><a href="#one-structure">One structure</a></li><li><a href="#when">When to use it</a></li><li><a href="#figures">Figures</a></li></ul></nav>
+  <section class="section" id="at-a-glance">
+    <h2>At a glance</h2>
+    <dl class="kv">
+      <dt>Input</dt><dd>a rough, strained structure (.xyz)</dd>
+      <dt>Compute</dt><dd>GFN2-xTB basin search from 13 seeds, then L-BFGS on Skala-1.1/def2-SVP under a supervision layer of monitor, step advisor and guard</dd>
+      <dt>Output</dt><dd>a Skala-1.1 structure that has reached the force target of 0.038 eV Å<sup>−1</sup>, with a logged record of every decision</dd>
+      <dt>Checked against</dt><dd>agreement of end points across runs; a separately run hand-set schedule; a saddle-point test on ammonia and hydrogen peroxide</dd>
+      <dt>Passes on to</dt><dd>the Hessian module and the NMR workflow module</dd>
+    </dl>
+    <div class="stat-row">
+      <div class="stat"><span class="stat__num">16 of 18</span><span class="stat__label">supervised runs reached the force target</span></div>
+      <div class="stat"><span class="stat__num">208</span><span class="stat__label">decisions, none outside the bounds</span></div>
+      <div class="stat"><span class="stat__num">6 of 6</span><span class="stat__label">supervised ammonia runs ended in a minimum</span></div>
+    </div>
+  </section>
+  <section class="section" id="how">
+    <h2>How it works</h2>
+    <div class="prose">
+      <p>The optimizer is L-BFGS, a standard method that moves the atoms downhill on the energy, like a ball rolling to the lowest point. The module is one block. Before the run, plain code runs a GFN2-xTB basin search from 13 seeds, and the language model chooses the starting basin from the resulting table. During the run, L-BFGS on a Skala-1.1 calculator makes every geometry step, in a schedule of passes that each carry a step cap, a force target, an SCF tolerance and a step budget; these settings can change between any two steps without restarting the optimizer. At the end, the model checks the structure, the bonds and the planarity (section 2.2).</p>
+    </div>
+    <div class="grid grid--2 md-cards">
+      <div class="card card--module" data-module="1"><h3 class="card__title">Monitor</h3><p>After every step, plain code computes trajectory features over a five-step window and checks six stall triggers, among them an uphill step, oscillation, a plateau and steps pinned at the cap. Most steps raise no trigger and never reach the model.</p></div>
+      <div class="card card--module" data-module="1"><h3 class="card__title">Controller</h3><p>The controller is a setting of the module: the language-model agent, which answers through function calling and always sees the recommendation of a deterministic step advisor, or a rule-based controller that makes no model call. Both pass the same validator, probation and rollback.</p></div>
+      <div class="card card--module" data-module="1"><h3 class="card__title">Guard</h3><p>A validator clips out-of-range values and rejects unsupported actions: per decision the step cap may at most double (or rise to 0.02 Å, if that is larger) and never exceeds 0.05 Å. An accepted change runs for five steps from a checkpoint and is rolled back if the energy or f<sub>max</sub> has worsened beyond set tolerances. After two rollbacks the controller is switched off.</p></div>
+      <div class="card card--module" data-module="1"><h3 class="card__title">What the model cannot do</h3><p>It never writes coordinates and never computes an energy or a force, and free text is never parsed into an action. Every decision ends with exactly one action from a closed vocabulary of eight; four were used on the annulenes.</p></div>
+    </div>
+    <p class="md-seealso">Terms used here: <span class="term" data-term="step-cap">step cap</span>, <span class="term" data-term="l-bfgs">L-BFGS</span>, <span class="term" data-term="controller">controller</span>, <span class="term" data-term="guard">guard</span>, <span class="term" data-term="probation">probation</span>, <span class="term" data-term="supervision-layer">supervision layer</span>.</p>
+    <div class="grid grid--2 md-figgrid">
+      <div data-fig="fig05" data-size="m"></div>
+      <div data-fig="fig06" data-size="m"></div>
+      <div data-fig="sch-D2" data-size="m"></div>
+      <div data-fig="figA05" data-size="m"></div>
+    </div>
+  </section>
+  <section class="section section--tint" id="sweep">
+    <h2>Step-cap sweep: small multiples</h2>
+    <p class="md-kindnote"><span class="badge" data-badge="logged"></span></p>
+    <div class="prose">
+      <p>We started runs on purpose with a step cap of 0.005 Å, forty times below the ASE default. Every arm used start R1, Skala-1.1/def2-SVP, L-BFGS memory 20 and a warm-started SCF, so the module is the only difference between the plain and the supervised arm. Plain L-BFGS was held at the cap on 100% (C<sub>10</sub>H<sub>6</sub>) and 95% (C<sub>11</sub>H<sub>8</sub>) of its steps. For C<sub>10</sub>H<sub>6</sub> it did not reach the force target within 149 steps; for C<sub>11</sub>H<sub>8</sub> it reached it at step 129. The supervised runs raised the cap from step 6 onward, were held at it on only 30 to 40% of their steps, and reached the target at steps 60 and 58 (C<sub>10</sub>H<sub>6</sub>) and 70 and 70 (C<sub>11</sub>H<sub>8</sub>). A rules run on C<sub>10</sub>H<sub>6</sub>, with the rule-based controller in place of the agent, reached the target at step 50 (section 3.6).</p>
+    </div>
+    <div class="panel md-panel" id="sweep-panel">
+      <div class="panel__head"><h3 class="panel__title">Largest force against step, three starting caps, two molecules</h3> <span class="badge" data-badge="logged"></span></div>
+      <div class="panel__body"><div class="md-controls">
+        <div id="sweep-player" class="md-player"></div>
+        <label class="md-check"><input type="checkbox" id="sweep-ase"> Show the plain run at the ASE defaults (C₁₀H₆, 0.005 Å cell)</label>
+      </div>
+      <div id="sweep-legend" class="md-legend" aria-label="Legend"></div>
+      <div id="sweep-grid" class="md-sweepgrid"><p class="md-missing">Charts need JavaScript. The table below holds the same numbers.</p></div></div>
+      <div class="panel__foot">Data: assets/data/sweep.js (runs of the step-cap sweep, one run per cell and arm)</div>
+    </div>
+    <p class="md-unitnote">Forces are shown in eV Å<sup>−1</sup> as in the manuscript (section 2.2): the logged eV bohr<sup>−1</sup> values multiplied by 1.8897. The force target of 0.038 eV Å<sup>−1</sup> is 0.02 in the logged unit. The data files keep the logged values.</p>
+    <div class="md-split">
+      <div>
+        <h3>First step below the force target</h3>
+        <p class="md-small">Table view of the grid above. Step counts of single runs; no cell is marked as better.</p>
+        <div id="sweep-table"><div class="table-wrap"><table class="table table--compact"><thead><tr><th scope="col">Molecule</th><th scope="col">Starting cap (Å)</th><th scope="col">Plain</th><th scope="col">Supervised (run, repeat)</th><th scope="col">Rules run</th><th scope="col">Plain at ASE defaults</th></tr></thead><tbody><tr><td>C<sub>10</sub>H<sub>6</sub></td><td>0.005</td><td>not within 149 steps</td><td>60, 58</td><td>50</td><td>—</td></tr><tr><td>C<sub>10</sub>H<sub>6</sub></td><td>0.025</td><td>53</td><td>50 <span class="chip ">tie</span></td><td>—</td><td>—</td></tr><tr><td>C<sub>10</sub>H<sub>6</sub></td><td>0.3</td><td>48</td><td>48, 48 <span class="chip ">tie</span></td><td>—</td><td>—</td></tr><tr><td>C<sub>10</sub>H<sub>6</sub></td><td>0.2 (ASE default)</td><td>—</td><td>—</td><td>—</td><td>48</td></tr><tr><td>C<sub>11</sub>H<sub>8</sub></td><td>0.005</td><td>129</td><td>70, 70</td><td>—</td><td>—</td></tr><tr><td>C<sub>11</sub>H<sub>8</sub></td><td>0.025</td><td>65</td><td>63 <span class="chip ">tie</span></td><td>—</td><td>—</td></tr><tr><td>C<sub>11</sub>H<sub>8</sub></td><td>0.3</td><td>structure lost</td><td>structure lost</td><td>—</td><td>—</td></tr></tbody></table></div></div>
+        <p class="md-small">“—”: not run. “structure lost”: the first step destroyed the C₁₁H₈ structure in all three runs at a 0.3 Å cap.</p>
+      </div>
+      <div>
+        <div data-fig="figA13" data-size="m"></div>
+      </div>
+    </div>
+    <div class="panel md-panel" id="capbars-panel">
+      <div class="panel__head"><h3 class="panel__title">Share of steps held at the cap, runs started at 0.005 Å</h3> <span class="badge" data-badge="tables"></span></div>
+      <div class="panel__body"><div id="cap-bars" class="md-capbars"><p class="md-missing">Chart needs JavaScript.</p></div></div>
+      <div class="panel__foot">Values as given in section 3.6 of the manuscript.</div>
+    </div>
+    <div class="callout callout--limit"><strong class="callout__label">Limit</strong><p>The cap was mis-set on purpose. At the ASE defaults (step cap 0.2 Å, memory 100) a plain run on C<sub>10</sub>H<sub>6</sub> reached the target in 48 steps, and the cap never limited a step. Supervision guards against a poor setting; it does not improve on a good one. With a sensible cap of 0.025 Å the two arms tied: 50 against 53 steps, and 63 against 65. With a cap of 0.3 Å the first step destroyed the C<sub>11</sub>H<sub>8</sub> structure in all three runs; the module cannot undo this. Single runs, given as step counts. No gain in speed is claimed. The rules run is a single run on one molecule; a difference of 8 to 10 steps is not evidence that either controller is better. Its end point lay 0.006 Å and 0.3 meV from that of the supervised run.</p></div>
+  </section>
+  <section class="section" id="guard">
+    <h2>Every decision at the guard</h2>
+    <p class="md-kindnote"><span class="badge" data-badge="tables"></span> tallies and fault test &nbsp; <span class="badge" data-badge="logged"></span> browsable list</p>
+    <div class="prose">
+      <p>In the 18 supervised runs the agent made 208 decisions, all of the four low-risk kinds: it chose to continue 126 times, changed a setting 53 times, tightened the SCF threshold 23 times and reset the L-BFGS memory 6 times. No proposal reached the optimizer outside the bounds. Of 78 trial changes, 72 were kept after the probation window and 6 were reversed automatically; four of these were in the two runs already lost at the 0.3 Å cap (section 3.7).</p>
+    </div>
+    <ol class="md-flow" aria-label="Flow of proposals through the guard">
+      <li><span class="md-flow__n">208</span><span class="md-flow__t">proposals by the agent</span></li>
+      <li><span class="md-flow__n">192 / 16 / 0</span><span class="md-flow__t">validator: passed unchanged / clipped to the bounds / rejected</span></li>
+      <li><span class="md-flow__n">78</span><span class="md-flow__t">trial changes on probation</span></li>
+      <li><span class="md-flow__n">72 / 6</span><span class="md-flow__t">kept / rolled back</span></li>
+    </ol>
+    <p class="md-small">341 model calls in these runs, none failed.</p>
+    <h3>Table A1: decisions and guard outcomes</h3>
+    <div class="table-wrap"><table class="table table--compact"><thead><tr><th scope="col"></th><th scope="col">Main grid</th><th scope="col">Step-cap sweep</th><th scope="col">Total</th></tr></thead><tbody><tr><td>Decisions</td><td class="num">113</td><td class="num">95</td><td class="num">208</td></tr><tr><td>Continue</td><td class="num">52</td><td class="num">74</td><td class="num">126</td></tr><tr><td>Change a setting</td><td class="num">37</td><td class="num">16</td><td class="num">53</td></tr><tr><td>Tighten the SCF</td><td class="num">22</td><td class="num">1</td><td class="num">23</td></tr><tr><td>Reset the L-BFGS memory</td><td class="num">2</td><td class="num">4</td><td class="num">6</td></tr><tr><td>End pass, stop and flag, displace, switch basin</td><td class="num">0</td><td class="num">0</td><td class="num">0</td></tr><tr><td>Validator: accepted / clipped / rejected</td><td class="num">101 / 12 / 0</td><td class="num">91 / 4 / 0</td><td class="num">192 / 16 / 0</td></tr><tr><td>Probations: kept / rolled back</td><td class="num">55 / 2</td><td class="num">17 / 4</td><td class="num">72 / 6</td></tr></tbody></table></div>
+    <h3>Browse the logged decisions of the step-cap sweep</h3>
+    <p class="md-small">Per-decision text was stored for the ten supervised sweep runs (95 decisions). For the eight main-grid runs (113 decisions) only the tallies are in the data pack.</p>
+    <div class="md-filters" role="group" aria-label="Filter the decisions">
+      <label>Molecule <select id="gl-mol"></select></label>
+      <label>Run <select id="gl-run"></select></label>
+      <label>Action <select id="gl-act"></select></label>
+      <span id="gl-count" class="md-small" aria-live="polite"></span>
+    </div>
+    <div id="guard-list" class="md-guardlist"><p class="md-missing">The decision list needs JavaScript and the replay components.</p></div>
+    <h3>A test with scripted bad proposals</h3>
+    <span class="badge" data-badge="tables"></span>
+    <div class="prose">
+      <p>In a separate test without a model, eight scripted bad proposals were sent to the guard during a C<sub>10</sub>H<sub>6</sub> run: five were rejected, one was clipped, and two were accepted and then rolled back. The controller was then switched off, and the schedule finished the run.</p>
+    </div>
+    <ol class="md-flow" aria-label="Fault test">
+      <li><span class="md-flow__n">8</span><span class="md-flow__t">scripted bad proposals</span></li>
+      <li><span class="md-flow__n">5</span><span class="md-flow__t">rejected</span></li>
+      <li><span class="md-flow__n">1</span><span class="md-flow__t">clipped</span></li>
+      <li><span class="md-flow__n">2</span><span class="md-flow__t">accepted, then rolled back</span></li>
+      <li><span class="md-flow__n">off</span><span class="md-flow__t">controller switched off; the schedule finished the run</span></li>
+    </ol>
+    <div data-fig="figA14" data-size="m"></div>
+    <div class="callout callout--limit"><strong class="callout__label">Limit</strong><p>The decisions depend on the version of the model and are not reproducible bit for bit; for this reason every prompt, call and decision is released. The agent agreed with the deterministic step advisor in 81 of the 97 grid decisions that had a recommendation, so these runs do not show what the language model adds beyond the advisor. The trap-escape actions and the choice of basin were not exercised on the annulenes.</p></div>
+  </section>
+  <section class="section section--tint" id="saddle">
+    <h2>The ammonia saddle test</h2>
+    <p class="md-kindnote"><span class="badge" data-badge="logged"></span> <span class="badge" data-badge="illustrative"></span></p>
+    <div class="callout callout--note"><strong class="callout__label">Which part is which</strong><p>Energies, forces, step caps, probe results and decisions are logged. The geometry between the logged start and end structures was not stored per step; the picture places N at the height that the relaxed inversion profile gives for the logged energy.</p></div>
+    <div class="prose">
+      <p>At a saddle point the forces vanish, as they do at a minimum, yet the energy still falls in one direction. We ran ten plain L-BFGS optimizations of ammonia at Skala-1.1/def2-SVP, six from the exact planar saddle point and four from two slightly displaced structures. Eight ended on the saddle point with the force target met. The saddle point lies 323 meV above the minimum and has one imaginary mode near −910 cm<sup>−1</sup>. In six supervised runs the probe reported an imaginary mode seven times; each time the module made a bounded displacement along that mode, and all six runs ended in a minimum, confirmed by a finite-difference Hessian. On hydrogen peroxide, whose planar trans form is a saddle point 0.58 kcal mol<sup>−1</sup> (25 meV) above the skew minimum with one imaginary mode near −244 cm<sup>−1</sup>, three plain runs stopped on the saddle point after 1, 7 and 6 steps, and three supervised runs each made one bounded displacement and ended in a minimum (section 3.5).</p>
+    </div>
+    <div class="tabs md-tabs" role="tablist" aria-label="Test molecule">
+      <button class="tab" role="tab" id="tab-nh3" aria-selected="true" aria-controls="pane-nh3">Ammonia</button>
+      <button class="tab" role="tab" id="tab-h2o2" aria-selected="false" aria-controls="pane-h2o2" tabindex="-1">Hydrogen peroxide</button>
+    </div>
+    <div class="tabpanel" role="tabpanel" id="pane-nh3" aria-labelledby="tab-nh3">
+      <div class="md-controls">
+        <label>Run <select id="nh3-run"></select></label>
+        <span id="nh3-verdict" class="md-verdict" aria-live="polite"></span>
+      </div>
+      <div id="nh3-player" class="md-player"></div>
+      <div class="md-saddle">
+        <div id="nh3-mol" class="md-molbox"></div>
+        <div id="nh3-charts" class="md-saddle__charts"></div>
+      </div>
+      <div id="nh3-ticker" class="md-ticker"></div>
+      <h3>Outcome matrix</h3>
+      <p class="md-small"><span class="badge" data-badge="tables"></span> Each cell lists the runs of one arm for that start: a tick and the word “minimum”, or a cross and the word “saddle”, with the number of steps.</p>
+      <div id="nh3-matrix"><p class="md-missing">Table needs JavaScript.</p></div>
+      <p class="md-small">Forces of the ammonia and hydrogen peroxide series are shown as logged by the compact test engine; they are not converted (section 3.5).</p>
+    </div>
+    <div class="tabpanel" role="tabpanel" id="pane-h2o2" aria-labelledby="tab-h2o2" hidden>
+      <p class="md-small"><span class="badge" data-badge="logged"></span> <span class="badge" data-badge="illustrative"></span></p>
+      <p class="md-small">Only the dihedral angle and the energy were logged per step. The 3D picture is built from that angle with fixed bond lengths (O–O 1.45 Å, O–H 0.97 Å) and a fixed O–O–H angle of 100°, chosen for display only.</p>
+      <div class="md-controls"><label>Run <select id="h2o2-run"></select></label><span id="h2o2-verdict" class="md-verdict" aria-live="polite"></span></div>
+      <div id="h2o2-player" class="md-player"></div>
+      <div class="md-saddle">
+        <div id="h2o2-mol" class="md-molbox"></div>
+        <div id="h2o2-charts" class="md-saddle__charts"></div>
+      </div>
+      <div id="h2o2-matrix"></div>
+    </div>
+    <div class="grid grid--2 md-figgrid">
+      <div data-fig="fig17" data-size="m"></div>
+      <div data-fig="figA12" data-size="m"></div>
+    </div>
+    <div class="callout callout--limit"><strong class="callout__label">Limit</strong><p>The test molecules are ammonia and hydrogen peroxide, not annulenes, and a compact version of the module without the xTB stage was used. Five of the six supervised ammonia runs were first attempts; the sixth followed a correction to the test harness. A compact rule-based supervisor without a language model also ended in a minimum in every run: six on ammonia and three on hydrogen peroxide. So the test shows that the probe and the bounded displacement work; it does not show that a language model is needed. In this test the model answered through structured JSON output, not native function calling. On the two annulenes the probe met no imaginary mode.</p></div>
+  </section>
+  <section class="section" id="one-structure">
+    <h2>Different starts and settings end at one structure</h2>
+    <p class="md-kindnote"><span class="badge" data-badge="logged"></span></p>
+    <div class="prose">
+      <p>Of the 18 supervised runs, 16 reached the force target: nine for C<sub>10</sub>H<sub>6</sub> and seven for C<sub>11</sub>H<sub>8</sub>. Their end points differed by at most 0.016 Å (C<sub>10</sub>H<sub>6</sub>) and 0.028 Å (C<sub>11</sub>H<sub>8</sub>) in pairwise RMSD, and their energies by at most 1.7 meV. Re-optimized at def2-TZVP, they lay 0.004 Å and 0.8 meV (C<sub>10</sub>H<sub>6</sub>) and 0.007 Å and 3.5 meV (C<sub>11</sub>H<sub>8</sub>) from the structure of the separately run hand-set schedule (section 3.4).</p>
+    </div>
+    <div class="panel md-panel" id="overlay-panel">
+      <div class="panel__head"><h3 class="panel__title">End points of the sweep runs that reached the target, overlaid</h3> <span class="badge" data-badge="logged"></span></div>
+      <div class="panel__body"><div class="md-controls"><div class="seg" role="radiogroup" aria-label="Molecule" id="ov-mol"></div><span id="ov-note" class="md-small"></span></div>
+      <div id="ov-viewer" class="md-molbox md-molbox--wide"></div></div>
+      <div class="panel__foot">Data: assets/data/traj_C10H6.js, traj_C11H8.js (last frame of every run that reached the target and kept its structure). Runs of the sweep only: the 0.3 Å runs of C<sub>11</sub>H<sub>8</sub> are excluded because the structure was lost.</div>
+    </div>
+    <div class="grid grid--3 md-figgrid">
+      <div data-fig="fig13" data-size="m"></div>
+      <div data-fig="fig14" data-size="m"></div>
+      <div data-fig="fig15" data-size="m"></div>
+    </div>
+    <h3>Main grid, C₁₀H₆ from R1</h3>
+    <div class="md-split">
+      <div>
+    <div class="panel md-panel" id="grid-panel">
+      <div class="panel__head"><h3 class="panel__title">Energy still to be released against step</h3> <span class="badge" data-badge="logged"></span></div>
+      <div class="panel__body"><div id="grid-chart"></div></div>
+      <div class="panel__foot">Data: assets/data/grid.js. Energy measured from the final value of the supervised run.</div>
+    </div>
+        <p class="md-caveat">Main-grid runs are single runs of two set-ups that also differ in L-BFGS memory and warm start (supervised: memory 20, warm start; plain: memory 1, cold start). Their step counts are not the effect of the agent alone and no speed-up is claimed from them. The like-for-like test is the step-cap sweep.</p>
+      </div>
+      <div>
+        <div data-fig="figA15" data-size="m"></div>
+      </div>
+    </div>
+    <div class="callout callout--limit"><strong class="callout__label">Limit</strong><p>Both routes share the functional and the L-BFGS family of optimizers, so this tests the path and the settings, not the functional. Two pairs of repeated runs were identical, so the 16 runs are not 16 independent samples. One planar basin was found for each molecule. In the main grid the two set-ups differ in memory, warm start and supervision together.</p></div>
+  </section>
+  <section class="section section--tint" id="when">
+    <h2>When to use it</h2>
+    <div class="prose">
+      <p>For these two molecules the results suggest a simple rule. With a sensible starting cap near 0.025 Å, or at the ASE defaults, plain L-BFGS is sufficient. Supervision pays when a good cap is not known in advance. The rule-based controller needs no model call. The module does not rescue a run whose first step wrecks the structure (section 5).</p>
+    </div>
+  </section>
+  <section class="section" id="figures">
+    <h2>More figures</h2>
+    <div class="grid grid--2 md-figgrid">
+      <div data-fig="fig16" data-size="m"></div>
+      <div data-fig="figA01" data-size="m"></div>
+      <div data-fig="figA02" data-size="m"></div>
+      <div data-fig="figA04" data-size="m"></div>
+      <div data-fig="sch-D1" data-size="m"></div>
+    </div>
+  </section>
+  <p class="md-next"><a class="btn btn--primary" href="hessian.html">Next: Module 2 · Hessian module</a></p>
+</main>
+<div id="site-footer"></div>
+<script src="assets/js/config.js"></script>
+<script src="assets/data/figures.js"></script>
+<script src="assets/data/glossary.js"></script>
+<script src="assets/js/site.js"></script>
+<script src="assets/data/meta.js"></script>
+<script src="assets/data/sweep.js"></script>
+<script src="assets/data/grid.js"></script>
+<script src="assets/data/guard.js"></script>
+<script src="assets/data/nh3.js"></script>
+<script src="assets/data/h2o2.js"></script>
+<script src="assets/data/traj_C10H6.js"></script>
+<script src="assets/data/traj_C11H8.js"></script>
+<script src="assets/vendor/3dmol/3Dmol-min.js"></script>
+<script src="assets/js/replay/mol.js"></script>
+<script src="assets/js/replay/player.js"></script>
+<script src="assets/js/replay/chart.js"></script>
+<script src="assets/js/replay/ticker.js"></script>
+<script src="assets/js/modules/md-common.js"></script>
+<script src="assets/js/modules/optimizer.js"></script>
+</body>
+</html>

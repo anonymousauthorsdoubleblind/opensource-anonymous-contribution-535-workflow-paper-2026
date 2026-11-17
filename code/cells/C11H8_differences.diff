@@ -1,0 +1,29 @@
+--- C10H6 notebook (code cells)
++++ C11H8 notebook (code cells)
+@@ -7,7 +7,7 @@
+ # ---- cell 3 ----
+ # @title 1. Settings: edit this cell, then run all cells
+ # Which molecule (one session per molecule; results go to separate folders) ----
+-MOLECULE = "C10H6"        # "C10H6" (16 atoms)  |  "C11H8" (19 atoms)
++MOLECULE = "C11H8"        # "C10H6" (16 atoms)  |  "C11H8" (19 atoms)
+ RUN_MODE = "n1"         # "smoke" = 1 start, 2 arms, <= 4 steps per pass (wiring check, minutes)
+                           # "n1"    = 1 start (R3), arms A0e/A0r/A1/A3, full steps: the go/no-go run (printed at the end)
+                           # "full"  = all starts in STARTS below
+@@ -16,7 +16,7 @@
+ REQUIREMENT = "R0"        # "R0" = def2-SVP only (fast screen, about 20 min per run)  |  "R1" = def2-SVP then 6-31+G(d,p)  |  "R2" = def2-SVP then def2-TZVP
+ ARMS   = ["A0e", "A0r", "A1", "A2", "A3"]          # optional extras: "A0c" cautious novice, "A0p" deliberately poor schedule, "A3p" Gemini agent started from the poor schedule
+ STARTS = ["R1", "R2", "R3", "R4", "R5", "Q1", "P0"]  # five designed starts + two controls (Q1 squeezed, P0 relaxed reference), all nudged
+-RUN_TAG = "_A100_toy_C10H6_sweep"             # suffix for the results folder: set when one experiment is split over two sessions
++RUN_TAG = "_A100_toy_C11H8_sweep"             # suffix for the results folder: set when one experiment is split over two sessions
+ R0_GRADIENT_BUDGET = 150   # gradient cap per run when REQUIREMENT == 'R0' (the first screen used 150; runs that need more are then recorded as not converged)
+ N1_START = "R1"          # start used in "n1" mode ("P0" = relaxed reference: used for the replication check)
+ N1_ARMS_OVERRIDE = ["PS","GS","PB","GB","GS2","GB2","PM","GM"]   # step-cap sweep arms, in priority order (defined in the settings-per-pass cell)   # e.g. ["A0e", "A1"] to run only some of the four go/no-go arms in this session
+@@ -2013,7 +2013,7 @@
+ TOY_DIR = os.path.join(EXPERIMENT_DIR, "toy")
+ os.makedirs(TOY_DIR, exist_ok=True)
+ # Runs made with an earlier toy engine (a probation of an earlier cap change could roll back a displacement). They are deleted ONCE so that they are redone with the fixed engine.
+-TOY_REDO_KEYS = []
++TOY_REDO_KEYS = ["saddle_n0.01_s22_llm", "saddle_n0.01_s22_rules"]
+ _redo_marker = os.path.join(TOY_DIR, "_redo_done_displacement_fix.txt")
+ if TOY_REDO_KEYS and not os.path.exists(_redo_marker):
+     for _k in TOY_REDO_KEYS:

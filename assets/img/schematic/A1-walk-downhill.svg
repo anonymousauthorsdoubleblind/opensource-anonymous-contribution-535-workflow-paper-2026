@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 410" width="1800" height="820" font-family="Inter, Arial, Helvetica, sans-serif">
+<rect width="900" height="410" fill="#ffffff"/>
+<defs>
+<marker id="am" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#586279"/></marker>
+<marker id="ai" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#1b2333"/></marker>
+<marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#b94a1b"/></marker>
+</defs>
+<text x="18" y="28" font-size="20" font-weight="700" fill="#1b2333" text-anchor="start">a</text>
+<text x="566" y="28" font-size="20" font-weight="700" fill="#1b2333" text-anchor="start">b</text>
+<path d="M32 372V44" stroke="#586279" stroke-width="1.3" fill="none" marker-end="url(#am)"/>
+<path d="M32 372H540" stroke="#586279" stroke-width="1.3" fill="none" marker-end="url(#am)"/>
+<text x="20" y="215" font-size="14" font-weight="400" fill="#586279" text-anchor="middle" transform="rotate(-90 20 215)">energy</text>
+<text x="286" y="396" font-size="14" font-weight="400" fill="#586279" text-anchor="middle">shape of the molecule</text>
+<path d="M50 60C120 80 160 300 250 300C330 300 350 170 420 170C470 170 490 230 530 262" stroke="#1b2333" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+<circle cx="98" cy="99" r="5" fill="#2468c9" opacity="0.55"/>
+<circle cx="128" cy="153" r="5" fill="#2468c9" opacity="0.55"/>
+<circle cx="157" cy="208" r="5" fill="#2468c9" opacity="0.55"/>
+<circle cx="188" cy="256" r="5" fill="#2468c9" opacity="0.55"/>
+<circle cx="220" cy="284" r="5" fill="#2468c9" opacity="0.55"/>
+<circle cx="66" cy="61" r="8" fill="#b94a1b"/>
+<circle cx="250" cy="291" r="8" fill="#2468c9"/>
+<circle cx="420" cy="161" r="7.5" fill="#ffffff" stroke="#b94a1b" stroke-width="2.8"/>
+<text x="84" y="57" font-size="15" font-weight="700" fill="#b94a1b" text-anchor="start">rough, strained start</text>
+<path d="M262 60l11-10 11 10 11-10 11 10" stroke="#b94a1b" stroke-width="2.2" fill="none" stroke-linejoin="round"/>
+<text x="318" y="60" font-size="13" font-weight="400" fill="#586279" text-anchor="start">bent ring</text>
+<text x="176" y="203" font-size="14" font-weight="400" fill="#586279" text-anchor="start">each dot is one step</text>
+<path d="M226 322H274" stroke="#2468c9" stroke-width="2.2" fill="none"/>
+<circle cx="226" cy="322" r="2.8" fill="#2468c9"/>
+<circle cx="238" cy="322" r="2.8" fill="#2468c9"/>
+<circle cx="250" cy="322" r="2.8" fill="#2468c9"/>
+<circle cx="262" cy="322" r="2.8" fill="#2468c9"/>
+<circle cx="274" cy="322" r="2.8" fill="#2468c9"/>
+<text x="284" y="326" font-size="13" font-weight="400" fill="#586279" text-anchor="start">flat ring</text>
+<text x="250" y="345" font-size="15" font-weight="700" fill="#2468c9" text-anchor="middle">valley floor = minimum</text>
+<text x="250" y="363" font-size="13.5" font-weight="400" fill="#586279" text-anchor="middle">a stable, relaxed structure</text>
+<text x="420" y="124" font-size="15" font-weight="700" fill="#b94a1b" text-anchor="middle">mountain pass = saddle point</text>
+<text x="420" y="142" font-size="13.5" font-weight="400" fill="#586279" text-anchor="middle">level ground, but not stable</text>
+<path d="M556 40V380" stroke="#d4dae6" stroke-width="1" fill="none"/>
+<text x="588" y="28" font-size="14" font-weight="400" fill="#586279" text-anchor="start">the step cap is the longest stride</text>
+<g transform="translate(0 0)">
+<path d="M590 60Q650 160 710 60" stroke="#1b2333" stroke-width="2.4" fill="none"/>
+<circle cx="596" cy="64" r="3.6" fill="#2468c9"/><circle cx="602" cy="72" r="3.6" fill="#2468c9"/><circle cx="608" cy="80" r="3.6" fill="#2468c9"/><circle cx="614" cy="86" r="3.6" fill="#2468c9"/><circle cx="620" cy="92" r="3.6" fill="#2468c9"/><circle cx="626" cy="96" r="3.6" fill="#2468c9"/><circle cx="632" cy="100" r="3.6" fill="#2468c9"/>
+<text x="728" y="80" font-size="15" font-weight="700" fill="#1b2333" text-anchor="start">too short</text>
+<text x="728" y="98" font-size="13.5" font-weight="400" fill="#586279" text-anchor="start">the run crawls</text>
+</g>
+<g transform="translate(0 115)">
+<path d="M590 60Q650 160 710 60" stroke="#1b2333" stroke-width="2.4" fill="none"/>
+<path d="M612 86L700 70L594 40" stroke="#b94a1b" stroke-width="1.9" stroke-dasharray="5 4" fill="none" marker-end="url(#ar)"/><circle cx="612" cy="86" r="3.8" fill="#b94a1b"/><circle cx="700" cy="70" r="3.8" fill="#b94a1b"/>
+<text x="728" y="80" font-size="15" font-weight="700" fill="#b94a1b" text-anchor="start">too long</text>
+<text x="728" y="98" font-size="13.5" font-weight="400" fill="#586279" text-anchor="start">can wreck the structure</text>
+</g>
+<g transform="translate(0 230)">
+<path d="M590 60Q650 160 710 60" stroke="#1b2333" stroke-width="2.4" fill="none"/>
+<circle cx="598" cy="68" r="3.6" fill="#2468c9"/><circle cx="618" cy="92" r="3.6" fill="#2468c9"/><circle cx="636" cy="104" r="3.6" fill="#2468c9"/><circle cx="650" cy="106" r="5" fill="#2468c9"/>
+<text x="728" y="80" font-size="15" font-weight="700" fill="#2468c9" text-anchor="start">well chosen</text>
+<text x="728" y="98" font-size="13.5" font-weight="400" fill="#586279" text-anchor="start">arrives in few steps</text>
+</g>
+</svg>

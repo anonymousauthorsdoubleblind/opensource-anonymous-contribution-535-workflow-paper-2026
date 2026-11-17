@@ -1,0 +1,24 @@
+molecule,mode,wavenumber (cm-1),IR intensity (km/mol),label,H_fraction,out_of_plane_fraction
+C10H6,1,142.0,8.55,C-H out-of-plane wag,0.68,1.0
+C10H6,2,168.2,0.02,in-plane ring deformation / C-C stretch,0.4,0.01
+C10H6,3,179.0,0.6,C-H out-of-plane wag,0.72,1.0
+C10H6,6,388.5,4.5,in-plane ring deformation / C-C stretch,0.32,0.0
+C10H6,8,450.3,27.42,in-plane C-H bend with ring motion,0.54,0.01
+C10H6,9,488.4,24.99,C-H out-of-plane wag,0.9,1.0
+C10H6,14,705.2,93.58,C-H out-of-plane wag,0.95,1.0
+C10H6,30,1428.4,13.72,in-plane C-H bend with ring motion,0.96,0.0
+C10H6,35,2056.6,6.21,C#C stretch (bond 1.226 A),0.07,0.0
+C10H6,36,2173.4,0.0,C#C stretch (bond 1.226 A),0.01,0.0
+C10H6,41,3202.5,11.61,"C-H stretch, ring",0.99,0.0
+C11H8,1,89.0,0.01,C-H out-of-plane wag,0.76,0.87
+C11H8,2,89.3,1.46,C-H out-of-plane wag,0.69,0.95
+C11H8,3,182.4,0.01,in-plane ring deformation / C-C stretch,0.41,0.0
+C11H8,4,228.3,15.34,C-H out-of-plane wag,0.84,0.84
+C11H8,15,718.7,59.5,C-H out-of-plane wag,0.97,0.98
+C11H8,18,758.7,14.8,C-H out-of-plane wag,0.95,0.88
+C11H8,28,1052.3,12.71,in-plane C-H bend with ring motion,0.94,0.01
+C11H8,29,1069.7,33.95,in-plane C-H bend with ring motion,0.81,0.0
+C11H8,36,1440.7,14.28,in-plane C-H bend with ring motion,0.93,0.11
+C11H8,43,2244.8,2.5,C#C stretch (bond 1.215 A),0.02,0.0
+C11H8,44,3096.0,28.37,"C-H stretch, CH2 (sp3)",1.0,0.74
+C11H8,47,3168.7,10.85,"C-H stretch, CH2 (sp3)",0.99,0.71

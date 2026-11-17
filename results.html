@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Results · Skala-1.1 workflow demo</title>
+<meta name="description" content="Nine findings of the Technical Note, each with its test, its main number, its limit and a link to the replay.">
+<link rel="icon" href="assets/img/favicon.svg">
+<script>(function(){try{var t=localStorage.getItem("theme");if(!t&&window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)t="dark";if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/replay.css">
+<link rel="stylesheet" href="assets/css/modules.css">
+</head>
+<body data-page="results" data-module="0">
+<a class="skip-link" href="#main">Skip to content</a>
+<div id="site-header"></div>
+<main id="main" class="page">
+  <header class="page-head">
+    <p class="eyebrow">Results</p>
+    <h1>Nine findings, each with its limit</h1>
+    <p class="lede">The findings follow the order of the manuscript, by the strength of the check applied; the comparison with experiment comes first. Each states its test, its main number, a benchmark and its limit.</p>
+  </header>
+  <div data-scope-note></div>
+  <section class="section" id="findings">
+    <div class="md-filterbar" role="radiogroup" aria-label="Filter findings by module" id="res-filter">
+      <button class="btn btn--ghost" role="radio" aria-checked="true" data-f="all">All</button>
+      <button class="btn btn--ghost" role="radio" aria-checked="false" data-f="1">Module 1</button>
+      <button class="btn btn--ghost" role="radio" aria-checked="false" data-f="2">Module 2</button>
+      <button class="btn btn--ghost" role="radio" aria-checked="false" data-f="3">Module 3</button>
+      <button class="btn btn--ghost" role="radio" aria-checked="false" data-f="4">Module 4</button>
+      <button class="btn btn--ghost" role="radio" aria-checked="false" data-f="0">Run record</button>
+      <span class="md-small" id="res-count" aria-live="polite"></span>
+    </div>
+    <div class="md-findings">
+      <article class="card card--module md-finding" data-module="3" data-f="3" id="f3-1">
+        <header class="md-finding__head"><span class="md-finding__n">Section 3.1</span> <span class="chip chip--m3">Module 3 · NMR workflow</span></header>
+        <h3 class="card__title">Computed NMR shifts fall within published error limits</h3>
+        <div class="md-finding__body">
+          <div class="md-finding__text">
+            <p><strong>Test.</strong> ¹H and ¹³C shifts computed on the Skala-1.1 geometry (B3LYP and PBE0 shieldings), against the measured spectra.</p>
+            <p><strong>Result.</strong> ¹³C MAE 1.30 to 1.95 ppm (limit 2.0); ¹H MAE 0.08 to 0.17 ppm (limit 0.2); all 24 resolvable signal pairs in the measured order.</p>
+            <div class="stat"><span class="stat__num">1.30 to 1.95 ppm</span><span class="stat__label">¹³C MAE (limit 2.0 ppm)</span></div>
+            <p><strong>In plain terms.</strong> The computed shifts were within the error that the published limits allow.</p>
+            <div class="callout callout--limit"><strong class="callout__label">Limit</strong><p>This tests the geometry, not NMR with Skala-1.1. It does not rank Skala-1.1 against other functionals. Gas-phase shieldings; the alkyne carbons of C<sub>10</sub>H<sub>6</sub> are 3.3 to 4.9 ppm high.</p></div>
+            <p><a class="btn btn--ghost" href="nmr.html#errors">See the data</a></p>
+          </div>
+          <div class="md-finding__fig"><div data-fig="fig09" data-size="m"></div></div>
+        </div>
+      </article>
+      <article class="card card--module md-finding" data-module="2" data-f="2" id="f3-2">
+        <header class="md-finding__head"><span class="md-finding__n">Section 3.2</span> <span class="chip chip--m2">Module 2 · Hessian</span></header>
+        <h3 class="card__title">Both end points are true minima</h3>
+        <div class="md-finding__body">
+          <div class="md-finding__text">
+            <p><strong>Test.</strong> Number of imaginary modes in three setups; energy scans along eight modes.</p>
+            <p><strong>Result.</strong> 0 of 42 (C<sub>10</sub>H<sub>6</sub>) and 0 of 51 (C<sub>11</sub>H<sub>8</sub>) modes imaginary with Skala-1.1/def2-TZVP, B3LYP-D3(BJ)/def2-TZVP and Skala-1.1/6-31+G(d,p); 64 of 64 displaced structures above the minimum.</p>
+            <div class="stat"><span class="stat__num">0 of 42 and 0 of 51</span><span class="stat__label">modes imaginary, in three setups</span></div>
+            <p><strong>In plain terms.</strong> Both structures sit on a valley floor, not on a mountain pass.</p>
+            <div class="callout callout--limit"><strong class="callout__label">Limit</strong><p>The analysis is harmonic and unscaled. Only the sign of each curvature is claimed; no comparison with a measured spectrum.</p></div>
+            <p><a class="btn btn--ghost" href="hessian.html#spectrum">See the data</a></p>
+          </div>
+          <div class="md-finding__fig"><div data-fig="fig10" data-size="m"></div></div>
+        </div>
+      </article>
+      <article class="card card--module md-finding" data-module="2" data-f="2" id="f3-3">
+        <header class="md-finding__head"><span class="md-finding__n">Section 3.3</span> <span class="chip chip--m2">Module 2 · Hessian</span></header>
+        <h3 class="card__title">The finite-difference Hessian is numerically consistent</h3>
+        <div class="md-finding__body">
+          <div class="md-finding__text">
+            <p><strong>Test.</strong> Analytic force against the finite-difference slope of the energy; symmetry of the Hessian; scans against the Hessian.</p>
+            <p><strong>Result.</strong> Ratios between 0.9991 and 1.0002; relative asymmetry 0.0011 and 0.0014; control-mode scans within 2 and 19 cm<sup>−1</sup>.</p>
+            <div class="stat"><span class="stat__num">0.9991 to 1.0002</span><span class="stat__label">analytic force over finite-difference slope</span></div>
+            <p><strong>In plain terms.</strong> The energy surface was smooth enough for a finite-difference Hessian with a step of 0.01 Å, for the two molecules studied.</p>
+            <div class="callout callout--limit"><strong class="callout__label">Limit</strong><p>One step size (0.01 Å), one grid, and two rigid, planar molecules; precision about ±20 cm<sup>−1</sup>.</p></div>
+            <p><a class="btn btn--ghost" href="hessian.html#consistency">See the data</a></p>
+          </div>
+          <div class="md-finding__fig"><div data-fig="micro-3" data-size="m"></div></div>
+        </div>
+      </article>
+      <article class="card card--module md-finding" data-module="1" data-f="1" id="f3-4">
+        <header class="md-finding__head"><span class="md-finding__n">Section 3.4</span> <span class="chip chip--m1">Module 1 · agentic optimizer</span></header>
+        <h3 class="card__title">Different starts and settings end at one structure</h3>
+        <div class="md-finding__body">
+          <div class="md-finding__text">
+            <p><strong>Test.</strong> 18 supervised runs with varied starts and settings, and a separately run hand-set schedule.</p>
+            <p><strong>Result.</strong> 16 of 18 runs reached the force target, all at one structure: RMSD at most 0.016 Å (C<sub>10</sub>H<sub>6</sub>) and 0.028 Å (C<sub>11</sub>H<sub>8</sub>), energies within 1.7 meV; hand-set route within 0.004 and 0.007 Å.</p>
+            <div class="stat"><span class="stat__num">16 of 18</span><span class="stat__label">supervised runs reached the force target, at one structure</span></div>
+            <p><strong>In plain terms.</strong> Every run that finished ended at the same structure.</p>
+            <div class="callout callout--limit"><strong class="callout__label">Limit</strong><p>One planar basin. Both routes share the functional and the optimizer family. The other two runs lost the C<sub>11</sub>H<sub>8</sub> structure at a 0.3 Å cap.</p></div>
+            <p><a class="btn btn--ghost" href="optimizer.html#one-structure">See the replay</a></p>
+          </div>
+          <div class="md-finding__fig"><div data-fig="fig13" data-size="m"></div></div>
+        </div>
+      </article>
+      <article class="card card--module md-finding" data-module="1" data-f="1" id="f3-5">
+        <header class="md-finding__head"><span class="md-finding__n">Section 3.5</span> <span class="chip chip--m1">Module 1 · agentic optimizer</span></header>
+        <h3 class="card__title">A curvature probe tells a minimum from a saddle point</h3>
+        <div class="md-finding__body">
+          <div class="md-finding__text">
+            <p><strong>Test.</strong> Ammonia inversion saddle, repeated on hydrogen peroxide; verdict checked by an independent finite-difference Hessian.</p>
+            <p><strong>Result.</strong> 8 of 10 plain runs met the force test on the ammonia saddle; the probe reported all 7 imaginary modes it met; 6 of 6 supervised runs ended in a minimum; hydrogen peroxide: 0 of 3 plain, 3 of 3 supervised.</p>
+            <div class="stat"><span class="stat__num">6 of 6</span><span class="stat__label">supervised ammonia runs ended in a minimum (plain: 8 of 10 stopped on the saddle)</span></div>
+            <p><strong>In plain terms.</strong> The force test alone accepted a mountain pass as a valley floor. The curvature probe did not.</p>
+            <div class="callout callout--limit"><strong class="callout__label">Limit</strong><p>Two small test molecules, not annulenes; a compact version of the module. A rule-based supervisor without a language model did as well. No imaginary mode appeared on the annulenes.</p></div>
+            <p><a class="btn btn--ghost" href="optimizer.html#saddle">See the replay</a></p>
+          </div>
+          <div class="md-finding__fig"><div data-fig="fig17" data-size="m"></div></div>
+        </div>
+      </article>
+      <article class="card card--module md-finding" data-module="1" data-f="1" id="f3-6">
+        <header class="md-finding__head"><span class="md-finding__n">Section 3.6</span> <span class="chip chip--m1">Module 1 · agentic optimizer</span></header>
+        <h3 class="card__title">Supervised runs recover from a step cap set too small</h3>
+        <div class="md-finding__body">
+          <div class="md-finding__text">
+            <p><strong>Test.</strong> Runs started on purpose with a step cap of 0.005 Å; first step below the force target.</p>
+            <p><strong>Result.</strong> Supervised runs: steps 58 to 70. Plain runs: step 129, or not within 149 steps. A rules run without a language model: step 50 (C<sub>10</sub>H<sub>6</sub>).</p>
+            <div class="stat"><span class="stat__num">58 to 70</span><span class="stat__label">steps to the force target, supervised runs</span></div>
+            <p><strong>In plain terms.</strong> The supervised runs raised a cap that was set too small and then reached the force target.</p>
+            <div class="callout callout--limit"><strong class="callout__label">Limit</strong><p>At a sensible cap the two tied, and at the ASE defaults a plain run took 48 steps. A 0.3 Å cap destroyed C<sub>11</sub>H<sub>8</sub>. Single runs; no speed-up is claimed.</p></div>
+            <p><a class="btn btn--ghost" href="optimizer.html#sweep">See the replay</a></p>
+          </div>
+          <div class="md-finding__fig"><div data-fig="figA13" data-size="m"></div></div>
+        </div>
+      </article>
+      <article class="card card--module md-finding" data-module="1" data-f="1" id="f3-7">
+        <header class="md-finding__head"><span class="md-finding__n">Section 3.7</span> <span class="chip chip--m1">Module 1 · agentic optimizer</span></header>
+        <h3 class="card__title">Every agent decision stays within bounds and is logged</h3>
+        <div class="md-finding__body">
+          <div class="md-finding__text">
+            <p><strong>Test.</strong> Number of proposals that reached the optimizer outside the bounds of the validator.</p>
+            <p><strong>Result.</strong> Of 208 decisions, 192 passed and 16 were clipped to the bounds; none fell outside them. 72 of 78 trial changes kept, 6 rolled back. 341 model calls, none failed.</p>
+            <div class="stat"><span class="stat__num">0 of 208</span><span class="stat__label">proposals outside the bounds (192 passed, 16 clipped)</span></div>
+            <p><strong>In plain terms.</strong> Only checked and reversible changes reached the optimizer. Every decision was recorded.</p>
+            <div class="callout callout--limit"><strong class="callout__label">Limit</strong><p>The agent agreed with the step advisor in 81 of 97 decisions, so these runs do not show what the language model adds. Runs are not bit-reproducible.</p></div>
+            <p><a class="btn btn--ghost" href="optimizer.html#guard">See the replay</a></p>
+          </div>
+          <div class="md-finding__fig"><div data-fig="figA14" data-size="m"></div></div>
+        </div>
+      </article>
+      <article class="card card--module md-finding" data-module="4" data-f="4" id="f3-8">
+        <header class="md-finding__head"><span class="md-finding__n">Section 3.8</span> <span class="chip chip--m4">Module 4 · molecular property</span></header>
+        <h3 class="card__title">Charges and relaxation energies sit beside established methods</h3>
+        <div class="md-finding__body">
+          <div class="md-finding__text">
+            <p><strong>Test.</strong> Meta-Löwdin charges against ωB97M-V; relaxation energy of two geometry pairs against CCSD(T)/def2-TZVP.</p>
+            <p><strong>Result.</strong> Charges: R² above 0.999. Relaxation energy deviations from CCSD(T): −0.40 (Skala-1.1) and +0.36 (ωB97M-V) kcal mol<sup>−1</sup> for C<sub>11</sub>H<sub>8</sub>; +3.13 and +4.25 kcal mol<sup>−1</sup> for C<sub>10</sub>H<sub>6</sub>.</p>
+            <div class="stat"><span class="stat__num">R² above 0.999</span><span class="stat__label">meta-Löwdin charges against ωB97M-V</span></div>
+            <p><strong>In plain terms.</strong> The Skala-1.1 charges matched those of an established hybrid functional. The relaxation energies are shown side by side, without a ranking.</p>
+            <div class="callout callout--limit"><strong class="callout__label">Limit</strong><p>Two geometry pairs only. Not a statement of chemical accuracy and not a ranking. Computed on the hand-set minima.</p></div>
+            <p><a class="btn btn--ghost" href="properties.html#ccsdt">See the data</a></p>
+          </div>
+          <div class="md-finding__fig"><div data-fig="fig18" data-size="m"></div></div>
+        </div>
+      </article>
+      <article class="card card--module md-finding" data-module="0" data-f="0" id="f3-9">
+        <header class="md-finding__head"><span class="md-finding__n">Section 3.9</span> <span class="chip ">Run record</span></header>
+        <h3 class="card__title">The workflow runs end to end on single cloud GPUs</h3>
+        <div class="md-finding__body">
+          <div class="md-finding__text">
+            <p><strong>Test.</strong> The four modules run in sequence for both annulenes; run time and peak GPU memory.</p>
+            <p><strong>Result.</strong> def2-TZVP gradient 9.9 s and 11.4 s; Hessian with IR intensities 16.1 and 22.0 min (97 and 115 gradients) on one A100; peak memory 7.1 and 8.4 GB; property single point 149 s on a T4.</p>
+            <div class="stat"><span class="stat__num">16.1 and 22.0 min</span><span class="stat__label">Hessian with IR intensities on one A100</span></div>
+            <p><strong>In plain terms.</strong> Every GPU stage ran on a single rented GPU.</p>
+            <div class="callout callout--limit"><strong class="callout__label">Limit</strong><p>Single runs on shared cloud GPUs, for molecules of 16 and 19 atoms. Not a comparison of cost with other functionals. The median model call took 9.3 s, comparable to one def2-SVP gradient, so step counts should not be read as savings of wall time.</p></div>
+            <p><a class="btn btn--ghost" href="reproduce.html">See the data</a></p>
+          </div>
+          <div class="md-finding__fig"><div data-fig="micro-9" data-size="m"></div></div>
+        </div>
+      </article>
+    </div>
+  </section>
+  <section class="section section--tint" id="table-6">
+    <h2 id="table6">Table 6: what was tested for each module, against which reference, and with what result</h2>
+    <div class="table-wrap"><table class="table"><thead><tr><th scope="col">Module</th><th scope="col">Test</th><th scope="col">Reference</th><th scope="col">Result</th><th scope="col">Section</th></tr></thead><tbody><tr><td>1 Optimization: settings that adapt during the run (gap 3)</td><td>Step-cap sweep</td><td>plain L-BFGS with identical settings</td><td>recovered a step cap set too small on both molecules; tied at a sensible cap; could not repair a cap far too large on C<sub>11</sub>H<sub>8</sub>; a rule-based controller also recovered the cap on C<sub>10</sub>H<sub>6</sub></td><td>3.6</td></tr><tr><td>1 Optimization</td><td>Conduct of the agent under the guard</td><td>validator, probation and rollback</td><td>208 decisions, none rejected and 16 clipped; 72 of 78 probations kept</td><td>3.7</td></tr><tr><td>1 Optimization</td><td>Verified end point on a saddle (ammonia, hydrogen peroxide)</td><td>independent finite-difference Hessian</td><td>plain L-BFGS on the saddle in 8 of 10 runs; language-model supervisor at a minimum in 6 of 6, as was a compact rule-based supervisor; hydrogen peroxide: plain 0 of 3, both supervisors 3 of 3</td><td>3.5</td></tr><tr><td>1 Optimization</td><td>Same minimum by two routes</td><td>hand-set schedule</td><td>0.004 and 0.007 Å RMSD; 0.8 and 3.5 meV</td><td>3.4</td></tr><tr><td>1 Optimization: relaxation of a strained structure (gap 4)</td><td>Strained starts reaching the force target</td><td>six inputs 1.0 to 4.1 eV above the minimum</td><td>reached the force target with the Skala-1.1 passes alone</td><td>3.4</td></tr><tr><td>2 Hessian: confirmation of the minimum (gap 1)</td><td>Character of the stationary point</td><td>B3LYP-D3(BJ), a second basis set, energy scans</td><td>no imaginary mode among 42 and 51; 64 of 64 scan points above the minimum</td><td>3.2, 3.3</td></tr><tr><td>3 NMR workflow: agreement with experiment (gap 2)</td><td>Shifts against the measured spectra</td><td>¹³C and ¹H NMR spectra of C<sub>11</sub>H<sub>8</sub> (Parmar et al.) and C<sub>10</sub>H<sub>6</sub> (Myers and Finney)</td><td>24 of 24 resolvable pairs in order; ¹³C MAE 1.30 to 1.95 ppm; ¹H MAE 0.08 to 0.17 ppm</td><td>3.1</td></tr><tr><td>4 Molecular property: side-by-side checks</td><td>Charges and relaxation energies</td><td>frozen-core CCSD(T)/def2-TZVP; ωB97M-V/def2-TZVP</td><td>ΔE deviations −0.40 and +3.13 kcal mol<sup>−1</sup> (ωB97M-V: +0.36 and +4.25); charge R² above 0.999</td><td>3.8</td></tr></tbody></table></div>
+    <p class="md-small">Module numbers refer to the four modules of figure 1; gap numbers are those of the Introduction.</p>
+  </section>
+  <section class="section" id="not-established">
+    <div class="callout callout--limit"><strong class="callout__label">What the results do not establish</strong><p>The results do not establish the accuracy of Skala-1.1 in general, its cost relative to conventional functionals, the benefit of supervision beyond this pilot, or that a language model is needed for it. Each result holds under the conditions stated with it: two related hydrocarbons, single runs, harmonic frequencies, gas-phase shieldings and two coupled-cluster geometry pairs (section 6).</p></div>
+  </section>
+  <p class="md-next"><a class="btn btn--primary" href="rationale.html">Next: why this matters and what is new</a></p>
+</main>
+<div id="site-footer"></div>
+<script src="assets/js/config.js"></script>
+<script src="assets/data/figures.js"></script>
+<script src="assets/data/glossary.js"></script>
+<script src="assets/js/site.js"></script>
+<script src="assets/data/meta.js"></script>
+<script src="assets/data/findings.js"></script>
+<script src="assets/js/modules/md-common.js"></script>
+<script src="assets/js/modules/results.js"></script>
+</body>
+</html>

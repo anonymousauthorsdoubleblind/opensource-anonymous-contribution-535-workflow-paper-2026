@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Molecular property module · Skala-1.1 workflow demo</title>
+<meta name="description" content="Module 4: meta-Löwdin charges against ωB97M-V and relaxation energies against CCSD(T), computed on the hand-set def2-TZVP minima.">
+<link rel="icon" href="assets/img/favicon.svg">
+<script>(function(){try{var t=localStorage.getItem("theme");if(!t&&window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)t="dark";if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/replay.css">
+<link rel="stylesheet" href="assets/css/modules.css">
+</head>
+<body data-page="properties" data-module="4">
+<a class="skip-link" href="#main">Skip to content</a>
+<div id="site-header"></div>
+<main id="main" class="page">
+  <header class="page-head">
+    <p class="eyebrow">Module 4 of 4</p>
+    <h1>Molecular property module</h1>
+    <p class="lede">Do the properties agree with established methods?</p>
+  </header>
+  <div class="callout callout--note md-banner"><strong class="callout__label">Where this was computed</strong><p>Computed in the Note on the def2-TZVP minima of the separately run hand-set route, not on output of the Hessian module. The two routes meet at def2-TZVP: 0.004 Å and 0.8 meV apart for C<sub>10</sub>H<sub>6</sub>, 0.007 Å and 3.5 meV for C<sub>11</sub>H<sub>8</sub> (section 3.4).</p></div>
+  <nav class="md-toc" aria-label="On this page"><ul><li><a href="#at-a-glance">At a glance</a></li><li><a href="#route">The hand-set route</a></li><li><a href="#ccsdt">Relaxation energy beside CCSD(T)</a></li><li><a href="#charges">Charges, potential, orbitals</a></li><li><a href="#figures">Figures</a></li></ul></nav>
+  <section class="section" id="at-a-glance">
+    <h2>At a glance</h2>
+    <dl class="kv">
+      <dt>Input</dt><dd>a def2-TZVP structure that has reached the force target (here: the minima of the hand-set route)</dd>
+      <dt>Compute</dt><dd>Skala-1.1 SCF properties: meta-Löwdin charges, electrostatic potential maps, frontier orbitals; energy difference of fixed geometry pairs</dd>
+      <dt>Output</dt><dd>a side-by-side comparison with ωB97M-V and with frozen-core CCSD(T)/def2-TZVP</dd>
+      <dt>Checked against</dt><dd>ωB97M-V/def2-TZVP and frozen-core CCSD(T)/def2-TZVP; a case study of two geometry pairs</dd>
+      <dt>Passes on to</dt><dd>the final comparison with established methods; no further module</dd>
+    </dl>
+    <div class="stat-row">
+      <div class="stat"><span class="stat__num">R² above 0.999</span><span class="stat__label">charges against ωB97M-V</span></div>
+      <div class="stat"><span class="stat__num">−0.40 and +3.13 kcal mol<sup>−1</sup></span><span class="stat__label">Skala-1.1 against CCSD(T), two pairs</span></div>
+      <div class="stat"><span class="stat__num">+0.36 and +4.25 kcal mol<sup>−1</sup></span><span class="stat__label">ωB97M-V against CCSD(T)</span></div>
+    </div>
+  </section>
+  <section class="section section--tint" id="route">
+    <h2>The hand-set route</h2>
+    <div class="prose">
+      <p>The hand-set schedule is the separately run reference for the agent-supervised route. It has four tiers: (1) a coarse relaxation with GFN2-xTB; (2) relaxation with the MACE machine-learned interatomic potential; (3) a Skala-1.1/def2-SVP optimization with L-BFGS in three passes; (4) a Skala-1.1/def2-TZVP optimization in three further passes. Randomly deformed inputs pass through all four tiers, and strained inputs enter at tier 3 (section 2.5).</p>
+    </div>
+    <div data-fig="sch-H3" data-size="m"></div>
+    <h3>Table A2: the six inputs relaxed by the Skala-1.1 passes alone</h3>
+    <div class="table-wrap"><table class="table"><thead><tr><th scope="col">Molecule</th><th scope="col">Strand and input</th><th scope="col">Energy above the end point (eV)</th></tr></thead><tbody><tr><td>C<sub>10</sub>H<sub>6</sub> hand-set strained</td><td>—</td><td class="num">4.08</td></tr><tr><td>C<sub>11</sub>H<sub>8</sub> hand-set strained</td><td>—</td><td class="num">1.02</td></tr><tr><td>C<sub>10</sub>H<sub>6</sub></td><td>agent: R1, bent</td><td class="num">1.42</td></tr><tr><td>C<sub>10</sub>H<sub>6</sub></td><td>agent: R3, twisted</td><td class="num">3.45</td></tr><tr><td>C<sub>11</sub>H<sub>8</sub></td><td>agent: R1</td><td class="num">3.79</td></tr><tr><td>C<sub>11</sub>H<sub>8</sub></td><td>agent: R3</td><td class="num">about 3.58</td></tr></tbody></table></div>
+    <p class="md-small">The hand-set values are relative to the final def2-TZVP minimum and the agent-strand values to the def2-SVP end points.</p>
+  </section>
+  <section class="section" id="ccsdt">
+    <h2>Relaxation energy beside CCSD(T)</h2>
+    <p class="md-kindnote"><span class="badge" data-badge="tables"></span></p>
+    <div class="panel md-panel" id="cc-panel">
+      <div class="panel__head"><h3 class="panel__title">Relaxation energy: signed deviation from CCSD(T)</h3> <span class="badge" data-badge="tables"></span></div>
+      <div class="panel__body"><div id="cc-chart" class="md-ccsdt"><p class="md-missing">Chart needs JavaScript.</p></div></div>
+      <div class="panel__foot">Bars in a fixed order (not sorted by size); the two functionals share one neutral fill with different patterns. Data: assets/data/props.js</div>
+    </div>
+    <p class="md-small">ΔE = E(strained) − E(relaxed). One geometry pair per molecule (Kabsch RMSD 0.151 Å for C₁₁H₈, 0.235 Å for C₁₀H₆). Frozen-core CCSD(T)/def2-TZVP, no basis-set extrapolation.</p>
+    <p class="md-small">Energies are electronic energies at fixed nuclei, on the Born–Oppenheimer surface. No zero-point, thermal or entropy term is added, and no free energy is reported.</p>
+    <div class="grid grid--3 md-figgrid"><div data-fig="fig18" data-size="m"></div><div data-fig="table3" data-size="m"></div><div data-fig="table4" data-size="m"></div></div>
+    <div class="callout callout--limit"><strong class="callout__label">Limit</strong><p>A case study of two geometry pairs: not a statement of chemical accuracy and not a ranking of the two functionals. The triples correction of the reference is 2.05 and 4.38 kcal mol<sup>−1</sup>, so the reference itself is sensitive to high-order correlation. The relaxed geometry of each pair came from a Skala-1.1 optimization. The integration grids and dispersion treatments of the two functionals were not matched. The two pairs differ in molecule and in the size of the distortion (section 3.8).</p></div>
+  </section>
+  <section class="section section--tint" id="charges">
+    <h2>Charges, potential, orbitals</h2>
+    <p class="md-kindnote"><span class="badge" data-badge="tables"></span></p>
+    <div class="stat-row">
+      <div class="stat"><span class="stat__num">R² = 0.99906</span><span class="stat__label">meta-Löwdin charges, C<sub>10</sub>H<sub>6</sub></span></div>
+      <div class="stat"><span class="stat__num">R² = 0.99968</span><span class="stat__label">meta-Löwdin charges, C<sub>11</sub>H<sub>8</sub></span></div>
+      <div class="stat"><span class="stat__num">0.0025 e</span><span class="stat__label">mean difference, no atom above 0.01 e (C<sub>11</sub>H<sub>8</sub>)</span></div>
+    </div>
+    <div class="prose">
+      <p>The meta-Löwdin atomic charges of Skala-1.1 and ωB97M-V agreed with R² above 0.999 for both molecules, each set evaluated at its own def2-TZVP structure. The frontier orbitals and the electrostatic potential maps show the same features with both functionals (section 3.8).</p>
+    </div>
+    <h3>Table A3: property alignment of Skala-1.1 with ωB97M-V</h3>
+    <div class="table-wrap"><table class="table"><thead><tr><th scope="col">System</th><th scope="col">Evaluated property</th><th scope="col">Skala-1.1</th><th scope="col">ωB97M-V</th><th scope="col">Parity (%)</th></tr></thead><tbody><tr><td>C<sub>10</sub>H<sub>6</sub> (16 atoms)</td><td>Ground-state SCF total energy</td><td class="num">−384.504 Ha</td><td class="num">−384.502 Ha</td><td class="num">99.999</td></tr><tr><td>C<sub>10</sub>H<sub>6</sub> (16 atoms)</td><td>Meta-Löwdin charges</td><td class="num">R² = 0.99906</td><td class="num">R² = 1.00000</td><td class="num">99.906</td></tr><tr><td>C<sub>11</sub>H<sub>8</sub> (19 atoms)</td><td>Ground-state SCF total energy</td><td class="num">−423.795 Ha</td><td class="num">−423.789 Ha</td><td class="num">99.998</td></tr><tr><td>C<sub>11</sub>H<sub>8</sub> (19 atoms)</td><td>Meta-Löwdin charges</td><td class="num">R² = 0.99968</td><td class="num">R² = 1.00000</td><td class="num">99.968</td></tr></tbody></table></div>
+    <p class="md-small">Each functional on its own def2-TZVP structure. Total energies of two functionals have different zero points, so only energy differences are compared.</p>
+    <div class="grid grid--2 md-figgrid"><div><div data-fig="fig19" data-size="m"></div><p class="md-small">C₁₂H₁₀, a related annulene, appears in this figure only and is not otherwise part of the Note.</p></div><div data-fig="fig20" data-size="m"></div><div data-fig="fig21" data-size="m"></div></div>
+  </section>
+  <section class="section" id="figures">
+    <h2>More figures</h2>
+    <div class="grid grid--2 md-figgrid"><div data-fig="sch-D5" data-size="m"></div></div>
+  </section>
+  <p class="md-next"><a class="btn btn--primary" href="results.html">Next: the nine findings</a></p>
+</main>
+<div id="site-footer"></div>
+<script src="assets/js/config.js"></script>
+<script src="assets/data/figures.js"></script>
+<script src="assets/data/glossary.js"></script>
+<script src="assets/js/site.js"></script>
+<script src="assets/data/meta.js"></script>
+<script src="assets/data/props.js"></script>
+<script src="assets/js/modules/md-common.js"></script>
+<script src="assets/js/modules/properties.js"></script>
+</body>
+</html>

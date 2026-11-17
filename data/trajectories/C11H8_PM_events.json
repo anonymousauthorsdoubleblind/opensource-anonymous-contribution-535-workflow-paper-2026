@@ -1,0 +1,176 @@
+{
+ "molecule": "C11H8",
+ "run": "PM",
+ "kind": "plain",
+ "arm_label": "Plain L-BFGS",
+ "start": "R1",
+ "step_cap_start_A": 0.025,
+ "level": "Skala-1.1/def2-SVP",
+ "structure_lost": false,
+ "fmax_note": "fmax in the events is the logged value; multiply by 1.8897 for eV/A",
+ "n_events": 12,
+ "events": [
+  {
+   "settings": {
+    "basis": "def2-svp",
+    "maxstep": 0.025,
+    "steps": 200,
+    "fmax": 0.02,
+    "conv_tol": 1e-06,
+    "grid_level": 3
+   },
+   "label": "",
+   "kind": "pass_start",
+   "pass_id": 1,
+   "step": 0,
+   "gradients": 0,
+   "t_s": 0.086
+  },
+  {
+   "steps": 65,
+   "fmax": 0.018930530277975057,
+   "energy_eV": -11518.924752161762,
+   "target_met": true,
+   "kind": "pass_end",
+   "pass_id": 1,
+   "step": 65,
+   "gradients": 66,
+   "t_s": 505.225
+  },
+  {
+   "settings": {
+    "basis": "def2-svp",
+    "maxstep": 0.025,
+    "steps": 200,
+    "fmax": 0.02,
+    "conv_tol": 1e-06,
+    "grid_level": 3
+   },
+   "label": "",
+   "kind": "pass_start",
+   "pass_id": 2,
+   "step": 65,
+   "gradients": 66,
+   "t_s": 505.225
+  },
+  {
+   "steps": 0,
+   "fmax": 0.01852292395165012,
+   "energy_eV": -11518.924748474532,
+   "target_met": true,
+   "kind": "pass_end",
+   "pass_id": 2,
+   "step": 65,
+   "gradients": 66,
+   "t_s": 510.96
+  },
+  {
+   "settings": {
+    "basis": "def2-svp",
+    "maxstep": 0.025,
+    "steps": 200,
+    "fmax": 0.02,
+    "conv_tol": 1e-06,
+    "grid_level": 3
+   },
+   "label": "",
+   "kind": "pass_start",
+   "pass_id": 3,
+   "step": 65,
+   "gradients": 66,
+   "t_s": 510.96
+  },
+  {
+   "steps": 0,
+   "fmax": 0.018828407765918324,
+   "energy_eV": -11518.924752401681,
+   "target_met": true,
+   "kind": "pass_end",
+   "pass_id": 3,
+   "step": 65,
+   "gradients": 66,
+   "t_s": 518.08
+  },
+  {
+   "settings": {
+    "basis": "def2-svp",
+    "maxstep": 0.025,
+    "steps": 200,
+    "fmax": 0.02,
+    "conv_tol": 1e-06,
+    "grid_level": 3
+   },
+   "label": "",
+   "kind": "pass_start",
+   "pass_id": 4,
+   "step": 65,
+   "gradients": 66,
+   "t_s": 518.081
+  },
+  {
+   "steps": 0,
+   "fmax": 0.018743701634127117,
+   "energy_eV": -11518.924752982708,
+   "target_met": true,
+   "kind": "pass_end",
+   "pass_id": 4,
+   "step": 65,
+   "gradients": 66,
+   "t_s": 523.902
+  },
+  {
+   "settings": {
+    "basis": "def2-svp",
+    "maxstep": 0.025,
+    "steps": 200,
+    "fmax": 0.02,
+    "conv_tol": 1e-06,
+    "grid_level": 3
+   },
+   "label": "",
+   "kind": "pass_start",
+   "pass_id": 5,
+   "step": 65,
+   "gradients": 66,
+   "t_s": 523.903
+  },
+  {
+   "steps": 0,
+   "fmax": 0.019016609404914894,
+   "energy_eV": -11518.924749020547,
+   "target_met": true,
+   "kind": "pass_end",
+   "pass_id": 5,
+   "step": 65,
+   "gradients": 66,
+   "t_s": 529.611
+  },
+  {
+   "settings": {
+    "basis": "def2-svp",
+    "maxstep": 0.025,
+    "steps": 200,
+    "fmax": 0.02,
+    "conv_tol": 1e-06,
+    "grid_level": 3
+   },
+   "label": "",
+   "kind": "pass_start",
+   "pass_id": 6,
+   "step": 65,
+   "gradients": 66,
+   "t_s": 529.611
+  },
+  {
+   "steps": 0,
+   "fmax": 0.018779570726599047,
+   "energy_eV": -11518.92475241621,
+   "target_met": true,
+   "kind": "pass_end",
+   "pass_id": 6,
+   "step": 65,
+   "gradients": 66,
+   "t_s": 536.711
+  }
+ ]
+}

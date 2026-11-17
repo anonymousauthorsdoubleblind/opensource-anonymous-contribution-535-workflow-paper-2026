@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Page not found · Skala-1.1 workflow demo</title>
+<meta name="description" content="The page you asked for is not part of this demonstration site; the home page and the list of all pages are one click away.">
+<link rel="icon" href="assets/img/favicon.svg">
+<!-- Base path: a host serves this file for ANY missing address, for example /<repo>/code/x, so the relative
+     paths below would break. The script below finds the folder that holds the site (the first path segment
+     if assets/css/site.css answers there, otherwise the host root) and sets <base href> BEFORE the links
+     that follow, so the style sheet, the scripts and every nav link resolve against the site folder.
+     No other page uses a base element; this one is only reached through a server's not-found rule. -->
+<script>(function(){
+  try{
+    if(location.protocol === "file:") return;
+    var seg = location.pathname.split("/")[1] || "", cands = [];
+    if(seg && seg.indexOf(".") < 0) cands.push("/" + seg + "/");
+    cands.push("/");
+    var base = cands[cands.length - 1];
+    if(cands.length > 1){
+      if(/\.github\.io$/.test(location.hostname)) base = cands[0];
+      else for(var i = 0; i < cands.length; i++){
+        try{ var x = new XMLHttpRequest(); x.open("HEAD", cands[i] + "assets/css/site.css", false); x.send();
+          if(x.status === 200){ base = cands[i]; break; } }catch(e){}
+      }
+    }
+    var b = document.createElement("base"); b.href = location.origin + base;
+    document.head.insertBefore(b, document.head.firstChild);
+  }catch(e){}
+  try{var t=localStorage.getItem("theme");if(!t&&window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)t="dark";if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}
+})();</script>
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body data-page="404" data-module="0" data-tour="off">
+<div id="site-header"></div>
+<main id="main" class="page">
+  <header class="page-head">
+    <p class="eyebrow">Error 404</p>
+    <h1>Page not found</h1>
+    <p class="lede">The page you asked for is not part of this demonstration site. It may have been renamed, or the address may contain a typing error.</p>
+  </header>
+  <section class="section">
+    <div class="cluster">
+      <a class="btn btn--primary" href="index.html">Go to the home page</a>
+      <a class="btn" href="journey.html">Follow one molecule</a>
+      <a class="btn btn--ghost" href="index.html#sitemap">See all pages</a>
+    </div>
+  </section>
+</main>
+<div id="site-footer"></div>
+<script src="assets/js/config.js"></script>
+<script src="assets/data/figures.js"></script>
+<script src="assets/data/glossary.js"></script>
+<script src="assets/js/site.js"></script>
+</body>
+</html>

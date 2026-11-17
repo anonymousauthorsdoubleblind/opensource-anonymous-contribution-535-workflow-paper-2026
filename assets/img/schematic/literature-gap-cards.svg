@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 1926" width="1800" height="1926">
+<rect width="1800" height="1926" fill="#ffffff"/>
+<text x="50" y="70" font-size="40" font-weight="700" fill="#1b2333" font-family="Inter, Arial, sans-serif">Literature gaps addressed by this work</text>
+<text x="50" y="112" font-size="24" fill="#586279" font-family="Inter, Arial, sans-serif">Each statement is limited to what was searched: Skala-1.1, annulenes and the stated settings. Search window 10 to 13 Nov 2026.</text>
+<rect x="50" y="150" width="1700" height="321" rx="14" fill="#ffffff" stroke="#d4dae6" stroke-width="2"/>
+<rect x="70" y="170" width="310" height="281" rx="10" fill="#e2ebfa"/>
+<path d="M130.0 205.5Q225.0 385.5 320.0 205.5" fill="none" stroke="#1b2333" stroke-width="4"/>
+<line x1="163.0" y1="238.5" x2="287.0" y2="238.5" stroke="#2468c9" stroke-width="4" stroke-linecap="round"/>
+<line x1="181.0" y1="262.5" x2="269.0" y2="262.5" stroke="#2468c9" stroke-width="4" stroke-linecap="round"/>
+<line x1="201.0" y1="282.5" x2="249.0" y2="282.5" stroke="#2468c9" stroke-width="4" stroke-linecap="round"/>
+<line x1="175.0" y1="396.5" x2="175.0" y2="362.5" stroke="#2468c9" stroke-width="5" stroke-dasharray="5 5"/>
+<line x1="225.0" y1="396.5" x2="225.0" y2="344.5" stroke="#2468c9" stroke-width="5" stroke-dasharray="5 5"/>
+<line x1="275.0" y1="396.5" x2="275.0" y2="372.5" stroke="#2468c9" stroke-width="5" stroke-dasharray="5 5"/>
+<text x="303.0" y="398.5" font-size="34" font-weight="700" fill="#2468c9" font-family="Inter, Arial, sans-serif">?</text>
+<text x="225.0" y="433" font-size="19" fill="#586279" text-anchor="middle" font-family="Inter, Arial, sans-serif">frequencies · IR · vDOS</text>
+
+<text x="420" y="207" font-size="33" font-weight="700" fill="#1b2333" font-family="Inter, Arial, sans-serif"><tspan fill="#2468c9">G1</tspan>  Vibrational spectra of an annulene from Skala-1.1</text>
+<text x="420" y="258" font-size="27" fill="#1b2333" font-family="'Liberation Serif', 'Times New Roman', Times, serif">To our knowledge, no harmonic frequencies, infrared intensities or vibrational densities of states of an annulene</text>
+<text x="420" y="295" font-size="27" fill="#1b2333" font-family="'Liberation Serif', 'Times New Roman', Times, serif">computed with Skala-1.1 have been published, and whether its analytic gradients support a finite-difference nuclear</text>
+<text x="420" y="332" font-size="27" fill="#1b2333" font-family="'Liberation Serif', 'Times New Roman', Times, serif">Hessian for such a molecule has not been reported (Google Scholar, arXiv, ChemRxiv, the Skala repository and web</text>
+<text x="420" y="369" font-size="27" fill="#1b2333" font-family="'Liberation Serif', 'Times New Roman', Times, serif">search, searched 10 to 13 Nov 2026).</text>
+<text x="420" y="420" font-size="23" fill="#586279" font-family="Inter, Arial, sans-serif">Closest work: the Skala paper reports bond lengths and angles only [1]; repository pull requests of Aug to Sep 2026</text>
+<text x="420" y="451" font-size="23" fill="#586279" font-family="Inter, Arial, sans-serif">add Hessian-vector code but report no frequencies.</text>
+<rect x="50" y="497" width="1700" height="300" rx="14" fill="#ffffff" stroke="#d4dae6" stroke-width="2"/>
+<rect x="70" y="517" width="310" height="260" rx="10" fill="#fae7dc"/>
+<line x1="107.0" y1="702.0" x2="107.0" y2="632.0" stroke="#b94a1b" stroke-width="6" stroke-linecap="round"/>
+<line x1="133.0" y1="702.0" x2="133.0" y2="664.0" stroke="#b94a1b" stroke-width="6" stroke-linecap="round"/>
+<line x1="159.0" y1="702.0" x2="159.0" y2="610.0" stroke="#b94a1b" stroke-width="6" stroke-linecap="round"/>
+<line x1="185.0" y1="702.0" x2="185.0" y2="650.0" stroke="#b94a1b" stroke-width="6" stroke-linecap="round"/>
+<line x1="255.0" y1="702.0" x2="255.0" y2="634.0" stroke="#1b2333" stroke-width="6" stroke-linecap="round"/>
+<line x1="281.0" y1="702.0" x2="281.0" y2="658.0" stroke="#1b2333" stroke-width="6" stroke-linecap="round"/>
+<line x1="307.0" y1="702.0" x2="307.0" y2="614.0" stroke="#1b2333" stroke-width="6" stroke-linecap="round"/>
+<line x1="333.0" y1="702.0" x2="333.0" y2="652.0" stroke="#1b2333" stroke-width="6" stroke-linecap="round"/>
+<text x="219.0" y="643.0" font-size="44" font-weight="700" fill="#b94a1b" text-anchor="middle" font-family="Inter, Arial, sans-serif">?</text>
+<text x="155.0" y="731.0" font-size="19" fill="#586279" text-anchor="middle" font-family="Inter, Arial, sans-serif">Skala-1.1</text>
+<text x="303.0" y="731.0" font-size="19" fill="#586279" text-anchor="middle" font-family="Inter, Arial, sans-serif">experiment</text>
+<text x="225.0" y="759" font-size="19" fill="#586279" text-anchor="middle" font-family="Inter, Arial, sans-serif">¹H and ¹³C shifts</text>
+
+<text x="420" y="554" font-size="33" font-weight="700" fill="#1b2333" font-family="Inter, Arial, sans-serif"><tspan fill="#b94a1b">G2</tspan>  Skala-1.1 geometry tested against experimental NMR</text>
+<text x="420" y="605" font-size="27" fill="#1b2333" font-family="'Liberation Serif', 'Times New Roman', Times, serif">To our knowledge, no Skala-optimized geometry of an annulene has been tested against the experimental ¹H and ¹³C</text>
+<text x="420" y="642" font-size="27" fill="#1b2333" font-family="'Liberation Serif', 'Times New Roman', Times, serif">NMR spectrum of the synthesized compound; the reported Skala geometry tests compare bond lengths and angles of</text>
+<text x="420" y="679" font-size="27" fill="#1b2333" font-family="'Liberation Serif', 'Times New Roman', Times, serif">small molecules with reference values [1].</text>
+<text x="420" y="730" font-size="23" fill="#586279" font-family="Inter, Arial, sans-serif">Closest work: the Skala geometry tests use bond-length and bond-angle reference sets (LMGB35, HMGB11, CCse21,</text>
+<text x="420" y="761" font-size="23" fill="#586279" font-family="Inter, Arial, sans-serif">W4-11-GEOM) [1]; no NMR comparison was found.</text>
+<rect x="50" y="823" width="1700" height="395" rx="14" fill="#ffffff" stroke="#d4dae6" stroke-width="2"/>
+<rect x="70" y="843" width="310" height="355" rx="10" fill="#dcf0e4"/>
+<rect x="145.0" y="1000.5" width="160" height="54" rx="9" fill="#ffffff" stroke="#1b2333" stroke-width="3"/>
+<text x="225.0" y="1034.5" font-size="24" font-weight="700" fill="#1b2333" text-anchor="middle" font-family="Inter, Arial, sans-serif">L-BFGS run</text>
+<path d="M133.0 1054.5A100 62 0 0 1 317.0 1002.5" fill="none" stroke="#18733f" stroke-width="4.5"/>
+<path d="M317.0 1002.5l-17 2 9 -15z" fill="#18733f"/>
+<text x="225.0" y="938.5" font-size="21" font-weight="700" fill="#18733f" text-anchor="middle" font-family="Inter, Arial, sans-serif">check · act · verify</text>
+<path d="M299.0 1084.5H151.0" fill="none" stroke="#1b2333" stroke-width="3" stroke-dasharray="7 6"/>
+<path d="M151.0 1084.5l16 -9v18z" fill="#1b2333"/>
+<text x="225.0" y="1116.5" font-size="21" fill="#1b2333" text-anchor="middle" font-family="Inter, Arial, sans-serif">rollback if worse</text>
+<text x="225.0" y="1180" font-size="19" fill="#586279" text-anchor="middle" font-family="Inter, Arial, sans-serif">settings changed during the run</text>
+
+<text x="420" y="880" font-size="33" font-weight="700" fill="#1b2333" font-family="Inter, Arial, sans-serif"><tspan fill="#18733f">G3</tspan>  A language-model agent supervising a running optimization</text>
+<text x="420" y="931" font-size="27" fill="#1b2333" font-family="'Liberation Serif', 'Times New Roman', Times, serif">To our knowledge, no earlier work has a large language model agent, through function calling with typed actions,</text>
+<text x="420" y="968" font-size="27" fill="#1b2333" font-family="'Liberation Serif', 'Times New Roman', Times, serif">supervise the step and convergence settings of a running Skala-1.1/L-BFGS geometry optimization behind a validator,</text>
+<text x="420" y="1005" font-size="27" fill="#1b2333" font-family="'Liberation Serif', 'Times New Roman', Times, serif">a probation window and rollback of the running optimization (searched 10 to 13 Nov 2026). The nearest work</text>
+<text x="420" y="1042" font-size="27" fill="#1b2333" font-family="'Liberation Serif', 'Times New Roman', Times, serif">automates job setup and recovery between jobs (El Agente Q, ChemGraph, DREAMS, AutoDFT, TSAgent), improves</text>
+<text x="420" y="1079" font-size="27" fill="#1b2333" font-family="'Liberation Serif', 'Times New Roman', Times, serif">optimizer code offline (AutoSella; Woo; FermiLink), or controls a running solver outside chemistry (SIMP topology</text>
+<text x="420" y="1116" font-size="27" fill="#1b2333" font-family="'Liberation Serif', 'Times New Roman', Times, serif">optimization [29]).</text>
+<text x="420" y="1167" font-size="23" fill="#586279" font-family="Inter, Arial, sans-serif">Offline code improvement keeps or reverts a code commit between iterations; it does not roll back the settings of a</text>
+<text x="420" y="1198" font-size="23" fill="#586279" font-family="Inter, Arial, sans-serif">running optimization.</text>
+<rect x="50" y="1244" width="1700" height="300" rx="14" fill="#ffffff" stroke="#d4dae6" stroke-width="2"/>
+<rect x="70" y="1264" width="310" height="260" rx="10" fill="#ece5f5"/>
+<path d="M147.0 1302.0C175.0 1302.0 193.0 1456.0 245.0 1456.0C297.0 1456.0 315.0 1302.0 343.0 1302.0" fill="none" stroke="#1b2333" stroke-width="4"/>
+<circle cx="161.0" cy="1312.0" r="11" fill="#6a4c93"/>
+<circle cx="245.0" cy="1454.0" r="8" fill="#1b2333"/>
+<line x1="107.0" y1="1332.0" x2="107.0" y2="1454.0" stroke="#6a4c93" stroke-width="3.5"/>
+<path d="M107.0 1328.0l-6 12h12z M107.0 1458.0l-6 -12h12z" fill="#6a4c93"/>
+<text x="111.0" y="1298.0" font-size="23" font-weight="700" fill="#6a4c93" text-anchor="middle" font-family="Inter, Arial, sans-serif">&gt; 1 eV</text>
+<path d="M199.0 1440.0Q245.0 1428.0 291.0 1440.0" fill="none" stroke="#586279" stroke-width="3" stroke-dasharray="5 5"/>
+<text x="245.0" y="1486.0" font-size="17" fill="#586279" text-anchor="middle" font-family="Inter, Arial, sans-serif">tests: start not stated</text>
+<text x="225.0" y="1506" font-size="19" fill="#586279" text-anchor="middle" font-family="Inter, Arial, sans-serif">release of steric strain</text>
+
+<text x="420" y="1301" font-size="33" font-weight="700" fill="#1b2333" font-family="Inter, Arial, sans-serif"><tspan fill="#6a4c93">G4</tspan>  Release of more than 1 eV of strain in a Skala-1.1 optimization</text>
+<text x="420" y="1352" font-size="27" fill="#1b2333" font-family="'Liberation Serif', 'Times New Roman', Times, serif">To our knowledge, no publication independently evaluates Skala’s ability to release high steric strain (&gt; 1 eV) in a</text>
+<text x="420" y="1389" font-size="27" fill="#1b2333" font-family="'Liberation Serif', 'Times New Roman', Times, serif">geometry optimization of an annulene; the starting geometries of the reported Skala optimization tests are not stated</text>
+<text x="420" y="1426" font-size="27" fill="#1b2333" font-family="'Liberation Serif', 'Times New Roman', Times, serif">[1].</text>
+<text x="420" y="1477" font-size="23" fill="#586279" font-family="Inter, Arial, sans-serif">Closest work: strained conformers (Wiggle150) appear in the Skala paper as single-point relative energies, not</text>
+<text x="420" y="1508" font-size="23" fill="#586279" font-family="Inter, Arial, sans-serif">optimizations [1].</text>
+<rect x="50" y="1570" width="1700" height="316" rx="14" fill="#f3f5f9" stroke="#d4dae6" stroke-width="2"/>
+<text x="90" y="1614" font-size="22" font-weight="700" fill="#586279" font-family="Inter, Arial, sans-serif" letter-spacing="1.2">BROADER STATEMENT (HEDGED)</text>
+<text x="90" y="1659" font-size="27" fill="#1b2333" font-family="'Liberation Serif', 'Times New Roman', Times, serif">To the best of our knowledge, these gaps are not limited to annulenes: our searches (Google Scholar, arXiv, ChemRxiv, the Skala repository and web</text>
+<text x="90" y="1696" font-size="27" fill="#1b2333" font-family="'Liberation Serif', 'Times New Roman', Times, serif">search, 10 to 13 Nov 2026) found no Skala-1.1 frequencies, infrared intensities or vibrational densities of states for any molecule, no Skala-optimized</text>
+<text x="90" y="1733" font-size="27" fill="#1b2333" font-family="'Liberation Serif', 'Times New Roman', Times, serif">geometry tested against the experimental NMR spectrum of any synthesized compound, no language-model agent that adjusts a running geometry</text>
+<text x="90" y="1770" font-size="27" fill="#1b2333" font-family="'Liberation Serif', 'Times New Roman', Times, serif">optimization through function calls, no controller of any kind that supervises a running L-BFGS geometry optimization in DFT with a validator, a</text>
+<text x="90" y="1807" font-size="27" fill="#1b2333" font-family="'Liberation Serif', 'Times New Roman', Times, serif">probation window and rollback, no language-model-agent work using the Skala functional, and no Skala optimization reported from more than 1 eV</text>
+<text x="90" y="1844" font-size="27" fill="#1b2333" font-family="'Liberation Serif', 'Times New Roman', Times, serif">above the minimum.</text>
+</svg>

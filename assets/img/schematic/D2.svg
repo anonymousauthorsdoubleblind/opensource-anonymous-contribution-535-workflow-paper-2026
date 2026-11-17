@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" font-family="Arial, Helvetica, sans-serif"><defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#1b2333"/></marker><marker id="m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#586279"/></marker><marker id="r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#b94a1b"/></marker><marker id="g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#18733f"/></marker></defs><rect width="1600" height="900" fill="#fff"/><text x="40" y="52" font-size="30" font-weight="700" fill="#1b2333" text-anchor="start">Module 1, one decision: how a setting change is proposed, checked and kept or rolled back</text>
+<text x="40" y="82" font-size="18" font-weight="400" fill="#586279" text-anchor="start">What happens each time the monitor raises a trigger</text>
+<rect x="40" y="130" width="330" height="130" rx="12" fill="#e2ebfa" stroke="#2468c9" stroke-width="2.2"/>
+<text x="205.0" y="176.92000000000002" font-size="20" font-weight="700" fill="#1b2333" text-anchor="middle">1  Monitor trigger</text>
+<text x="205.0" y="211.72000000000003" font-size="16" font-weight="400" fill="#586279" text-anchor="middle">plain code sees a stall,</text>
+<text x="205.0" y="233.8" font-size="16" font-weight="400" fill="#586279" text-anchor="middle">e.g. steps pinned at the cap</text>
+<path d="M372 195H436" stroke="#1b2333" stroke-width="2.6" fill="none" marker-end="url(#a)" stroke-linejoin="round"/>
+<rect x="440" y="130" width="330" height="130" rx="12" fill="#e2ebfa" stroke="#2468c9" stroke-width="2.2"/>
+<text x="605.0" y="165.88" font-size="20" font-weight="700" fill="#1b2333" text-anchor="middle">2  Packet</text>
+<text x="605.0" y="200.68" font-size="16" font-weight="400" fill="#586279" text-anchor="middle">measured quantities as JSON,</text>
+<text x="605.0" y="222.76" font-size="16" font-weight="400" fill="#586279" text-anchor="middle">plus the step advisor's</text>
+<text x="605.0" y="244.84" font-size="16" font-weight="400" fill="#586279" text-anchor="middle">recommendation</text>
+<path d="M772 195H836" stroke="#1b2333" stroke-width="2.6" fill="none" marker-end="url(#a)" stroke-linejoin="round"/>
+<rect x="840" y="130" width="330" height="130" rx="12" fill="#fae7dc" stroke="#b94a1b" stroke-width="3"/>
+<text x="1005.0" y="165.88" font-size="20" font-weight="700" fill="#1b2333" text-anchor="middle">3  Language model</text>
+<text x="1005.0" y="200.68" font-size="16" font-weight="400" fill="#586279" text-anchor="middle">function calling; may call</text>
+<text x="1005.0" y="222.76" font-size="16" font-weight="400" fill="#586279" text-anchor="middle">tools, then returns exactly one</text>
+<text x="1005.0" y="244.84" font-size="16" font-weight="400" fill="#586279" text-anchor="middle">action from a closed list of eight</text>
+<path d="M1172 195H1236" stroke="#1b2333" stroke-width="2.6" fill="none" marker-end="url(#a)" stroke-linejoin="round"/>
+<rect x="1240" y="130" width="320" height="130" rx="12" fill="#dcf0e4" stroke="#18733f" stroke-width="3"/>
+<text x="1400.0" y="176.92000000000002" font-size="20" font-weight="700" fill="#1b2333" text-anchor="middle">4  Guard: validator</text>
+<text x="1400.0" y="211.72000000000003" font-size="16" font-weight="400" fill="#586279" text-anchor="middle">clips out-of-range values,</text>
+<text x="1400.0" y="233.8" font-size="16" font-weight="400" fill="#586279" text-anchor="middle">rejects unsupported actions</text>
+<path d="M1400 262V330" stroke="#18733f" stroke-width="2.6" fill="none" marker-end="url(#g)" stroke-linejoin="round"/>
+<text x="1412" y="300" font-size="14" font-weight="400" fill="#586279" text-anchor="start">step cap at most doubles</text>
+<rect x="1240" y="334" width="320" height="130" rx="12" fill="#f6ebd2" stroke="#b99a4a" stroke-width="2.2"/>
+<text x="1400.0" y="380.92" font-size="20" font-weight="700" fill="#1b2333" text-anchor="middle">5  Probation</text>
+<text x="1400.0" y="415.72" font-size="16" font-weight="400" fill="#586279" text-anchor="middle">five steps from a</text>
+<text x="1400.0" y="437.8" font-size="16" font-weight="400" fill="#586279" text-anchor="middle">saved checkpoint</text>
+<path d="M1238 400H1110" stroke="#1b2333" stroke-width="2.6" fill="none" marker-end="url(#a)" stroke-linejoin="round"/>
+<path d="M1000 325L1108 400L1000 475L892 400Z" fill="#ffffff" stroke="#586279" stroke-width="2.4"/>
+<text x="1000" y="394" font-size="14.5" font-weight="700" fill="#1b2333" text-anchor="middle">Energy or max force</text>
+<text x="1000" y="414" font-size="14.5" font-weight="700" fill="#1b2333" text-anchor="middle">worse than before?</text>
+<path d="M892 400H800" stroke="#1b2333" stroke-width="2.6" fill="none" marker-end="url(#a)" stroke-linejoin="round"/>
+<text x="846" y="388" font-size="15" font-weight="400" fill="#586279" text-anchor="middle">no</text>
+<rect x="530" y="350" width="270" height="100" rx="12" fill="#e6f3d3" stroke="#5e9b1f" stroke-width="3"/>
+<text x="665.0" y="382.95" font-size="19" font-weight="700" fill="#1b2333" text-anchor="middle">Keep the change</text>
+<text x="665.0" y="416.25" font-size="15" font-weight="400" fill="#586279" text-anchor="middle">optimizer continues</text>
+<text x="665.0" y="436.95" font-size="15" font-weight="400" fill="#586279" text-anchor="middle">with new setting</text>
+<path d="M1000 477V560" stroke="#1b2333" stroke-width="2.6" fill="none" marker-end="url(#a)" stroke-linejoin="round"/>
+<text x="1012" y="520" font-size="15" font-weight="400" fill="#586279" text-anchor="start">yes</text>
+<rect x="850" y="564" width="300" height="100" rx="12" fill="#fae7dc" stroke="#b94a1b" stroke-width="3"/>
+<text x="1000.0" y="596.9499999999999" font-size="19" font-weight="700" fill="#1b2333" text-anchor="middle">Roll back</text>
+<text x="1000.0" y="630.2499999999999" font-size="15" font-weight="400" fill="#586279" text-anchor="middle">return to the checkpoint</text>
+<text x="1000.0" y="650.9499999999999" font-size="15" font-weight="400" fill="#586279" text-anchor="middle">at most one probation lost</text>
+<rect x="40" y="330" width="400" height="134" rx="12" fill="#ffffff" stroke="#586279" stroke-width="2.2"/>
+<text x="240.0" y="369.25" font-size="18" font-weight="700" fill="#1b2333" text-anchor="middle">Limits set by the guard</text>
+<text x="240.0" y="401.35" font-size="15" font-weight="400" fill="#586279" text-anchor="middle">step cap never above 0.05 Å per decision;</text>
+<text x="240.0" y="422.05" font-size="15" font-weight="400" fill="#586279" text-anchor="middle">trap-escape actions need hard</text>
+<text x="240.0" y="442.75" font-size="15" font-weight="400" fill="#586279" text-anchor="middle">evidence from a DFT probe</text>
+<rect x="40" y="590" width="760" height="190" rx="14" fill="#f3f4f7" stroke="#d4dae6" stroke-width="2"/>
+<text x="64" y="624" font-size="19" font-weight="700" fill="#1b2333" text-anchor="start">Safety net</text>
+<text x="64" y="660" font-size="17" font-weight="400" fill="#1b2333" text-anchor="start">•  After two rollbacks the agent is switched off for that run.</text>
+<text x="64" y="694" font-size="17" font-weight="400" fill="#1b2333" text-anchor="start">•  If the model does not answer: carry on unchanged and flag the run for rerun.</text>
+<text x="64" y="728" font-size="17" font-weight="400" fill="#1b2333" text-anchor="start">•  Every packet, call and response is written to a logbook.</text>
+<text x="850" y="722" font-size="17" font-weight="700" fill="#1b2333" text-anchor="start">Only L-BFGS moves atoms; the agent changes settings, never coordinates.</text>
+<text x="800.0" y="882" font-size="15" font-weight="400" fill="#586279" text-anchor="middle">Controller is a setting: this loop can run with the language-model agent or with rule-based control. Schematic, not computed data.</text></svg>

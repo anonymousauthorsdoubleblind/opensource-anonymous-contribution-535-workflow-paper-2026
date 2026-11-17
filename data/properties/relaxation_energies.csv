@@ -1,0 +1,11 @@
+molecule,method,relaxation_energy_kcal_mol,deviation_from_CCSD(T)_kcal_mol,note
+C11H8,CCSD(T),21.71,0,reference
+C11H8,Skala-1.1,21.31,-0.4,
+C11H8,wB97M-V,22.07,0.36,
+C11H8,CCSD,23.76,2.05,
+C11H8,HF,30.69,8.97,
+C10H6,CCSD(T),87.58,0,reference
+C10H6,Skala-1.1,90.71,3.13,3.6 %
+C10H6,wB97M-V,91.83,4.25,4.9 %
+C10H6,CCSD,91.96,4.38,
+C10H6,HF,110.93,23.35,

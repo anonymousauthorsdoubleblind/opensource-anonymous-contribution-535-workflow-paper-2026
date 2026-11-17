@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 980" width="1600" height="980" font-family="Arial, Helvetica, sans-serif"><defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#1b2333"/></marker><marker id="m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#586279"/></marker><marker id="r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#b94a1b"/></marker><marker id="g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#18733f"/></marker></defs><rect width="1600" height="980" fill="#fff"/><text x="40" y="52" font-size="30" font-weight="700" fill="#1b2333" text-anchor="start">How structures move between the modules</text>
+<text x="40" y="82" font-size="18" font-weight="400" fill="#586279" text-anchor="start">Two routes: the agent-supervised route feeds modules 2 and 3; the hand-set reference route feeds module 4</text>
+<rect x="30" y="110" width="1540" height="470" rx="16" fill="#fafcff" stroke="#d4dae6" stroke-width="2"/>
+<text x="54" y="142" font-size="20" font-weight="700" fill="#5e9b1f" text-anchor="start">Agent-supervised route</text>
+<rect x="54" y="200" width="190" height="100" rx="12" fill="#f3f4f7" stroke="#999" stroke-width="2.2"/>
+<text x="149.0" y="232.6" font-size="18" font-weight="700" fill="#1b2333" text-anchor="middle">Distorted start</text>
+<text x="149.0" y="264.7" font-size="15" font-weight="400" fill="#586279" text-anchor="middle">from a geometry</text>
+<text x="149.0" y="285.4" font-size="15" font-weight="400" fill="#586279" text-anchor="middle">that needs repair</text>
+<path d="M246 250H290" stroke="#1b2333" stroke-width="2.6" fill="none" marker-end="url(#a)" stroke-linejoin="round"/>
+<rect x="294" y="170" width="360" height="160" rx="12" fill="#e6f3d3" stroke="#5e9b1f" stroke-width="3"/>
+<text x="474.0" y="222.60000000000002" font-size="19" font-weight="700" fill="#1b2333" text-anchor="middle">Agentic optimizer module</text>
+<text x="474.0" y="255.90000000000003" font-size="15" font-weight="400" fill="#586279" text-anchor="middle">xTB basin search, then</text>
+<text x="474.0" y="276.6" font-size="15" font-weight="400" fill="#586279" text-anchor="middle">supervised L-BFGS on</text>
+<text x="474.0" y="297.3" font-size="15" font-weight="400" fill="#586279" text-anchor="middle">Skala-1.1 / def2-SVP</text>
+<circle cx="294" cy="172" r="19" fill="#5e9b1f" stroke="#fff" stroke-width="3"/>
+<text x="294" y="179" font-size="20" font-weight="700" fill="#fff" text-anchor="middle">1</text>
+<path d="M656 250H700" stroke="#1b2333" stroke-width="2.6" fill="none" marker-end="url(#a)" stroke-linejoin="round"/>
+<rect x="704" y="200" width="220" height="100" rx="12" fill="#ffffff" stroke="#586279" stroke-width="2.2"/>
+<text x="814.0" y="232.95000000000002" font-size="19" font-weight="700" fill="#1b2333" text-anchor="middle">End point</text>
+<text x="814.0" y="266.25" font-size="15" font-weight="400" fill="#586279" text-anchor="middle">unrounded coordinates</text>
+<text x="814.0" y="286.95" font-size="15" font-weight="400" fill="#586279" text-anchor="middle">+ provenance</text>
+<path d="M926 250H960M960 195V400" stroke="#1b2333" stroke-width="2.6" fill="none"/>
+<path d="M960 195H1000" stroke="#1b2333" stroke-width="2.6" fill="none" marker-end="url(#a)" stroke-linejoin="round"/>
+<path d="M960 400H1000" stroke="#1b2333" stroke-width="2.6" fill="none" marker-end="url(#a)" stroke-linejoin="round"/>
+<rect x="1004" y="150" width="270" height="90" rx="12" fill="#e2ebfa" stroke="#2468c9" stroke-width="2.2"/>
+<text x="1139.0" y="177.6" font-size="18" font-weight="700" fill="#1b2333" text-anchor="middle">Re-optimize</text>
+<text x="1139.0" y="209.7" font-size="15" font-weight="400" fill="#586279" text-anchor="middle">Skala-1.1 / def2-TZVP</text>
+<text x="1139.0" y="230.39999999999998" font-size="15" font-weight="400" fill="#586279" text-anchor="middle">force below 0.01 eV/Å</text>
+<path d="M1276 195H1314" stroke="#1b2333" stroke-width="2.6" fill="none" marker-end="url(#a)" stroke-linejoin="round"/>
+<rect x="1318" y="150" width="240" height="90" rx="12" fill="#e2ebfa" stroke="#2468c9" stroke-width="3"/>
+<text x="1438.0" y="188.3" font-size="19" font-weight="700" fill="#1b2333" text-anchor="middle">Hessian module</text>
+<text x="1438.0" y="221.60000000000002" font-size="15" font-weight="400" fill="#586279" text-anchor="middle">frequencies, IR, vDOS</text>
+<circle cx="1318" cy="152" r="19" fill="#2468c9" stroke="#fff" stroke-width="3"/>
+<text x="1318" y="159" font-size="20" font-weight="700" fill="#fff" text-anchor="middle">2</text>
+<rect x="1004" y="355" width="270" height="90" rx="12" fill="#ece3f7" stroke="#7a4fb5" stroke-width="2.2"/>
+<text x="1139.0" y="382.6" font-size="18" font-weight="700" fill="#1b2333" text-anchor="middle">Re-optimize</text>
+<text x="1139.0" y="414.70000000000005" font-size="15" font-weight="400" fill="#586279" text-anchor="middle">Skala-1.1 / 6-31+G(d,p)</text>
+<text x="1139.0" y="435.40000000000003" font-size="15" font-weight="400" fill="#586279" text-anchor="middle">plain L-BFGS</text>
+<path d="M1276 400H1314" stroke="#1b2333" stroke-width="2.6" fill="none" marker-end="url(#a)" stroke-linejoin="round"/>
+<rect x="1318" y="355" width="240" height="90" rx="12" fill="#ece3f7" stroke="#7a4fb5" stroke-width="3"/>
+<text x="1438.0" y="392.95000000000005" font-size="18" font-weight="700" fill="#1b2333" text-anchor="middle">NMR workflow module</text>
+<text x="1438.0" y="425.05000000000007" font-size="15" font-weight="400" fill="#586279" text-anchor="middle">shifts vs experiment</text>
+<circle cx="1318" cy="357" r="19" fill="#7a4fb5" stroke="#fff" stroke-width="3"/>
+<text x="1318" y="364" font-size="20" font-weight="700" fill="#fff" text-anchor="middle">3</text>
+<text x="520" y="500" font-size="15" font-weight="400" fill="#586279" text-anchor="start">Reported for two molecules (C₁₀H₆, C₁₁H₈); one end point per molecule goes on to modules 2 and 3.</text>
+<text x="520" y="525" font-size="15" font-weight="400" fill="#586279" text-anchor="start">Both modules start from the same agent end point; each re-optimizes at the basis its protocol needs.</text>
+<rect x="30" y="620" width="1540" height="290" rx="16" fill="#fffaf0" stroke="#e0a526" stroke-width="2"/>
+<text x="54" y="652" font-size="20" font-weight="700" fill="#7a5200" text-anchor="start">Hand-set reference route</text>
+<rect x="54" y="700" width="190" height="100" rx="12" fill="#f3f4f7" stroke="#999" stroke-width="2.2"/>
+<text x="149.0" y="732.6" font-size="18" font-weight="700" fill="#1b2333" text-anchor="middle">Deformed start</text>
+<text x="149.0" y="764.7" font-size="15" font-weight="400" fill="#586279" text-anchor="middle">randomly deformed</text>
+<text x="149.0" y="785.4000000000001" font-size="15" font-weight="400" fill="#586279" text-anchor="middle">input</text>
+<path d="M246 750H290" stroke="#1b2333" stroke-width="2.6" fill="none" marker-end="url(#a)" stroke-linejoin="round"/>
+<rect x="294" y="710" width="195" height="80" rx="12" fill="#f6ebd2" stroke="#b99a4a" stroke-width="2.2"/>
+<text x="391.5" y="743.29" font-size="17" font-weight="700" fill="#1b2333" text-anchor="middle">Tier 1</text>
+<text x="391.5" y="773.89" font-size="14" font-weight="400" fill="#586279" text-anchor="middle">xTB</text>
+<path d="M491 750H505" stroke="#1b2333" stroke-width="2.6" fill="none" marker-end="url(#a)" stroke-linejoin="round"/>
+<rect x="509" y="710" width="195" height="80" rx="12" fill="#f6ebd2" stroke="#b99a4a" stroke-width="2.2"/>
+<text x="606.5" y="743.29" font-size="17" font-weight="700" fill="#1b2333" text-anchor="middle">Tier 2</text>
+<text x="606.5" y="773.89" font-size="14" font-weight="400" fill="#586279" text-anchor="middle">MACE potential</text>
+<path d="M706 750H720" stroke="#1b2333" stroke-width="2.6" fill="none" marker-end="url(#a)" stroke-linejoin="round"/>
+<rect x="724" y="710" width="195" height="80" rx="12" fill="#f6ebd2" stroke="#b99a4a" stroke-width="2.2"/>
+<text x="821.5" y="743.29" font-size="17" font-weight="700" fill="#1b2333" text-anchor="middle">Tier 3</text>
+<text x="821.5" y="773.89" font-size="14" font-weight="400" fill="#586279" text-anchor="middle">Skala-1.1 / def2-SVP</text>
+<path d="M921 750H935" stroke="#1b2333" stroke-width="2.6" fill="none" marker-end="url(#a)" stroke-linejoin="round"/>
+<rect x="939" y="710" width="195" height="80" rx="12" fill="#f6ebd2" stroke="#b99a4a" stroke-width="2.2"/>
+<text x="1036.5" y="743.29" font-size="17" font-weight="700" fill="#1b2333" text-anchor="middle">Tier 4</text>
+<text x="1036.5" y="773.89" font-size="14" font-weight="400" fill="#586279" text-anchor="middle">Skala-1.1 / def2-TZVP</text>
+<path d="M1136 750H1150" stroke="#1b2333" stroke-width="2.6" fill="none" marker-end="url(#a)" stroke-linejoin="round"/>
+<rect x="1150" y="700" width="170" height="100" rx="12" fill="#ffffff" stroke="#586279" stroke-width="2.2"/>
+<text x="1235.0" y="732.6" font-size="18" font-weight="700" fill="#1b2333" text-anchor="middle">Minima</text>
+<text x="1235.0" y="764.7" font-size="15" font-weight="400" fill="#586279" text-anchor="middle">def2-TZVP</text>
+<text x="1235.0" y="785.4000000000001" font-size="15" font-weight="400" fill="#586279" text-anchor="middle">hand-set</text>
+<path d="M1322 750H1352" stroke="#1b2333" stroke-width="2.6" fill="none" marker-end="url(#a)" stroke-linejoin="round"/>
+<rect x="1356" y="695" width="200" height="110" rx="12" fill="#fdf0d5" stroke="#b87a00" stroke-width="3"/>
+<text x="1456.0" y="733.63" font-size="17" font-weight="700" fill="#1b2333" text-anchor="middle">Molecular property</text>
+<text x="1456.0" y="764.23" font-size="14" font-weight="400" fill="#586279" text-anchor="middle">module: charges,</text>
+<text x="1456.0" y="783.5500000000001" font-size="14" font-weight="400" fill="#586279" text-anchor="middle">CCSD(T) differences</text>
+<circle cx="1356" cy="697" r="19" fill="#b87a00" stroke="#fff" stroke-width="3"/>
+<text x="1356" y="704" font-size="20" font-weight="700" fill="#fff" text-anchor="middle">4</text>
+<path d="M474 330V420H1100V570" stroke="#586279" stroke-width="0" fill="none"/>
+<path d="M474 332V640" stroke="#586279" stroke-width="2.6" fill="none" stroke-dasharray="7 6" marker-end="url(#m)" stroke-linejoin="round"/>
+<text x="486" y="590" font-size="14" font-weight="400" fill="#586279" text-anchor="start">reference for module 1</text>
+<text x="54" y="880" font-size="15" font-weight="700" fill="#7a5200" text-anchor="start">Module 4 was run on the hand-set route's minima, not on output of the Hessian module.</text>
+<text x="800.0" y="962" font-size="15" font-weight="400" fill="#586279" text-anchor="middle">Schematic of the workflow, not computed data.</text></svg>

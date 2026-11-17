@@ -1,0 +1,131 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 624" role="img" aria-label="Schematic of the hybrid supervisor. The optimizer step feeds a monitor, which raises a decision event. In mode 1 the LLM decides every event using function calls. In mode 2 the rules controller decides first and a hand-over check passes the event to the LLM only if one of four conditions holds. Both modes emit a typed action into the same validator, apply step and five-step probation, after which the run continues.">
+        <style>
+:root{--bg:#fff;--fg:#18202b;--muted:#566170;--line:#b9c0cb;--llm:#3347b8;--llm-bg:#e4e8fb;--rule:#8a5200;--rule-bg:#fbecd0;--guard-bg:#e7ebf0;--panel:#eef0f4;--surface:#fff;--ok:#17694a;}
+body{margin:0;background:#fff;font-family:Arial,"Liberation Sans",Helvetica,sans-serif}
+.wrap{width:1380px;padding:20px 20px 12px;color:var(--fg)}
+svg{width:100%;height:auto;color:var(--fg)}
+.t{fill:var(--fg);font-size:13px;font-weight:600}.s{fill:var(--muted);font-size:11px}.lab{fill:var(--muted);font-size:11px}
+.mono{font-family:"Liberation Mono","Courier New",monospace;font-size:10.5px}
+.cap{fill:var(--muted);font-size:10.5px;font-weight:600;letter-spacing:.09em}.tag{font-size:10.5px;font-weight:600;letter-spacing:.09em}.tag.ok{fill:var(--ok)}.tag.no{fill:var(--muted)}
+.box{fill:var(--surface);stroke:var(--line);stroke-width:1.3}.b-llm{fill:var(--llm-bg);stroke:var(--llm);stroke-width:1.6}.b-rule{fill:var(--rule-bg);stroke:var(--rule);stroke-width:1.6}
+.panel{fill:var(--panel);stroke:var(--line);stroke-width:1;stroke-dasharray:4 4}.band{fill:var(--guard-bg);stroke:none}
+.w{fill:none;stroke:currentColor;stroke-width:1.4}.ret{fill:none;stroke:var(--muted);stroke-width:1.2;stroke-dasharray:5 4}
+.leg{display:flex;gap:28px;font-size:13px;color:var(--muted);margin-top:8px}.leg span{display:inline-flex;align-items:center;gap:8px}
+.chip{width:15px;height:15px;border-radius:3px;border:1.5px solid var(--line)}
+.chip.llm{border-color:var(--llm);background:var(--llm-bg)}.chip.rule{border-color:var(--rule);background:var(--rule-bg)}.chip.guard{background:var(--guard-bg)}
+</style><defs>
+          <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0 0 L10 5 L0 10 z" fill="currentColor"/>
+          </marker>
+          <marker id="ahm" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M0 0 L10 5 L0 10 z" fill="var(--muted)"/>
+          </marker>
+        </defs>
+
+        
+        <rect class="box" x="40" y="20" width="200" height="56" rx="5"/>
+        <text class="t" x="140" y="44" text-anchor="middle">L-BFGS step</text>
+        <text class="s" x="140" y="62" text-anchor="middle">Skala-1.1 energy and forces</text>
+
+        <rect class="box" x="330" y="20" width="200" height="56" rx="5"/>
+        <text class="t" x="430" y="44" text-anchor="middle">Monitor</text>
+        <text class="s" x="430" y="62" text-anchor="middle">six warning triggers</text>
+
+        <rect class="box" x="600" y="20" width="280" height="56" rx="5"/>
+        <text class="t" x="740" y="44" text-anchor="middle">Decision event</text>
+        <text class="s" x="740" y="62" text-anchor="middle">pass start, trigger, basin choice, final check</text>
+
+        <path class="w" d="M240 48 H328" marker-end="url(#ah)"/>
+        <text class="lab" x="284" y="40" text-anchor="middle">every step</text>
+        <path class="w" d="M530 48 H598" marker-end="url(#ah)"/>
+        <text class="lab" x="564" y="40" text-anchor="middle">if due</text>
+
+        
+        <path class="w" d="M740 76 V100"/>
+        <path class="w" d="M775 100 H280 V174" marker-end="url(#ah)"/>
+        <path class="w" d="M775 100 V174" marker-end="url(#ah)"/>
+        <text class="lab" x="510" y="92" text-anchor="middle">controller setting selects the path</text>
+
+        
+        <rect class="panel" x="40" y="124" width="400" height="268" rx="6"/>
+        <rect class="panel" x="480" y="124" width="400" height="268" rx="6"/>
+        <text class="cap" x="56" y="146">AGENT WITH ADVISOR</text>
+        <text class="lab" x="56" y="162">the rule advisor is one of its function calls</text>
+        <text class="tag ok" x="424" y="162" text-anchor="end">EVALUATED</text>
+        <text class="cap" x="496" y="146">RULES  ·  AGENT + RULES</text>
+        <text class="lab" x="496" y="162">rules decide; agent only on hand-over</text>
+        <text class="tag ok" x="864" y="162" text-anchor="end">RULES: EVALUATED</text>
+<text class="tag no" x="864" y="146" text-anchor="end">AGENT + RULES: DESIGN</text>
+
+        
+        <rect class="b-llm" x="180" y="176" width="200" height="56" rx="5"/>
+        <text class="t" x="280" y="200" text-anchor="middle">Agent (Gemini)</text>
+        <text class="s" x="280" y="218" text-anchor="middle">decides every event</text>
+
+        <rect class="box" x="60" y="290" width="230" height="64" rx="5"/>
+        <text class="t" x="175" y="312" text-anchor="middle">Function calls</text>
+        <text class="s" x="175" y="329" text-anchor="middle">evidence, rule advisor, DFT probe,</text>
+        <text class="s" x="175" y="343" text-anchor="middle">surrogate search, step preview</text>
+
+        <path class="w" d="M220 236 V286" marker-start="url(#ah)" marker-end="url(#ah)"/>
+        <text class="lab" x="212" y="265" text-anchor="end">up to 4 rounds</text>
+
+        <path class="w" d="M330 232 V430" marker-end="url(#ah)"/>
+        <text class="lab mono" x="338" y="318">submit_action</text>
+
+        
+        <rect class="b-rule" x="690" y="176" width="170" height="56" rx="5"/>
+        <text class="t" x="775" y="200" text-anchor="middle">Rules controller</text>
+        <text class="s" x="775" y="218" text-anchor="middle">decides first, no API call</text>
+
+        <path class="w" d="M775 232 V260" marker-end="url(#ah)"/>
+        <text class="lab" x="767" y="250" text-anchor="end">proposed action</text>
+
+        <rect class="b-rule" x="690" y="262" width="170" height="56" rx="5"/>
+        <text class="t" x="775" y="286" text-anchor="middle">Hand-over check</text>
+        <text class="s" x="775" y="304" text-anchor="middle">any of H1 to H4?</text>
+
+        <path class="w" d="M690 290 H652" marker-end="url(#ah)"/>
+        <text class="lab" x="671" y="282" text-anchor="middle">yes</text>
+
+        <rect class="b-llm" x="500" y="262" width="150" height="56" rx="5"/>
+        <text class="t" x="575" y="286" text-anchor="middle">Agent (Gemini)</text>
+        <text class="s" x="575" y="304" text-anchor="middle">same function calls</text>
+        <text class="lab" x="575" y="250" text-anchor="middle">sees the rule's proposal</text>
+
+        <path class="w" d="M575 318 V430" marker-end="url(#ah)"/>
+        <text class="lab" x="583" y="352">agent's action</text>
+        <path class="w" d="M775 318 V430" marker-end="url(#ah)"/>
+        <text class="lab" x="767" y="352" text-anchor="end">no: rule's action</text>
+
+        
+        <rect class="band" x="40" y="404" width="840" height="172" rx="6"/>
+        <rect class="box" x="60" y="432" width="800" height="30" rx="5"/>
+        <text class="t" x="460" y="452" text-anchor="middle">Typed action from a fixed list, with parameters</text>
+
+        <path class="w" d="M160 462 V482" marker-end="url(#ah)"/>
+
+        <rect class="box" x="60" y="484" width="200" height="52" rx="5"/>
+        <text class="t" x="160" y="506" text-anchor="middle">Validator</text>
+        <text class="s" x="160" y="523" text-anchor="middle">bounds, allow-list per event</text>
+
+        <rect class="box" x="330" y="484" width="200" height="52" rx="5"/>
+        <text class="t" x="430" y="506" text-anchor="middle">Apply</text>
+        <text class="s" x="430" y="523" text-anchor="middle">settings, or a checked displacement</text>
+
+        <rect class="box" x="600" y="484" width="260" height="52" rx="5"/>
+        <text class="t" x="730" y="506" text-anchor="middle">5-step probation</text>
+        <text class="s" x="730" y="523" text-anchor="middle">worse: roll back and count a strike</text>
+
+        <path class="w" d="M260 510 H328" marker-end="url(#ah)"/>
+        <text class="lab" x="294" y="502" text-anchor="middle">passes</text>
+        <path class="w" d="M530 510 H598" marker-end="url(#ah)"/>
+
+        <text class="cap" x="60" y="562">SHARED SAFETY LAYER · THE SAME FOR EVERY CONTROLLER</text>
+        <text class="lab" x="860" y="562" text-anchor="end">two strikes switch the controller off</text>
+
+        
+        <path class="ret" d="M860 510 H900 V596 H18 V48 H38" marker-end="url(#ahm)"/>
+        <text class="lab" x="460" y="613" text-anchor="middle">run continues with the kept or restored settings</text>
+      </svg>

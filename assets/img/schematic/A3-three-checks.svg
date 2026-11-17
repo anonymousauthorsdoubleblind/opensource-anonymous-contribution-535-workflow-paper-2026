@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 410" width="1800" height="820" font-family="Inter, Arial, Helvetica, sans-serif">
+<rect width="900" height="410" fill="#ffffff"/>
+<defs>
+<marker id="am" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#586279"/></marker>
+<marker id="ai" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#1b2333"/></marker>
+<marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#b94a1b"/></marker>
+</defs>
+<polygon points="450,20 471,32 471,56 450,68 429,56 429,32" fill="none" stroke="#2468c9" stroke-width="2.4"/>
+<circle cx="450" cy="20" r="3.6" fill="#2468c9"/>
+<circle cx="471" cy="32" r="3.6" fill="#2468c9"/>
+<circle cx="471" cy="56" r="3.6" fill="#2468c9"/>
+<circle cx="450" cy="68" r="3.6" fill="#2468c9"/>
+<circle cx="429" cy="56" r="3.6" fill="#2468c9"/>
+<circle cx="429" cy="32" r="3.6" fill="#2468c9"/>
+<text x="486" y="49" font-size="15" font-weight="700" fill="#1b2333" text-anchor="start">optimized structure</text>
+<path d="M420 62L180 104" stroke="#586279" stroke-width="1.5" fill="none" marker-end="url(#am)"/>
+<path d="M450 74V104" stroke="#586279" stroke-width="1.5" fill="none" marker-end="url(#am)"/>
+<path d="M480 62L720 104" stroke="#586279" stroke-width="1.5" fill="none" marker-end="url(#am)"/>
+<rect x="30" y="110" width="270" height="280" rx="8" fill="#ffffff" stroke="#586279" stroke-width="1.3"/>
+<text x="44" y="138" font-size="19" font-weight="700" fill="#1b2333" text-anchor="start">a</text>
+<text x="64" y="138" font-size="13.5" font-weight="700" fill="#1b2333" text-anchor="start">A true minimum?</text>
+<path d="M80 170Q165 330 250 170" stroke="#1b2333" stroke-width="2.6" fill="none"/>
+<circle cx="165" cy="243" r="7.5" fill="#2468c9"/>
+<path d="M150 268H118" stroke="#586279" stroke-width="1.5" fill="none" marker-end="url(#am)"/><path d="M180 268H212" stroke="#586279" stroke-width="1.5" fill="none" marker-end="url(#am)"/>
+<text x="165" y="291" font-size="13.5" font-weight="400" fill="#586279" text-anchor="middle">small nudges</text>
+<text x="165" y="332" font-size="14.5" font-weight="500" fill="#1b2333" text-anchor="middle">Energy rises for every nudge</text>
+<text x="165" y="372" font-size="13.5" font-weight="400" fill="#586279" text-anchor="middle">Hessian module</text>
+<rect x="315" y="110" width="270" height="280" rx="8" fill="#ffffff" stroke="#586279" stroke-width="1.3"/>
+<text x="329" y="138" font-size="19" font-weight="700" fill="#1b2333" text-anchor="start">b</text>
+<text x="349" y="138" font-size="13.5" font-weight="700" fill="#1b2333" text-anchor="start">Does it match the experiment?</text>
+<path d="M345 228H555" stroke="#586279" stroke-width="1.3" fill="none"/>
+<path d="M375 228V178M420 228V192M468 228V170M520 228V186" stroke="#2468c9" stroke-width="3.4" fill="none"/>
+<path d="M377 228V276M418 228V262M470 228V284M518 228V268" stroke="#1b2333" stroke-width="3.4" fill="none"/>
+<text x="345" y="168" font-size="13.5" font-weight="400" fill="#2468c9" text-anchor="start">computed</text>
+<text x="345" y="296" font-size="13.5" font-weight="400" fill="#586279" text-anchor="start">measured</text>
+<text x="450" y="332" font-size="14.5" font-weight="500" fill="#1b2333" text-anchor="middle">Signals line up, peak by peak</text>
+<text x="450" y="372" font-size="13.5" font-weight="400" fill="#586279" text-anchor="middle">NMR workflow module</text>
+<rect x="600" y="110" width="270" height="280" rx="8" fill="#ffffff" stroke="#586279" stroke-width="1.3"/>
+<text x="614" y="138" font-size="19" font-weight="700" fill="#1b2333" text-anchor="start">c</text>
+<text x="634" y="138" font-size="13.5" font-weight="700" fill="#1b2333" text-anchor="start">Does established theory agree?</text>
+<path d="M660 290V160" stroke="#586279" stroke-width="1.3" fill="none" marker-end="url(#am)"/><path d="M660 290H800" stroke="#586279" stroke-width="1.3" fill="none" marker-end="url(#am)"/>
+<path d="M664 286L792 166" stroke="#586279" stroke-width="1.3" stroke-dasharray="4 4" fill="none"/>
+<circle cx="682" cy="270" r="4.6" fill="#2468c9"/>
+<circle cx="702" cy="250" r="4.6" fill="#2468c9"/>
+<circle cx="722" cy="233" r="4.6" fill="#2468c9"/>
+<circle cx="744" cy="211" r="4.6" fill="#2468c9"/>
+<circle cx="762" cy="195" r="4.6" fill="#2468c9"/>
+<circle cx="780" cy="177" r="4.6" fill="#2468c9"/>
+<text x="735" y="308" font-size="13.5" font-weight="400" fill="#586279" text-anchor="middle">established method</text>
+<text x="646" y="225" font-size="13.5" font-weight="400" fill="#586279" text-anchor="middle" transform="rotate(-90 646 225)">this workflow</text>
+<text x="735" y="338" font-size="14.5" font-weight="500" fill="#1b2333" text-anchor="middle">Values fall on the line</text>
+<text x="735" y="372" font-size="13.5" font-weight="400" fill="#586279" text-anchor="middle">Molecular property module</text>
+</svg>

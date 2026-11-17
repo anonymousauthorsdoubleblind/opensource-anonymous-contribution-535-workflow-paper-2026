@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Code · Skala-1.1 workflow demo</title>
+<meta name="description" content="Source code of the agentic optimizer module: driver, controllers, validator, probation and rollback, and the log-analysis scripts.">
+<link rel="icon" href="assets/img/favicon.svg">
+<script>(function(){try{var t=localStorage.getItem("theme");if(!t&&window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)t="dark";if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/pages.css">
+</head>
+<body data-page="code" data-module="1">
+<a class="skip-link" href="#main">Skip to content</a>
+<div id="site-header"></div>
+<main id="main" class="page">
+  <header class="page-head">
+    <p class="eyebrow">Source code</p>
+    <h1>The code of the agentic optimizer module</h1>
+    <p class="lede">The driver, the two controllers, the validator, the probation and rollback logic and the starting geometries, as run for the Note, plus the log-analysis scripts.</p>
+  </header>
+
+  <div class="callout callout--note">
+    <strong class="callout__label">What is here</strong>
+    <p>This site carries the source of the agentic optimizer module (module 1) and its analysis scripts. The inputs, outputs and scripts of the Hessian, NMR workflow and molecular property modules and of the hand-set route are part of the repository release. <a data-repo-link></a></p>
+  </div>
+
+  <section class="section" id="viewer">
+    <h2>Read the source</h2>
+    <p class="pg-note">Choose a file on the left. Everything is plain text and works without a network. Each file can be copied or downloaded.</p>
+    <div class="pg-viewer">
+      <nav class="pg-tree" id="pg-tree" aria-label="Source files"></nav>
+      <div class="pg-file">
+        <div class="pg-file__bar">
+          <span class="pg-file__name" id="pg-fname">&nbsp;</span>
+          <button class="btn btn--ghost" type="button" id="pg-copy">Copy</button>
+          <a class="btn btn--ghost" id="pg-dl" href="code/README.md" download>Download</a>
+        </div>
+        <div class="pg-src" id="pg-src" tabindex="0" role="region" aria-label="File contents">
+          <pre class="pg-ln" id="pg-ln" aria-hidden="true"></pre>
+          <pre class="pg-code"><code id="pg-code"></code></pre>
+        </div>
+      </div>
+    </div>
+    <p class="pg-small pg-muted" id="pg-viewer-msg" role="status" aria-live="polite"></p>
+  </section>
+
+  <section class="section" id="map">
+    <h2>Where to look</h2>
+    <p>Cell numbers are the titles in the notebook of C<sub>10</sub>H<sub>6</sub>. The notebook of C<sub>11</sub>H<sub>8</sub> differs only in a few settings (see the diff file).</p>
+    <div class="table-wrap">
+      <table class="table">
+        <caption class="visually-hidden">Code map</caption>
+        <thead><tr><th scope="col">What</th><th scope="col">Cell</th><th scope="col">What to look for</th></tr></thead>
+        <tbody>
+          <tr><td>Skala-1.1 GPU calculator</td><td class="pg-cells" data-cells="4">4</td><td>GPU4PySCF calculator behind ASE</td></tr>
+          <tr><td>Starting geometries (R1 to R5, Q1, P0)</td><td class="pg-cells" data-cells="5a">5a</td><td>fixed files, identical for every arm</td></tr>
+          <tr><td>Geometry helpers: bond graph, planarity</td><td class="pg-cells" data-cells="5b">5b</td><td>used by the validator and the final check</td></tr>
+          <tr><td>Settings per pass</td><td class="pg-cells" data-cells="6">6</td><td>hand schedules and the step-cap sweep arms</td></tr>
+          <tr><td>Run logger</td><td class="pg-cells" data-cells="7">7</td><td>&ldquo;observer only&rdquo;: readable JSON for every run</td></tr>
+          <tr><td>Model client</td><td class="pg-cells" data-cells="8">8</td><td>rate limits and retries; the model is called only at a trigger or a pass boundary</td></tr>
+          <tr><td>GFN2-xTB basin search (surrogate tools)</td><td class="pg-cells" data-cells="9">9</td><td>13 seeds; does not relax the Skala-1.1 start</td></tr>
+          <tr><td>Run state, per-step monitor, triggers, step advisor</td><td class="pg-cells" data-cells="10">10</td><td>the six stall triggers; the deterministic advisor</td></tr>
+          <tr><td>L-BFGS step engine and the six functions the model may call</td><td class="pg-cells" data-cells="11">11</td><td>allow-list of functions per event</td></tr>
+          <tr><td>Actions, validator, probation and rollback</td><td class="pg-cells" data-cells="12">12</td><td>bounds: cap at most doubles, never above 0.05&nbsp;&Aring;; five-step probation</td></tr>
+          <tr><td>Controllers: none, rule-based, language model</td><td class="pg-cells" data-cells="13">13</td><td>the controller is a setting</td></tr>
+          <tr><td>Orchestrator: one optimization run</td><td class="pg-cells" data-cells="14">14</td><td>passes, triggers, calls, guard</td></tr>
+          <tr><td>Ammonia saddle test (compact module)</td><td class="pg-cells" data-cells="A1,A2,A3,A4,A5,A6">A1, A2, A3, A4, A5, A6</td><td>independent finite-difference Hessian as referee</td></tr>
+          <tr><td>Experiment grid and reports</td><td class="pg-cells" data-cells="14b,15,15b,15c,16">14b, 15, 15b, 15c, 16</td><td>preflight, resumable runs, call report</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section" id="downloads">
+    <h2>Download</h2>
+    <ul>
+      <li><a href="code/skala-agentic-optimizer-source.zip" download>skala-agentic-optimizer-source.zip</a>: notebooks, one file per cell, scripts, licence and notes.</li>
+      <li><a href="code/notebooks/agentic_skala_optimizer_C10H6.ipynb" download>agentic_skala_optimizer_C10H6.ipynb</a> (16 atoms)</li>
+      <li><a href="code/notebooks/agentic_skala_optimizer_C11H8.ipynb" download>agentic_skala_optimizer_C11H8.ipynb</a> (19 atoms)</li>
+      <li><a href="code/SCRUB-NOTES.md" download>SCRUB-NOTES.md</a>: how the published copy differs from the run copy.</li>
+    </ul>
+    <p>The published copy differs from the run copy only in environment handling: storage mount, secret lookup and download helpers were replaced by local equivalents. The optimizer, controllers and guard are unchanged.</p>
+    <div class="callout callout--limit">
+      <strong class="callout__label">The language model</strong>
+      <p>The language model is a third-party service and is not redistributed. Its decisions depend on the model version and are not bit-reproducible; the logs allow every decision to be audited. The rule-based controller needs no model call and no network.</p>
+    </div>
+    <p>Licence: MIT (see <a href="code/LICENSE">LICENSE</a>). To run the code yourself, see <a href="reproduce.html">Reproduce</a>.</p>
+  </section>
+</main>
+<div id="site-footer"></div>
+<script src="assets/js/config.js"></script>
+<script src="assets/data/figures.js"></script>
+<script src="assets/data/glossary.js"></script>
+<script src="assets/js/site.js"></script>
+<script src="assets/vendor/hljs/highlight.min.js"></script>
+<script src="assets/js/pages/code-bundle.js"></script>
+<script src="assets/js/pages/code.js"></script>
+</body>
+</html>
