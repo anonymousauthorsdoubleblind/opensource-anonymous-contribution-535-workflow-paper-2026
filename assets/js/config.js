@@ -4,7 +4,6 @@ window.SITE = {
   SHORT: "Skala-1.1 workflow demo",
   STATUS: "Anonymous submission under double-anonymous review",
   REPO_URL: "",
-  REPO_NOTE: "Anonymised repository link will be added at review.",
   SCOPE_LINE: "Case study of two hydrocarbons, single runs per arm. Screening is not demonstrated. No speed-up is claimed.",
   ANON_LINE: "Anonymous submission under double-anonymous review. Author names, affiliations, funding and contributions are withheld.",
   FMAX_FACTOR: 1.8897,

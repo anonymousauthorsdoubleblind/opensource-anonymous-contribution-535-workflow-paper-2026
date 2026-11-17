@@ -238,7 +238,7 @@
       var next = h("button", { type: "button", class: "btn btn--primary", text: idx === 6 ? "Finish" : "Next →" });
       prev.addEventListener("click", function () { goStage(idx - 1, true, true); });
       next.addEventListener("click", function () { if (idx === 6) { var c = $("jy-closing"); if (c) { c.hidden = false; c.scrollIntoView({ behavior: reduced() ? "auto" : "smooth", block: "start" }); } } else goStage(idx + 1, true, true); });
-      nav.appendChild(prev); nav.appendChild(h("span", { class: "jy-stage__count", text: "Stage " + s.n + " of 6" })); nav.appendChild(next);
+      nav.appendChild(prev); nav.appendChild(h("span", { class: "jy-stage__count", text: "Stage " + s.n + " (stages 0 to 6)" })); nav.appendChild(next);
       card.appendChild(nav);
       cardsEl.appendChild(card);
     });

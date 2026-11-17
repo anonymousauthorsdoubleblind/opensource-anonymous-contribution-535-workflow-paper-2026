@@ -230,7 +230,7 @@ function fillScope(){
 function fillRepo(scope){
   Array.prototype.forEach.call((scope||document).querySelectorAll("[data-repo-link]"), function(a){
     if(SITE.REPO_URL){ a.setAttribute("href", SITE.REPO_URL); a.textContent = a.textContent || "Repository"; }
-    else { a.removeAttribute("href"); a.textContent = SITE.REPO_NOTE; }
+    else { var pe = a.parentNode; if(pe) pe.removeChild(a); }
   });
 }
 
@@ -343,12 +343,10 @@ function buildFooter(){
   if(!host) return;
   var scope = el("div", {class:"callout callout--scope"}, [el("strong", {class:"callout__label", text:"Scope"}), el("p", {text:SITE.SCOPE_LINE})]);
   scope.querySelector("p").style.margin = "0";
-  var repo = el("p", null, [document.createTextNode("Repository: "), el("a", {"data-repo-link":""})]);
   var foot = el("footer", {class:"site-footer"}, el("div", {class:"site-footer__in"}, [
     footMap(),
     scope,
     el("p", {text:SITE.ANON_LINE}),
-    repo,
     el("p", {text:"Figures and numbers follow the manuscript; section numbers refer to it."})
   ]));
   host.appendChild(foot);

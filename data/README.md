@@ -1,6 +1,6 @@
 # Data of the demonstration site
 
-Every file is a run log or a table of the Note. Files are written by `work/wp4/build_downloads.py` from the run logs; interactive pages of the site read rounded copies of the same numbers.
+Every file is a run log or a table of the Note. Interactive pages of the site read rounded copies of the same numbers.
 
 ## Folders
 

@@ -33,7 +33,7 @@ assets/
 
 ## Repository link
 
-The repository link is set in one place: `REPO_URL` in `assets/js/config.js`. While it is empty, pages show the line "Anonymised repository link will be added at review."
+The repository link is set in one place: `REPO_URL` in `assets/js/config.js`. While it is empty, the pages show no repository link
 
 ## Licences
 
